@@ -17,6 +17,7 @@ public class RagController {
     @GetMapping("/rag")
     public AssistantMessage generate(
             @RequestParam(value = "message", defaultValue = "What bike is good for city commuting?") String message) {
-        return ragService.retrieve(message);
+        return ragService.ragOnBiblio(message);
     }
+
 }
