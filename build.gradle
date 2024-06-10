@@ -38,6 +38,7 @@ dependencies {
 		exclude group: 'org.apache.commons', module: 'commons-compress'
 	}
 	implementation 'org.apache.commons:commons-compress:1.26.0'
+	implementation 'io.hypersistence:hypersistence-utils-hibernate-63:3.7.3'
 
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'

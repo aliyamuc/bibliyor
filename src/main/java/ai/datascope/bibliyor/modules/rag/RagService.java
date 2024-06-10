@@ -31,6 +31,7 @@ public class RagService {
     @Autowired
     private VectorStore vectorStore;
 
+
     @Autowired
     private ChatModel chatModel;
 
