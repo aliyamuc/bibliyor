@@ -51,6 +51,10 @@ public class Biblio {
     private String source;
     private String EID;
 
+    @NotNull
+    @Column(columnDefinition = "text")
+    private String abstractContent;
+
     @Enumerated(EnumType.STRING)
     @Builder.Default
     private List<ResearchQuestion> rqs = new ArrayList<>();

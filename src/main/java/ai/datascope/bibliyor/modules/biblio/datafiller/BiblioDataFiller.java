@@ -34,11 +34,11 @@ public class BiblioDataFiller implements CommandLineRunner {
         Workbook workbook = new XSSFWorkbook(inputStream);
         Sheet sheetBigData = workbook.getSheet("big data");
         Sheet sheetMachineLearning = workbook.getSheet("machine learning");
-        saveSheet(sheetBigData);
-        saveSheet(sheetMachineLearning);
+        saveSheet(sheetBigData, ResearchQuestion.BIG_DATA);
+        saveSheet(sheetMachineLearning, ResearchQuestion.MACHINE_LEARNING);
     }
 
-    private void saveSheet(Sheet sheet) {
+    private void saveSheet(Sheet sheet, ResearchQuestion researchQuestion) {
         boolean isFirstRow = true;
         for (Row row : sheet) {
             if (isFirstRow) {
@@ -78,6 +78,7 @@ public class BiblioDataFiller implements CommandLineRunner {
             biblio.setOpenAccess(row.getCell(17).getStringCellValue());
             biblio.setSource(row.getCell(18).getStringCellValue());
             biblio.setEID(row.getCell(19).getStringCellValue());
+            biblio.setAbstractContent(row.getCell(20).getStringCellValue());
 
             Biblio updatedBiblio = biblioRepository.findByDOI(biblio.getDOI()).orElse(null);
             if(updatedBiblio != null) {
@@ -87,7 +88,7 @@ public class BiblioDataFiller implements CommandLineRunner {
                 ));
                 biblioRepository.save(updatedBiblio);
             }else{
-                biblio.setRqs(List.of(ResearchQuestion.valueOf(ResearchQuestion.BIG_DATA.name())));
+                biblio.setRqs(List.of(ResearchQuestion.valueOf(researchQuestion.name())));
                 biblioRepository.save(biblio);
             }
         }
