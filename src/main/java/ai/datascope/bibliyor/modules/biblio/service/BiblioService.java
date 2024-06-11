@@ -12,6 +12,7 @@ import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.SystemPromptTemplate;
 import org.springframework.ai.document.Document;
+import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -54,11 +55,11 @@ public class BiblioService {
         List<Biblio> biblioList = biblioRepository.findAll();
         biblioList.forEach(biblio -> {
             Map<String, Object> metadata = new HashMap<>();
-            metadata.put("Research Questions", biblio.getRqs());
+            metadata.put("ResearchQuestions", biblio.getRqs());
             metadata.put("Source", biblio.getSource());
-            metadata.put("Source Title", biblio.getSource());
+            metadata.put("SourceTitle", biblio.getSourceTitle());
             metadata.put("Year", biblio.getYear());
-            metadata.put("Document Type", biblio.getDocumentType());
+            metadata.put("DocumentType", biblio.getDocumentType());
             String content = "TITLE:" + '\n'
                     + biblio.getTitle() + '\n'
                     + "AUTHORS:" + '\n'
@@ -84,6 +85,13 @@ public class BiblioService {
         // Step 3 retrieve related documents to query
         log.info("Retrieving relevant documents");
         List<Document> similarDocuments = vectorStore.similaritySearch(query);
+        log.info(String.format("Found %s relevant documents.", similarDocuments.size()));
+        return similarDocuments;
+    }
+
+    @Transactional
+    public List<Document> retrieveSimilarDocuments(SearchRequest searchRequest){
+        List<Document> similarDocuments = vectorStore.similaritySearch(searchRequest);
         log.info(String.format("Found %s relevant documents.", similarDocuments.size()));
         return similarDocuments;
     }
