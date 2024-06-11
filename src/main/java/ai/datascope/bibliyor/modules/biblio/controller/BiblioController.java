@@ -29,9 +29,8 @@ public class BiblioController {
         biblioService.vectorizeAndStore();
     }
 
-    @GetMapping("/generate")
+    @GetMapping("/rag")
     public String generate(@RequestParam(value = "query", defaultValue = "What is Data Mesh?") String query) {
-
         List<Document> similarDocuments = biblioService.retrieveSimilarDocuments(query);
         Prompt prompt =  biblioService.preparePrompt(similarDocuments, query);
         return biblioService.askAIModel(prompt).getContent();
