@@ -1,17 +1,11 @@
 package ai.datascope.bibliyor.config;
 
-import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.info.Info;
-import org.springframework.context.annotation.Bean;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@OpenAPIDefinition(info = @Info(title = "OpenAI API", version = "v1", description = "GPT for Bibliographic Analysis"))
 public class SwaggerConfig {
 
-    @Bean
-    public OpenAPI openAPI() {
-        return new OpenAPI().info(new Info().title("BIBLIYOR REST APIs")
-                        .description("GPT for Bibliographic Analysis")
-                        .version("1.0"));
-    }
 }

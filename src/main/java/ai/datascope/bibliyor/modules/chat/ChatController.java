@@ -19,7 +19,12 @@ public class ChatController {
     private ChatService chatService;
 
     @GetMapping(value = "/chat")
-    String chat(String userQuery) {
+    public String chat(String userQuery) {
         return chatService.generate(userQuery);
+    }
+
+    @GetMapping(value = "/stream")
+    public void stream(String userQuery) {
+        chatService.stream(userQuery);
     }
 }

@@ -1,7 +1,5 @@
 package ai.datascope.bibliyor.modules.biblio.service;
 
-import ai.datascope.bibliyor.modules.biblio.model.Biblio;
-import ai.datascope.bibliyor.modules.biblio.repository.BiblioRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.azure.openai.AzureOpenAiChatOptions;
 import org.springframework.ai.chat.messages.AssistantMessage;
@@ -20,8 +18,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -29,7 +25,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Transactional
 @Service
-public class BiblioService {
+public class BiblioRAGService {
 
     @Autowired
     private ChatModel chatModel;
@@ -37,51 +33,13 @@ public class BiblioService {
     @Autowired
     private VectorStore vectorStore;
 
-    @Autowired
-    private BiblioRepository biblioRepository;
 
     @Value("classpath:/prompts/biblio.st")
     private Resource biblioPrompt;
 
-    private final List<Document> documents;
-
-    public BiblioService() {
-        this.documents = new ArrayList<>();
-    }
 
     @Transactional
-    public void loadDocuments(){
-        log.info("Loading Biblio Documents");
-        List<Biblio> biblioList = biblioRepository.findAll();
-        biblioList.forEach(biblio -> {
-            Map<String, Object> metadata = new HashMap<>();
-            metadata.put("ResearchQuestions", biblio.getRqs());
-            metadata.put("Source", biblio.getSource());
-            metadata.put("SourceTitle", biblio.getSourceTitle());
-            metadata.put("Year", biblio.getYear());
-            metadata.put("DocumentType", biblio.getDocumentType());
-            String content = "TITLE:" + '\n'
-                    + biblio.getTitle() + '\n'
-                    + "AUTHORS:" + '\n'
-                    + biblio.getAuthors() + '\n'
-                    + "ABSTRACT:" + '\n'
-                    + biblio.getAbstractContent();
-            Document document = new  Document(String.valueOf(biblio.getId()), content, metadata);
-            documents.add(document);
-        });
-    }
-
-    @Transactional
-    public void vectorizeAndStore(){
-        // Step 2 - Create embeddings and save to vector store
-        log.info("Creating Embeddings...");
-        // Add the documents to PGVector
-        vectorStore.add(documents);
-        log.info("Embeddings created.");
-    }
-
-    @Transactional
-    public List<Document> retrieveSimilarDocuments(String query){
+    public List<Document> retrieve(String query){
         // Step 3 retrieve related documents to query
         log.info("Retrieving relevant documents");
         List<Document> similarDocuments = vectorStore.similaritySearch(query);
@@ -90,14 +48,14 @@ public class BiblioService {
     }
 
     @Transactional
-    public List<Document> retrieveSimilarDocuments(SearchRequest searchRequest){
+    public List<Document> retrieve(SearchRequest searchRequest){
         List<Document> similarDocuments = vectorStore.similaritySearch(searchRequest);
         log.info(String.format("Found %s relevant documents.", similarDocuments.size()));
         return similarDocuments;
     }
 
     @Transactional
-    public Prompt preparePrompt(List<Document> similarDocuments, String userQuery) {
+    public Prompt augment(List<Document> similarDocuments, String userQuery) {
         var azureModelOptions = AzureOpenAiChatOptions.builder()
                 .withDeploymentName("gpt4-o")
                 .withTemperature(0.7F)
@@ -109,9 +67,9 @@ public class BiblioService {
     }
 
     @Transactional
-    public AssistantMessage askAIModel(Prompt prompt){
+    public AssistantMessage generation(Prompt prompt){
         ChatResponse chatResponse = chatModel.call(prompt);
-        log.info("AI responded.");
+        log.info("AI Model responded.");
         return chatResponse.getResult().getOutput();
     }
 
