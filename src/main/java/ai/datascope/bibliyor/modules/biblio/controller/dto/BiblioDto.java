@@ -13,4 +13,5 @@ public class BiblioDto {
     String title;
     String authors;
     String abstractContent;
+    String pdfContent;
 }

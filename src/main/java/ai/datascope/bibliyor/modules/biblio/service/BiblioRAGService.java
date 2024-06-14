@@ -3,7 +3,6 @@ package ai.datascope.bibliyor.modules.biblio.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.azure.openai.AzureOpenAiChatOptions;
 import org.springframework.ai.chat.messages.AssistantMessage;
-import org.springframework.ai.chat.messages.Message;
 import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
@@ -40,7 +39,6 @@ public class BiblioRAGService {
 
     @Transactional
     public List<Document> retrieve(String query){
-        // Step 3 retrieve related documents to query
         log.info("Retrieving relevant documents");
         List<Document> similarDocuments = vectorStore.similaritySearch(query);
         log.info(String.format("Found %s relevant documents.", similarDocuments.size()));
@@ -56,14 +54,18 @@ public class BiblioRAGService {
 
     @Transactional
     public Prompt augment(List<Document> similarDocuments, String userQuery) {
+
+        String documents = similarDocuments.stream().map(Document::getContent).collect(Collectors.joining("\n"));
+        var systemPromptTemplate = new SystemPromptTemplate(biblioPrompt);
+        var systemMessage = systemPromptTemplate.createMessage(Map.of("documents", documents));
+        var userMessage = new UserMessage(userQuery);
+
         var azureModelOptions = AzureOpenAiChatOptions.builder()
                 .withDeploymentName("gpt4-o")
                 .withTemperature(0.7F)
                 .build();
 
-        return new Prompt(List.of(getSystemMessage(similarDocuments),
-                new UserMessage(userQuery)),
-                azureModelOptions);
+        return new Prompt(List.of(systemMessage, userMessage),azureModelOptions);
     }
 
     @Transactional
@@ -71,11 +73,5 @@ public class BiblioRAGService {
         ChatResponse chatResponse = chatModel.call(prompt);
         log.info("AI Model responded.");
         return chatResponse.getResult().getOutput();
-    }
-
-    private Message getSystemMessage(List<Document> similarDocuments) {
-        String documents = similarDocuments.stream().map(Document::getContent).collect(Collectors.joining("\n"));
-        SystemPromptTemplate systemPromptTemplate = new SystemPromptTemplate(biblioPrompt);
-        return systemPromptTemplate.createMessage(Map.of("documents", documents));
     }
 }

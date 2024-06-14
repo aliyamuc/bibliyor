@@ -16,4 +16,9 @@ public interface VectorStoreRepository extends JpaRepository<VectorStore, UUID> 
     @Query(value = "CREATE INDEX IF NOT EXISTS idx_vector_store_embedding ON vector_store USING HNSW (embedding vector_cosine_ops)", nativeQuery = true)
     void createVectorIndex();
 
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM VectorStore ")
+    void deleteAllVectors();
+
 }

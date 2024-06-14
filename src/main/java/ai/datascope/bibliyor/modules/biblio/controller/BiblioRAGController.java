@@ -37,12 +37,16 @@ public class BiblioRAGController {
 
         var b = new FilterExpressionBuilder();
         var exp = b.and(b.gte("Year", gteYear), b.lte("Year", lteYear));
-        SearchRequest searchRequest = SearchRequest.query(query)
+
+        var searchRequest = SearchRequest.query(query)
                 .withTopK(topK)
                 .withSimilarityThreshold(similarityThreshold)
                 .withFilterExpression(exp.build());
-        List<Document> retrievedDocuments = biblioRAGService.retrieve(searchRequest);
-        return retrievedDocuments.stream().map((Document input) -> BibliyorMapper.mapStringToBiblioDto(input.getContent())).toList();
+
+        return biblioRAGService.retrieve(searchRequest)
+                .stream()
+                .map((Document d) -> BibliyorMapper.mapStringToBiblioDto(d.getContent()))
+                .toList();
     }
 
 }

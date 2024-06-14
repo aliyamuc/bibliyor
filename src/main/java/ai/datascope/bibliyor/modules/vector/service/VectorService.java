@@ -19,4 +19,9 @@ public class VectorService {
     public void init() {
         vectorStoreRepository.createVectorIndex();
     }
+
+    @Transactional
+    public void deleteAllVectors() {
+        vectorStoreRepository.deleteAllVectors();
+    }
 }

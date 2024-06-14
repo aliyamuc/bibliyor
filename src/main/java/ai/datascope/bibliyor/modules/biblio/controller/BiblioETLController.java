@@ -20,9 +20,8 @@ public class BiblioETLController {
 
     @PutMapping("/etl")
     public void etl() {
-        biblioETLService.extract();
-        biblioETLService.transform();
-        biblioETLService.load();
+        biblioETLService.deleteAllVectors();
+        biblioETLService.etl();
     }
 
 }
