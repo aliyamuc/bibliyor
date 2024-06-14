@@ -24,4 +24,10 @@ public class BiblioETLController {
         biblioETLService.etl();
     }
 
+    @PutMapping("/etl/one")
+    public void etlForOne() {
+        biblioETLService.deleteAllVectors();
+        biblioETLService.etlForOne();
+    }
+
 }
