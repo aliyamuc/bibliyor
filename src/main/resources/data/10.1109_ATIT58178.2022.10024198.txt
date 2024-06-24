@@ -1,0 +1,57 @@
+Making Real Time Bidding Solution for Video ADS
+
+Authors - Eugen Ivohin, Dmytro Biriukov, Mykhailo Makhno
+
+Abstract — In this paper, we propose an architecture solution to build high load system for video ad real time bidding (RTB). The solution is interconnected distributed services to process, analyze and manage ad requests in order to provide end users with ad content depending their characteristics in real time, known as programmatic advertising. Taking in mind high loads, we designed our architecture to be scalable, distributed, technology stack flexible, highly available and fault tolerant by design, and based on open standards in the field of programmatic advertising.
+
+Keywords — real time bidding, programmatic advertising, big data, high load, microservices, distributed data streaming
+
+I. INTRODUCTION
+
+Nowadays online video ads are a usual practice for everybody. We are used to obtaining tailored ads without thinking about how these ads were selected and delivered. This paper considers some technology aspects of the real-time bidding (RTB) process, which could be useful for those who have just started to research similar technologies as well as those who have already implemented similar solutions.
+
+Various studies assess that the global revenue in the video advertising segment amounted to US$ 27,799 m in 2018, with an expected annual growth rate of 14.6% over the next four years. The average revenue per Internet user currently amounts to US$9.34. This is not surprising considering two facts: (a) about three-quarters of Internet traffic is video-based and expected to grow by 80% in 2019, and (b) more than half of marketing professionals name video as the content type with the best ROI.
+
+Real-time bidding (RTB) is a means by which advertising inventory is bought and sold on a per-impression basis, via programmatic instantaneous auction. Although this technology is already widely spread and seems established, it is still evolving. Some fundamental features of RTB adding value for online video advertising include:
+
+Online ad impressions are sold in real-time auctions where multiple buyers may bid.
+Contextual targeting where the winning ad content is delivered to end-user devices when they are considered a target audience.
+Interactivity of ad delivery process, tracking ad impression events for detailed analysis of end-user behavior.
+These points distinguish RTB among Programmatic Advertising, generally considered as any kind of media buying process automation, providing extra opportunities to increase incomes. The interactivity provides a mechanism to track skipping, which is significant for analyzing end-user attitudes towards the brand, particularly on YouTube where the skip ratio exceeds half of all impressions. To participate in RTB, one should use existing platforms (Ad Exchanges, Supply Side Platforms, Demand Side Platforms) or introduce new ones supporting certain standards for data transactions. Key players in this market include AOL, Google, Microsoft, and Facebook. The Interactive Advertising Bureau (IAB) collaborates to develop and share technical standards and best practices, allowing components to communicate perfectly during requests exchange.
+
+II. ARCHITECTURE OVERVIEW
+
+The general principles of high load system design were kept in mind during the architecture design stage. The system should be implemented with the following features:
+
+High scalability
+Decomposition to services
+High availability and fault tolerance
+Flexibility in implementing different technologies
+Openness adhering to standards for RTB platforms
+The microservices architecture develops a single IT product as a composition of relatively small and independent services. Services may be developed, deployed, and scaled independently. We consider the Hadoop stack as a technology foundation for our solution, utilizing Hortonworks DataFlow (HDF) and Stream Analytics Manager (SAM) for managing Hadoop components.
+
+III. COMPONENTS GROUPS
+
+All components can be distributed into three groups: (A) Analytics, (B) RTB Services, and (C) Administration. RTB Services receive requests from supply partners, process these requests, form derivative requests to demand partners, collect responses, and stream data to the Analytics group. The Analytics group performs collection, storage, and processing of streamed data, providing aggregated data to the Administration group. The Administration group contains tools and UIs for monitoring and administration.
+
+The VAST/VPAID and OpenRTB standards are the most widespread for real-time bidding video ads, with platforms communicating via HTTP/HTTPS requests, and POST responses containing XML or JSON payloads.
+
+IV. COMPONENTS OVERVIEW
+
+A. Analytic Services
+
+Distributed Streaming Platform: Stream Analytics Manager connects components of the Analytics group, simplifying the creation of applications.
+Distributed Data Store: Druid is a column-oriented, open-source, distributed data store designed for quick ingestion of massive quantities of event data, supporting low-latency queries.
+Avro: A data serialization system providing rich data structures for data representation and an extensible schema language in pure JSON.
+B. RTB Services
+
+Load Balancer: Optimizes loads among several bidder services, increasing availability and response time.
+Bidder Services: Handle OpenRTB and VAST/VPAID requests, forming and sending suitable ad content responses. They operate with high efficiency due to handling a large number of simultaneous connections.
+Manager Service: Manages bidder services, configuration changes, and system updates.
+Event Trackers: Validate requests from end-user devices to eliminate fraud.
+Logger Services: Convert log messages into AVRO format and stream them to Kafka, reducing network traffic.
+C. Administration
+
+Admin UI: Manages RTB server parameters, partner server data, and visualizes analytical data.
+Services Monitoring: Uses Ambari for Data-lake components and Zabbix for Bidder-lake monitoring, providing tools for performance simulation and data collection.
+Finally, some key findings include adhering to IAB standards for RTB and VAST/VPAID, using proven open-source solutions, and maintaining high load system design principles. Virtual machines for servers should be avoided to ensure system performance.

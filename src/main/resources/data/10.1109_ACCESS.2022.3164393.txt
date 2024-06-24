@@ -1,0 +1,55 @@
+A Service Oriented Architecture for the Digitalization and Automation of Distribution Grids
+Marco Pau, Markus Mirz, Jan Dinkelbach, Padraic McKeever, Ferdinanda Ponci, Antonello Monti
+
+Abstract
+Modern distribution grids are complex systems that need advanced management for secure and reliable operation. The Information and Communication Technology domain today offers unprecedented opportunities for the smart design of tools in support of grid operators. This paper presents a new philosophy for the digitalization and automation of distribution grids, based on a modular architecture of microservices implemented via container technology. This architecture enables a service-oriented deployment of intelligence needed in the Distribution Management Systems (DMS), moving beyond traditional monolithic software installations in control rooms. The proposed architecture unlocks possibilities, including cloud-based implementations, extension of legacy systems, and integration of machine learning-based analytic tools. Moreover, it potentially opens a new market of turnkey services for distribution grid management, avoiding large upfront investments for grid operators. This paper presents the main concepts and benefits of the proposed philosophy, with an example of field implementation based on open-source components carried out in the context of the European project SOGNO.
+
+Index Terms
+Cloud computing, distribution grid automation, distribution management system, IoT platform, microservice architecture, smart grid.
+
+I. Introduction
+Distribution grids are at the center of the ongoing transition in the energy sector. The roadmap towards energy decarbonization will bring an increase of Distributed Generation (DG) based on renewable sources, largely connected to the distribution level of the electrical grid. Similarly, the electrification of the mobility and heating sectors will affect the operation of distribution grids, creating more volatile conditions, unknown power profiles, and much higher levels of power demand. In this scenario, final customers are called to play an active role by offering their flexibility for ancillary services, while new stakeholders are entering the business value chain, contributing to modifying the usual patterns of operation of the distribution system.
+
+II. Related Work
+A. DMS State of the Art
+The DMS is an integrated system used by distribution utilities to collect, organize, analyze, and visualize distribution system information for operating, controlling, and planning the distribution grid reliably and efficiently. An advanced DMS typically includes a SCADA system for real-time data collection and remote control of devices, a set of software tools for outage management, optimal operation, and planning of the distribution system, visualization tools, and training simulators to support grid operators. For its operation, the DMS interfaces with other subsystems, such as the Geographical Information System (GIS) and the Customer Information System (CIS).
+
+Despite the need for smart management, most DSOs have basic DMS functionalities. More sophisticated systems and advanced applications are needed to manage the increasing complexity of the distribution system. Large efforts are being devoted to developing solutions for the digitalization and automation of distribution grids.
+
+B. IoT Architectures
+IoT concepts and technologies are widely adopted in many industrial sectors. Various industry IoT architectures, frameworks, and platforms have been developed for industrial IoT systems. Examples include the Industrial Internet Reference Architecture (IIRA), Arrowhead, and FIWARE, each providing a high-level reference for developing customized IoT solutions for different scenarios. In the power system domain, specific IoT-based architecture models and frameworks focus on virtualization, cloud computing, and microservice-based architectures to improve data abstraction, interoperability, and scalability.
+
+III. DMS Requirements
+A. Real-Time Communication
+The DMS requires near real-time bidirectional data transmission to monitor and react to the system's conditions. This can be achieved with publish/subscribe communication mechanisms, which allow forwarding streaming data to multiple applications and triggering event-based applications. This approach facilitates data sharing among applications and simplifies application development and re-usability.
+
+B. Interoperability
+The DMS must support connectivity to heterogeneous devices and equipment in the field, using relevant standards for substation automation, smart metering, and PMU data transmission. Interoperability within the DMS itself is essential for application-to-application data exchange, using transparent and standardized data models like the Common Information Model (CIM). Interoperability towards other IT infrastructures, such as energy markets and smart cities, is also increasingly required.
+
+C. Scalability
+The DMS must handle large amounts of data and scale to manage the additional information generated by applications. Cloud computing solutions and edge cloud computing can help make the DMS quickly scalable, with resources allocated closer to the edge or centralized depending on system operator requirements. The DMS must be modular to allow new applications and features to be added quickly without compromising existing applications.
+
+D. Reliability and Security
+The DMS functionalities are essential for operating the distribution grid, so reliability and continuous availability are critical. The DMS should not have single points of failure, ensure resilience, and improve reliability through distributed implementations and data redundancy. Cybersecurity is also a major requirement, with secure communication, continuous monitoring, and best-practice cybersecurity techniques applied.
+
+E. Cost-Effective Customized Solutions
+Different DSOs have specific challenges and priorities, requiring tailored solutions. The DMS should offer cost-effective options, particularly for small and medium utilities with limited resources. Alternative business models, such as pay-per-use, can make digitalization more affordable.
+
+IV. DMS Microservice-Based Architecture
+A. Architecture Components
+The proposed architecture ensures the integration of multiple services for smart grid management. It includes grid interoperability services for device communication, a message broker for real-time data exchange, real-time applications for grid management, data management services for historical data access, and visualization tools for grid operators. Security is ensured across the platform and communication channels.
+
+B. Benefits of Microservices
+Microservices provide modularity, scalability, independent development, easier maintenance, computational load balancing, and polyglot software development. They remove the need for vendor lock-in systems, allowing for a multi-vendor provision of services, leading to a competitive and flexible market for DMS applications.
+
+C. Benefits of Containerization
+Containers enable easy replication, lightweight deployment, scalable microservices, optimized hardware usage, isolated environments, and portability. They simplify the administration of large containerized environments and improve security.
+
+V. Field Implementation
+The service-oriented DMS has been deployed and tested in various scenarios, including laboratory and field trials at RWTH Aachen University. The DMS enabled real-time monitoring of a portion of the RWTH campus grid, integrating low-cost PMUs and real-time simulators. The platform builds on open-source software components, ensuring flexibility, fast deployment, and minimal integration efforts.
+
+VI. Business and Implementation Scenarios
+The proposed architecture can lead to many technological and business changes. It enables a diverse market of distribution grid services, involving multiple stakeholders such as hardware suppliers, telecommunication operators, service providers, IT providers, and cloud providers. The modularity allows providers of new types of services to enter the market easily, fostering innovation. DSOs can transition gradually towards this paradigm, integrating microservices as extensions to legacy systems or deploying intelligence in LV grids. The emergence of a market for DMS services will facilitate the digitalization of distribution grids.
+
+VII. Conclusion
+The proposed service-oriented architecture based on microservices and containerization addresses the requirements of digitalization and smart management of distribution grids. It offers a modular, scalable, and extensible framework, unlocking new opportunities for a competitive and flexible market of turnkey services for DSOs. The transition to this paradigm can significantly boost the digitalization process, leading to smarter and more efficient distribution grids.

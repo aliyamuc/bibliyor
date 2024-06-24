@@ -1,0 +1,39 @@
+A Machine Learning Process-based Training Task Execution Method in the Field of Power Grid Regulation
+
+Yingying Lao, Jialing Shen, Wangyu Dong, Hao Li, Ziyun Chen, Yanru Kong
+
+Abstract
+With the rapid development of artificial intelligence technology, the power industry has entered the era of big data. Business data is rapidly accumulated, and the traditional Spring-Boot-based microservice architecture raises more and more requirements for hardware resources, which can no longer meet our requirements for service invocation performance, data consistency, elastic scaling, and flexible deployment requirements. In response to these problems, distributed container technology based on Kubernetes and Docker is introduced, and a unified JSON-based machine learning process description language structure is proposed, with useful configuration templates for machine learning training processes, including algorithm selection, hyper-parameter setting, loss function, optimization function, and execution plan. A machine learning model training task scheduling system adapted to business scenarios in the field of power grid regulation is designed and constructed, solving problems of sample data reuse and resource waste, realizing resource isolation and elastic scaling. The platform supports real-time display of the execution status of each algorithm node, implementing a multi-tenant resource isolation and elastic scaling containerized machine learning model training environment.
+
+Keywords: Model Training, Machine Learning, Deep Learning, Description Language, Task Scheduling
+
+I. INTRODUCTION
+In recent years, the scale of the power grid has expanded, and business data has grown rapidly. The analysis and processing of data have become extremely important. New technologies related to big data have been widely used in the power industry, and artificial intelligence research and practice such as machine learning and deep learning have made certain progress. However, there are still issues with the application of artificial intelligence technology, such as high application thresholds, especially in algorithm selection and program development. Business departments have repeatedly created machine learning applications with a unified process, including data collection, preprocessing, model training, and deployment, without efficient tools, affecting application efficiency.
+
+A unified and standard machine learning process flow task process description structure specification is urgently needed to implement a container-based machine learning process flow training task execution system, providing an integrated framework for learning algorithms, including data collection, preprocessing, training data, model training and evaluation, and model preservation. This reduces the application threshold and accelerates the implementation of applications in power grid regulation.
+
+II. KEY TECHNOLOGIES
+The system integrates various machine learning algorithm frameworks, including Spark MLlib, TensorFlow, Sklearn, and custom algorithm frameworks, providing a prediction method for the configured machine learning model training task description.
+
+2.1 Machine Learning Task Process Description Structure
+Multiple machine learning algorithms related to the business data are extracted from the integration framework, generating a task description structure described by a directed acyclic graph (DAG) data structure. The learning algorithm is an operation node in the DAG and determines parameters for sequentially calling the operation program to generate a training model.
+
+The abstraction process description includes execution serial number exec_id, process number flow_id, and detailed structure flow_info of the process information.
+
+2.2 Container-based Machine Learning Process-based Training Task Execution Principle
+The task is coordinated by the scheduler and executor to complete the machine learning model training task. The scheduler parses the process description structure in JSON format, generates a YAML file with resource and business parameter information, applies for a matching containerized environment in Kubernetes, creates a Pod, and passes the JSON operation sequence and node information to the task executor. The executor sequentially calls the operation program to complete the execution of the training task.
+
+2.3 Multi-tenant Task Resource Scheduling Based on Kubernetes
+The computing power management and control layer manages available resources, monitors each node in the Kubernetes cluster, analyzes resource utilization, and starts the designated node of the pod according to the label. This ensures efficient utilization of computing resources.
+
+III. SYSTEM DESIGN AND IMPLEMENTATION
+The system includes four hierarchical structures: the computing power management and control layer, the training data layer, the machine learning process model training layer, and the model management layer.
+
+3.1 System Design
+The computing power management layer integrates physical and virtual machine resources into clusters using Docker and Kubernetes technologies, scheduling resources to different Containers and creating a containerized runtime environment through the Kubernetes API. The training data layer connects with the power grid control system, extracting required data and storing it in the distributed file system in CSV format. The model training layer provides algorithms for training, supporting custom algorithms for the power system business field. The model management layer provides storage, version management, and service release of training results.
+
+3.2 System Implementation
+The client interface uses the Vue.js framework, which provides component tools for effective page management and improves development efficiency. The background microservice uses Nacos registry for service management, with services such as console, insight, and interaction of each algorithm node implemented using microservices.
+
+IV. CONCLUSION AND OUTLOOK
+The machine learning process-based training task execution system in the field of power grid regulation improves the efficiency of development and operation, reduces the application threshold for artificial intelligence technology, and accelerates the application of big data technology in the power system. Future developments include continuous integration of algorithms, classification management of generated models, integrated model support services, and online evaluation of models.

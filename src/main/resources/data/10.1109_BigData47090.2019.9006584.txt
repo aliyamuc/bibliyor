@@ -1,0 +1,83 @@
+Reactive Microservices in Commodity Resources
+
+Divya Goel, Amaresh Nayak
+
+Abstract
+
+A microservice is a cohesive, independent process that communicates via messages. Reactive microservices consist of isolated components in an event stream that can react independently or in concert with other microservices to arrive at the final states of the event. This paper presents a microservice architecture based on event streams with a decentralized framework for microservice coordination. The architecture allows microservices to enrich content in an event stream without any time or mobility constraints. Final states are construed as acceptable and incrementally stackable for event updates occurring at different time slots. The event coordinator platform establishes the coordination within a microservice using the event registry. The paper demonstrates horizontal scaling of the platform with multiple parallelism strategies and shows the platform performance results.
+
+Index Terms—reactive microservices; coordination; microservice architecture; event stream; event registry; blob store; Kafka; cloud computing; parallelism; scaling applications
+
+I. Introduction
+
+Prior to 2014, most software systems were built as single monolithic applications, characterized by a single large code base offering various services via different interfaces. Monolithic applications are simple to develop, deploy, and scale when the size is small. However, as the code base grows, the architecture deteriorates, making it harder to onboard new developers. Changes in a monolithic code base require redeploying the entire application, complicating continuous deployment and leading to longer cycles between releases. Horizontal scaling of monolithic applications is possible but challenging due to irregular consumption behavior of different services, which increases infrastructure costs due to shared resources.
+
+To address these issues, microservice architecture decomposes monolithic applications into smaller, independent, loosely coupled modules that can be deployed independently. Microservice architecture offers several advantages over monolithic design, including ease of understanding and maintenance, modularization, extensive parallelism, independent horizontal scalability, improved fault tolerance, high availability, and elimination of technology lock-in.
+
+Walmart Labs processes over 50 million product updates daily, necessitating the upgrade from monolithic to microservice architecture. This functional decomposition allows independent scaling of each microservice. Microservices coordinate to implement business processes via orchestration or choreography. Orchestration requires a central conductor, whereas choreography uses events and publish/subscribe mechanisms for coordination.
+
+The proposed reactive microservice architecture follows the "smart endpoints and dumb pipes" approach, avoiding central orchestration. Instead, each microservice communicates through an event stream. This paper refers to "events" as microservice messages or granular operations on data. Event streams provide feeds for processing or notification purposes, enabling near real-time data processing for core site parts that operate asynchronously from user actions.
+
+Reactive systems are flexible, loosely-coupled, and scalable. "The Reactive Manifesto" describes reactive systems as event-driven, scalable/elastic, resilient, and responsive. This paper fits these traits into the proposed architecture, targeting practitioners and researchers interested in scalable and reactive microservice configurations.
+
+II. System Requirements
+
+The microservice architecture must be flexible to accommodate changes in business needs, allowing easy integration or removal of microservices. The architecture should publish partial state changes incrementally and meet generic non-functional requirements for scalability, resilience, and cloud management.
+
+Scalability: Each microservice should be independently scalable.
+Resilience: The architecture should isolate failures to prevent system-wide impact.
+Cloud Management: The system should utilize fully-managed cloud services to minimize operational overhead.
+III. Reactive Microservices Architecture
+
+The architecture includes independent and dependent microservices. Independent microservices operate on subscribed event streams, while dependent microservices act after their dependencies are processed. The architecture enables parallel execution of independent microservices and sequential execution of dependent ones.
+
+System Components
+
+Service Layer: Contains microservices that create, participate in, and consume event streams.
+Interface Layer: Includes the Event Coordinator and Event Aggregator/Dedupe.
+Event Coordinator: Manages event sequencing, filtering, dependency resolution, content merging, and change broadcasting.
+Event Aggregator and Dedupe: Aggregates events, removes duplicates, and publishes unified responses.
+Storage Abstraction Layer: Provides transportable event storage on any cloud.
+Storage Layer: Stores processed states as snapshots, either as single blob files or in a column family database.
+High-Level Design
+
+The Event Coordinator interacts with event streams, registries, and storage. It can be embedded within microservices or function as a separate adapter. The architecture supports flexible microservice interactions and incremental state publishing.
+
+Processing Stages
+
+Filtering, Ordering, and Dedupe: The coordinator processes messages from event streams, ignoring already processed or unrelated events.
+Business Logic Processing: Filtered events are processed by the microservice layer.
+Output Handling: Successful updates trigger registry updates and event publishing, while failures are reported to an error stream.
+The architecture handles multiple updates for a single product, identified by Transaction IDs. Each microservice reacts to relevant events from a shared event stream, ensuring isolation and efficient resource use.
+
+Sample Event Processing
+
+The architecture's flexibility allows microservices to filter and process only relevant events. It supports multiple workflows with separate event streams, coordinating various eCommerce processes.
+
+IV. Fits Reactive Manifesto
+
+The architecture aligns with the Reactive Manifesto by being event-driven, scalable, resilient, and responsive. Microservices communicate asynchronously, can be scaled independently, and the system provides resilience through isolation and geo-replication.
+
+V. Results in Commodity Hardware (Cloud)
+
+The proposed approach was tested using commodity hardware in a hybrid cloud environment. The platform components were commoditized or set up in the cloud. Performance tests showed that the system processed events at a high rate with efficient resource utilization.
+
+Configuration
+
+The platform configuration includes dependencies represented in YAML format.
+
+Test Runs
+
+Performance tests used production data with simulated microservices, demonstrating scalability and efficient event processing.
+
+Physical and Network Topology
+
+Tests were conducted in a hybrid cloud environment, utilizing Azure services and private cloud infrastructure. The platform showed consistent performance across different traffic patterns.
+
+VI. Related Work
+
+Previous orchestration approaches faced limitations, such as lack of flexibility and parallel processing inefficiencies. The proposed architecture overcomes these limitations by embedding coordination within microservices and supporting flexible, independent deployments. The architecture was compared with other streaming platforms, highlighting its advantages in flexibility, scalability, and resilience.
+
+VII. Conclusion
+
+The proposed reactive microservice architecture offers flexibility and scalability, adapting to changing requirements while maintaining efficient resource use. Future work includes testing with cyclic dependencies and enhancing resilience with Kubernetes-based service discovery and auto-scaling. This architecture advances microservice implementation in commodity resources, providing a scalable solution for processing millions of events per hour.
