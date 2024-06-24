@@ -1,0 +1,34 @@
+Distributed Tracing Pipeline for Improving Locality Awareness of Microservices Applications
+
+Abstract
+Microservices architecture enhances software maintenance and scalability by breaking down applications into independently deployable components. However, this approach can increase response times due to inter-service communication, particularly with highly granular microservices. Locality-aware placement of microservices on hardware can mitigate this issue, but the complexity of invocation graphs, which depend heavily on workload, poses challenges for dynamic infrastructures. This paper introduces a big data pipeline for collecting tracing data from running applications to identify microservices groups whose deployment maintains low response times for critical operations under defined workloads. Results from various working conditions and infrastructure configurations are analyzed to derive insights on microservice granularity and optimal placement, demonstrating that workload-informed clustering strategies enhance performance by reducing response times through effective microservice grouping.
+
+Keywords
+Clustering techniques
+Distributed tracing
+Locality
+Microservices
+Performance
+Introduction
+The microservices architectural style supports scalable, maintainable applications by decomposing them into independently deployable units. Despite its benefits, poor microservice placement can increase response times due to excessive inter-service communication. Locality-driven placement co-locates frequently interacting microservices, reducing network latency and response times. Distributed tracing has emerged as a valuable technique for understanding inter-service request flows, diagnosing issues, and optimizing performance. By collecting detailed tracing data, we can build a graph model representing microservice interactions and dependencies, enabling improved microservice placement.
+
+Framework for Microservices Placement
+The proposed framework includes two main steps: model extraction and clustering. Model extraction involves collecting and processing execution traces to build a graph-based runtime model (Workload Application Model - WL-A Model) that captures microservice interactions under specific workloads. This model serves as input for clustering techniques to generate deployment proposals that maintain low response times by exploiting locality.
+
+Model Extraction
+The extraction process builds a runtime model influenced by the application structure and user interactions (workload). Tracing data is collected using OpenTelemetry agents, stored, and processed to create a directed graph where nodes represent operations and edges represent interactions. The graph's weights reflect the intensity of interactions, guiding the clustering process.
+
+Clustering Techniques
+Three clustering techniques are applied to the WL-A Model:
+
+Spectral Clustering: Groups nodes based on projections in a lower-dimensional space derived from the graph's normalized Laplacian matrix.
+Assignment Based on Reaching Centrality: Uses nodes with high local reaching centrality as initial cluster centers, assigning remaining nodes to maximize interaction within clusters.
+Locality Bounded: Maximizes intra-cluster communication by iteratively grouping nodes connected by the heaviest edges, constrained by cluster size.
+Case Study
+The framework is tested using TrainTicket, an open-source microservices-based train ticket booking application. The application is instrumented to produce tracing data, which is collected and processed to extract the WL-A Model. Various clustering techniques are applied to generate deployment proposals, which are then validated through load testing.
+
+Validation
+Validation involves comparing response times under different deployment proposals to evaluate the impact of locality and workload-awareness. The proposed framework's effectiveness is measured by analyzing response times and determining whether locality-aware and workload-informed placements improve performance.
+
+Conclusion
+Understanding and optimizing microservice placement based on workload-specific interaction patterns can significantly enhance performance in microservices-based applications. The proposed distributed tracing pipeline and clustering-based deployment strategies demonstrate the potential for reducing response times through effective microservice grouping. Future work will explore additional clustering techniques and refine the framework for broader applicability.

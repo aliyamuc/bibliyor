@@ -47,18 +47,34 @@ public class BiblioETLService {
     public void deleteAllVectors(){
         vectorService.deleteAllVectors();
     }
-    @Transactional
-    public void etlForOne(){
-        Biblio biblio = biblioRepository.findByDOI("10.1002/cpe.8062").orElse(null);
 
+    @Transactional
+    public void etlForDOIList(String[] doiList){
+        for(String doi : doiList){
+            log.info("Processing DOI: {}", doi);
+            this.etlForDOI(doi);
+        }
+    }
+
+    private void etlForDOI(String currentDoi){
+        Biblio biblio = biblioRepository.findByDOI(currentDoi).orElse(null);
         if(biblio != null){
             Map<String, Object> metadata = new HashMap<>();
             metadata.put("ResearchQuestions", biblio.getRqs());
             metadata.put("SourceTitle", biblio.getSourceTitle());
             metadata.put("Year", biblio.getYear());
             metadata.put("DocumentType", biblio.getDocumentType());
-            vectorStore.write(this.loadText(metadata));
+            vectorStore.write(this.loadText(currentDoi,metadata));
+        }else{
+            log.error("Biblio not found");
         }
+    }
+
+    private List<Document> loadText(String doi, Map<String, Object> metadata) {
+        String paperFileTxt = replaceSlashes(doi).concat(".txt");
+        TextReader textReader = new TextReader("classpath:data/"+paperFileTxt);
+        textReader.getCustomMetadata().putAll(metadata);
+        return textReader.read();
     }
 
     @Transactional
@@ -77,19 +93,6 @@ public class BiblioETLService {
             metadata.put("DocumentType", biblio.getDocumentType());
 
             String paperFilePdf = replaceSlashes(biblio.getDOI()).concat(".pdf");
-
-//            String strPdfContent = this.loadPdf(paperFilePdf);
-//
-//            String strContent = "TITLE:"+"\n"+biblio.getTitle()
-//                    +"\n"+"AUTHORS:"+"\n"+biblio.getAuthors()
-//                    +"\n"+"ABSTRACT:"+"\n"+biblio.getAbstractContent()
-//                    +"\n"+"PDF_CONTENT:"+"\n"+strPdfContent;
-//
-//
-//
-//            var newDoc = new Document(String.valueOf(biblio.getId()), strContent, metadata);
-//            vectorStore.write(List.of(newDoc));
-
 
             String strPdfContent = this.loadPdf(paperFilePdf);
             List<String> chunks = pdfChunker.chunkText(strPdfContent);
@@ -134,9 +137,5 @@ public class BiblioETLService {
         return sb.toString();
     }
 
-    private List<Document> loadText(Map<String, Object> metadata) {
-        TextReader textReader = new TextReader("classpath:data/10.1002_cpe.8062.txt");
-        textReader.getCustomMetadata().putAll(metadata);
-        return textReader.read();
-    }
+
 }

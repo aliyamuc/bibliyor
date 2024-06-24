@@ -1,0 +1,114 @@
+µBIGMSA-Microservice-Based Model for Big Data Knowledge Discovery: Thinking Beyond the Monoliths
+Neelam Singh1 · Devesh Pratap Singh1 · Bhasker Pant1 · Umesh Kumar Tiwari1
+
+Published online: 25 September 2020
+© Springer Science+Business Media, LLC, part of Springer Nature 2020
+
+Abstract
+Enterprise thrives on software applications that are built to fulfil core business requirements. A single business application can offer a cluster of capabilities to generate value from processing huge amounts of data, often termed as Big Data. Traditional approaches for Big Data Analytics suffer from overpriced, excessive, and irrelevant data transfer due to the tight coupling between computing resources and data processing logic. Service-oriented architecture avoids monolithic styles but often encourages monolithic software application development. Microservices offer low coupling and smaller size. This work reviews existing monolithic architectures and proposes a microservice model µBIGMSA for handling Knowledge Discovery in Big Data. The effectiveness of the proposed model is evaluated by comparing the reference application with the monolithic application using various software metrics.
+
+Keywords
+Monolith, Microservice, Big data, Knowledge discovery, Service-oriented
+
+1 Introduction
+Organizations deploy Big Data analytics to gain competitive edge by discovering hidden knowledge from data. Big Data Analytics (BDA) requires careful selection of mathematical models, algorithms, tools, and infrastructure. Traditional monolithic applications, like Customer Relationship Management (CRM) systems, become complex and difficult to maintain over time. Cloud computing and microservices offer better scalability, reliability, and cost-effectiveness compared to monolithic architectures.
+
+2 Methodology
+Big Data Knowledge Discovery is complex and requires a scalable architecture. This paper proposes a Microservice Architecture model (µBIGMSA) for handling Big Data Knowledge Discovery, implemented in four phases:
+
+Assessment of monolithic and Microservice Architecture challenges and benefits.
+Benefits of Microservice Architecture for Knowledge Discovery in Big Data.
+Proposal of the µBIGMSA model.
+Quantitative comparison of µBIGMSA with monolithic architecture using software metrics.
+3 Monolith Versus Microservice Architecture Approach
+3.1 Monolithic Architecture
+Monolithic applications manage and serve all functions as a single unit, making them complex and difficult to scale or update. Challenges include:
+
+Large codebases
+Long build times
+Tight coupling
+Difficult maintenance and upgrades
+Single points of failure
+3.2 Microservice Architecture
+Microservices divide application functionality into smaller, self-contained services. Features include:
+
+Loose coupling
+Scalability
+Independent updates
+Data consistency
+Enhanced integration and deployment
+5 Microservice Architecture and Big Data Knowledge Discovery
+Microservices provide scalable, maintainable, and adaptable solutions for Big Data Knowledge Discovery. Benefits include:
+
+Scalability
+Ease of updates and deployment
+Improved data consistency and quality
+Enhanced integration and deployment
+Big Data technologies like Amazon Kinesis, Apache Kafka, and cloud platforms like Amazon AWS integrate well with Microservices.
+
+5 µBIGMSA-Microservice Architecture Approach for Knowledge Discovery in Big Data
+Microservice Architecture is based on the decomposition of a given task into a number of small units which will use lightweight communication APIs and still can be modified, updated, and managed independent of each other. They inherently exhibit loose coupling. Microservice Architecture involves information to be moved in and out of the services with information interchange with control-passing characteristics. These design preferences have to be taken care of while implementing Microservice Architecture.
+
+Based on this thumb rule, we propose a Microservice-based model for Big Data Knowledge Discovery - µBIGMSA. The model will comprise the following layers which can be implemented as a microservice as shown in Fig. 2.
+
+The model is divided into various services required for Knowledge Discovery in Big Data. These services are autonomous and loosely coupled to each other. Unlike the monolithic approach, each microservice can be updated as needed without affecting the operation of any other service. As in the case of Big Data, the characteristics like volume, velocity, variety, and veracity pose challenges to a traditional monolithic application. Any change in data can lead to changes in the entire application. Using the µBIGMSA model, we can collect different volumes of data using various microservices which can be deployed for streaming data, near real-time data, or real-time data. Storing different varieties of data can also be handled with ease as a microservice for storage can store data according to its type like unstructured, structured, or semi-structured. Analysis is often a time-consuming task in the case of Big Data but using the µBIGMSA model, we can handle the extreme velocity of Big Data and perform effective analysis. These microservices can be designed in languages like Python, Java, and React-js depending on the requirement, unlike the monolithic approach where we cannot implement code in different languages. Considering the proposed model, we can minimize or remove the downtime faced by applications due to changes in strategy or dataset.
+
+(a) Data Collection Service: This microservice enables the collection of data from varying sources based on the application requirement. In our reference application, we used web scraping method as a microservice to collect data.
+
+The service sends requests to open a connection to collect data from various sources as per requirements.
+
+(b) ML Model Service: Data collected from varying sources is required to gain valuable insights. A suitable ML model gives the system the capability to learn automatically to make predictions or judgments. Microservices can be utilized to handle the phases of the Machine Learning process for varying situations using required programming languages. These microservices communicate using API calls or related mechanisms. The reference application uses FLASK RESTful API for communication.
+
+(c) API Service: This service is responsible for collaboration between the ML model handling its requirements and the database for information interchange. API service is also responsible for communicating with the visualization microservice.
+
+(d) Visualization Service: This service enables representing the required results in the form of various plots or graphs. The Visualization service also interacts with the ML model service via the API service to get the necessary inputs to show the final results in a graphical layout.
+
+The model is being evaluated by taking a reference application compared with a monolithic application for the same problem domain. The model specifically deals with handling Big Data sets effectively to discover hidden knowledge, which is why it is named µBIGMSA. It can be used to implement recommender systems, sentiment analysis, price elasticity, and many more applications requiring Big Data sets to be handled and analyzed.
+
+6 Result Analysis
+Metrics used for comparison:
+
+LOC: Total lines-of-code
+LLOC: Logical lines-of-code
+SLOC: Source-lines-of-code
+6.1 Cyclomatic Complexity
+Expressed as
+𝑉
+(
+𝐺
+)
+=
+𝐸
+−
+𝑁
++
+2
+𝑃
+V(G)=E−N+2P (for more than one component) or
+𝑉
+(
+𝐺
+)
+=
+𝐸
+−
+𝑁
++
+2
+V(G)=E−N+2 (for a single component).
+
+6.2 Halstead Metrics
+Used to assess software attributes and relations, calculated based on the source-code.
+
+6.3 Maintainability Index Metric
+Combines SLOC, Cyclomatic Complexity, and Halstead volume to measure maintainability.
+
+Using the above-mentioned software metrics, we computed the complexity of the two applications. The comparative results are listed in Table 2 and presented in a graph as shown in Fig. 4.
+
+By evaluating the above-mentioned metrics in Table 2 for the reference application based on our proposed model and comparing the results with a monolithic application on the same problem domain, we can determine that applications designed using Microservice Architecture show better quality, provenance, and efficiency compared to monolithic applications. These implementations provide evidence that Microservice Architecture exhibits features required to handle Big Data Knowledge Discovery processes efficiently with less effort and difficulty.
+
+7 Conclusion
+This paper describes the generic concept of Microservice Architecture, with its advantages and uses for Big Data Knowledge Discovery. The Microservice Architecture is compared with monolithic applications. A microservice-based model for Big Data Knowledge Discovery - µBIGMSA is proposed and a reference application is implemented using Python libraries for the proposed model. The reference implementation is tested for various metrics and is compared with a monolithic application of the same problem domain. The comparative evaluation with the monolithic application shows the effectiveness of the proposed model for Big Data Knowledge Discovery. It can be said that microservice architecture provides better scalability, ease of updating, and consistent data quality proving it to be a good choice for Big Data processes.
+
+Future work considerations will be based on the optimization and load balancing aspects for Big Data workloads using Microservice Architecture. Also, microservices show proficiency for simple and small operations, so another area of concern is to implement microservices for complex operations. Containerization is another open area to look forward to enhancing the Big Data Knowledge Discovery process efficiency and effectiveness.
+
