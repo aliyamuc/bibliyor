@@ -1,0 +1,39 @@
+Abstract:
+In the realm of digital transformation, AI-powered digital technology faces challenges necessitating IT framework restructuring. This study centers on a digital intelligent transportation system, leveraging YOLOv5, Kafka, and Flink big data technologies. It aims to design a microservices architecture for digital applications, introducing a 3D architectural model for assessing microservice interconnections. The findings highlight the large-scale execution of digital technology applications, evaluating both individual and interconnected microservice performance, offering insights for efficient digital technology deployment.
+
+Keywords: YOLOv5, Kafka, Flink, microservices architecture, big data
+
+Introduction:
+Digital transformation, driven by advancements in cloud computing, big data, and AI, varies across sectors. In transportation, AI image processing is crucial for tasks like traffic management, surveillance, object recognition, and classification. Integrating AI digital technologies into IT frameworks often uses a microservices architecture, differing by technology requirements. For AI image processing, Python, CUDA, and Torch are used, whereas big data transmission and real-time analysis employ Java's Spring framework, Kafka, and Flink.
+
+Architecture and Technology:
+
+1. Microservices Architecture:
+Microservices architecture breaks down applications into smaller, independent services that communicate over a network. This approach enhances flexibility, scalability, and maintainability. Each microservice is responsible for a specific functionality and can be developed, deployed, and scaled independently.
+
+2. YOLOv5:
+YOLOv5 (You Only Look Once version 5) is a state-of-the-art deep learning model for object detection. It processes images in real-time, identifying and classifying objects. In this project, YOLOv5 is used for real-time detection of traffic violations at intersections. Its implementation includes:
+
+Pre-trained Models: YOLOv5su.pt model is used for its balance of speed and accuracy.
+Processing Modes: Supports single-image and batch processing on both CPU and GPU to optimize performance based on available resources.
+3. Kafka:
+Apache Kafka is a distributed event streaming platform capable of handling high-throughput, real-time data feeds. In this architecture, Kafka serves as the real-time data transmission message middleware. Its roles include:
+
+Message Persistence: Ensures data integrity and reduces the risk of data loss.
+Real-time Data Transmission: Facilitates low-latency communication between microservices.
+4. Flink:
+Apache Flink is a stream processing framework for real-time data processing. It is used to buffer and process data streams between Kafka and YOLOv5. Key features include:
+
+CountWindow Technology: Buffers incoming data and processes it in batches, aligning with YOLOv5’s batch processing capabilities.
+Real-time Stream Processing: Manages high-throughput data streams, synchronizing execution speeds between Kafka and YOLOv5.
+5. 3D Architecture Model:
+The 3D architecture model evaluates the performance of microservices in three dimensions:
+
+1D (Data Distribution and Collection Simulator): Simulates data collection from sensors, incorporating time semantics and distributing data across various spaces symbolizing traffic intersections.
+2D (Real-time Data Collection for Big Data and Time Series Microservices): Utilizes Flink for buffering real-time data streams, synchronizing Kafka message transmission with YOLOv5 processing.
+3D (High-Computational Microservices for Neural Networks): Based on YOLOv5, this service cluster processes images to detect traffic violations, offering multiple execution strategies (single-image vs. batch processing on CPU and GPU).
+Experiments and Evaluation:
+Performance metrics are evaluated using the Entropy Weight Topsis method. The COCO dataset, containing 80 categories, is used, defining "person," "car," and "traffic light" as positive samples. Performance evaluation involves normalization, entropy calculation, and weighted scoring, assessing the comprehensive score of each microservice. Experiments show that YOLOv5's image processing time is short, with CPU and GPU environments performing differently based on data distribution. The Entropy Weight Topsis method computes scores for each microservice, guiding performance optimization.
+
+Conclusion:
+The study visualizes and analyzes the influence of 1D, 2D, and 3D microservices on overall link performance, providing insights for performance optimization. The results show that larger aggregation windows impact data flow transmission and processing capacity, highlighting the need for performance optimization in 1D and 2D microservices, while 3D microservices show strong parallel processing capability.

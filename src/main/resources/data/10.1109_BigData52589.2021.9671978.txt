@@ -1,0 +1,85 @@
+Abstract—The SARS-CoV-2 pandemic we are experiencing in recent years has resulted in a shift of many of our everyday life activities from the physical to the digital world. Education is a typical example of such a case with both tutors and students experiencing difficulties and delays in communication. To assist in this direction, also considering the already forming future of online education, we present MI-OPJ, a microservices-based online programming judge.
+
+Index Terms—Online Programming Judge, Microservices, Big Data, Web Application
+
+I. INTRODUCTION
+
+In recent SARS-CoV-2 years, most activities had started taking place online, as a measure of maintaining physical distancing. This led to an expected increase in the demand for online services. To cover this demand, these services should be designed to be scalable, reliable, and offer the capacity for performing data-intensive operations.
+
+One such case lies with education, which has swiftly moved towards an online format. Almost overnight, traditional teaching at all levels of education had to transform into some sort of online courses. This allowed students to continue their courses but introduced new challenges. Since most communication with tutors took place online and mostly asynchronously, especially in tertiary education, assistance from tutors towards students may not have been as effective as before. The need for additional tools to address this issue emerged.
+
+In this poster, we are presenting a tool suitable for students learning programming, to assist them in authoring their code correctly before delivering their homework. It is an online programming judge system that provides automatic feedback for each programming assignment a student attempts to submit. It supports two types of users: tutors and students. Tutors create new assignments and provide the desired output for these assignments. Students, while trying to solve these assignments, get numerical feedback corresponding to their success, compared to the solution provided by the tutors.
+
+We have decided to take this functionality a step further and offer the capacity for maintaining detailed statistics for both students and tutors. This way, students will be able to track their progress by tracking the number of submissions of each assignment, until its success. Tutors will be able to both monitor the students’ progress and assess the difficulty of each assignment.
+
+Furthermore, considering deployment for massive numbers of users, we have designed and implemented our framework using state-of-the-art programming paradigms, frameworks, and architectural elements. The whole application is designed and developed using a Microservices Architecture. It runs within a Kubernetes cluster and each Microservice is pulled from a Docker image. Messaging between Microservices is implemented using Apache Kafka, as it is based on events. The client uses NextJS, a framework based on ReactJS, to build a fast and responsive application.
+
+The core contribution of this poster is laying out our architectural choices, based on our experiences from building a scalable, online programming judge that can handle large amounts of data.
+
+Our system consists of six microservices: The Authentication Service, the Courses Service, the Corrector Service, the Notification Service, the Statistics Service, and the Client Service. All services live inside a Kubernetes cluster. Every microservice exposes a REST API that external clients can use. Finally, as a proxy, we use Ingress Nginx. Its responsibility is to forward each incoming request to the correct microservice.
+
+II. THE MI-OPJ SYSTEM
+
+In this section, we will describe the components of MI-OPJ and briefly look into its functionality. We begin by presenting its building blocks. Then, we outline the functionality offered by the system. Afterward, we present the services that MI-OPJ is built on and the corresponding events they use to communicate. Finally, we briefly present data management issues and the shared library we have implemented.
+
+A. Building Blocks
+
+MI-OPJ is based on microservices. To achieve the desired characteristics and functionality, we have employed in our architecture some state-of-the-art systems and frameworks.
+
+For microservices, we have used Docker for their deployment. Docker allows separating applications from the infrastructure by providing containers, within which these applications operate. Each of our microservices runs in its own container, allowing isolation from the execution environment.
+
+For orchestrating these microservices and balancing their workload, we assume the deployment of Kubernetes. Kubernetes is an open-source framework for automating deployment, scaling, and management of containerized applications. It is commonly used to host a microservice-based implementation. In our current implementation, we use a simple cluster with only one Kubernetes Node for every microservice. The point of using Kubernetes is that, later, we can easily increase the Nodes or instances for a microservice depending on the load it receives.
+
+In our system, we have assumed an event-driven design, where microservices communicate by exchanging messages. Apache Kafka is an open-source distributed event streaming platform. Events in Kafka are organized and stored within Topics. As our microservices produce streams of events, Kafka is used for storing these event streams durably for later retrieval and reacting to them in real-time as well as retrospectively and routing the events among the microservices.
+
+B. Users and Functionality
+
+MI-OPJ is an environment supporting two types of users. First, there are the tutors. Each tutor can create several courses. For each course, a tutor may create several assignments for the students to address. For each assignment she creates, a tutor sets a deadline and uploads a configuration file. This configuration file contains information regarding the expected inputs and outputs and the way MI-OPJ should handle this submission. Next, there are the students.
+
+Students can’t create or edit assignments, but they can submit their answers for existing ones, receiving feedback and the results of the correction. Also, they have access to their submission history, which includes the total number of submissions and information for each submission. Students sign up for courses and test their solutions for the available assignments. They may submit a solution multiple times. Each time a solution is evaluated, MI-OPJ responds with an email to the student. In this email, the student receives the compilation output, and, if this was successful, the execution output of her assignment. Finally, there is an indicative numerical grade to provide the student with feedback on how well she addressed the questions of the assignment.
+
+C. MI-OPJ Services
+
+The application consists of six microservices: The Authentication Service, the Courses Service, the Corrector Service, the Notification Service, the Statistics Service, and the Client Service. All services, except for the Client Service, make use of the Shared Library and interact with Kafka.
+
+All services live inside a Kubernetes cluster. Every microservice exposes a REST API for communication with the end user. We also employ Ingress Nginx as a proxy which is responsible for forwarding each incoming request to the correct microservice. Initially, it receives a request. Then, using regular expressions, it determines which microservice will handle this request and appropriately forwards it. Next, we will describe each one separately.
+
+1) Authentication Service: The Authentication Service includes the core functionality of the MI-OPJ user management. A user can sign up, sign in, and sign out. Part of the functionality of this service has been implemented by the Shared Library, which produces and validates active user tokens. The Authentication Service offers MI-OPJ the capacity for running independently.
+
+2) Courses Service: The Courses Service handles the management of courses, assignments, and student submissions. In more detail, it is responsible for handling and storing data for each course created by tutors, the assignments for each of these courses, and finally, the submissions from students. It is also responsible for updating the corresponding information, for instance, when a submission has been assessed.
+
+3) Corrector Service: The Corrector Service implements the core functionality of MI-OPJ, assessing a given student’s assignment. The Corrector Service is managed by configuration files. Each time a student submits an answer to an exercise, the Corrector Service runs a Python script that builds and executes the submission for the assignment based on the corresponding configuration file. These are the only parameters that the script requires, making it independent from MI-OPJ. The script evaluates the input provided and returns the result to MI-OPJ as plain text. When it concludes with a user’s assignment evaluation, it messages the Notification Service and the Courses Service.
+
+4) Notification Service: The Notification Service is responsible for communicating the results of an assignment assessment with the end-user with emails. After the correction of an assignment, the Corrector Service triggers an event, which is then handled by the Notification service causing it to send the result of the student’s execution to her email.
+
+5) Statistics Service: The Statistics Service will be responsible for collecting and storing data including the number of submissions per student, successful or failed submissions per student, and other similar metrics that could be useful to tutors for keeping track of students’ progress.
+
+6) Client Service: Finally, the Client Service displays the application to the end-user. It hosts a NextJS application that integrates communication with every service, giving the users the ability to perform actions provided by these services.
+
+D. Data and Storage
+
+Each microservice behaves independently in terms of data management and storage. As such, for some microservices storing data is a necessity, while for others it is not. Authentication, Courses, and Statistics services need to maintain data. For this purpose, our choice is to use a separate MongoDB database for each. On the other hand, the Corrector and Notification services do not need to persist data.
+
+E. Shared Library
+
+As our microservices share common functionalities, we opted for creating a shared library that each microservice depends on. This shared library contains the functionality that determines if a user is authenticated. This is achieved by the generation and validation of tokens. Furthermore, it contains the communication mechanism with Kafka. Finally, it defines how errors are handled and the responses to error requests. This approach has been followed to reduce application development complexity.
+
+F. Events for Microservices Communication
+
+MI-OPJ services communicate through events. These are used to trigger the execution of operations in other services. Each event uses its separate Kafka topic when it is produced.
+
+1) Assignment Submit Event: The Assignment Submit Event is produced by the Courses Service when a student user submits an assignment. The Courses Service sends the event to Kafka broker’s AssignmentSubmitTopic which is then consumed by the Corrector service.
+
+2) Assignment Correction Event: The Assignment Correction Event is produced by the Corrector Service after a given assignment is corrected. This event is sent to Kafka’s AssignmentCorrectionTopic and consumed by the Courses Service which then updates the status of that student’s submission.
+
+3) Send Mail Event: The Send Mail Event is produced by the Corrector Service when it finishes the correction of an assignment and is sent to Kafka’s SendMailTopic. It is then consumed by the Notification Service which, in turn, sends an email with the result to the student.
+
+III. RELATED WORK
+
+MI-OPJ has been constructed with the intention of being incorporated into MI-LMS, a Learning Management System based on Microservices, which is currently under development. Nevertheless, there is also the capacity for standalone deployment.
+
+Online programming judges have been around for some time now, offering a variety of approaches towards offering automated responses to user code submissions. Certain online programming judges focus on particular programming languages, others are oriented toward contest use, while others analyze relationships between submissions and academic scores. Nevertheless, to the best of our knowledge, there has not been an attempt in the past to build such a system based on Microservices.
+
+IV. CONCLUSIONS AND FUTURE STEPS
+
+In this poster, we presented MI-OPJ, an online programming judge system based on microservices. It has been specifically designed to handle large numbers of users and large amounts of data and to be highly scalable. It allows tutors to create courses and assignments and, more importantly, students to advance their programming skills by getting feedback for their coding assignments. Furthermore, it has the potential to provide useful statistics for evaluating students’ progress. Our next steps include adding more features, such as dashboards with detailed analytics for both tutors and students.

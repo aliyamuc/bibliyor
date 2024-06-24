@@ -1,0 +1,49 @@
+COVID-19 Multi-Modal Data Analysis with Alexa Voice and Conversational AI Applications
+Alex Kaplunovich, Department of Computer Science, University of Maryland, Baltimore, USA
+Abstract:
+The COVID-19 pandemic has drastically altered life on the planet, making real-time monitoring crucial. This study presents a secure methodology enabling people to track the situation in their country or state without touching a single computer key, using voice-first computing devices. We developed a suite of Alexa skills (voice-first applications) and monitored how the data evolved. Coronavirus data is automatically downloaded to the AWS Cloud and securely stored in No-SQL DynamoDB databases and S3 buckets, allowing users to monitor up-to-date statistics. Alexa Echo devices with screens display comprehensive graphs showing vital numbers such as new cases, new deaths, mortality rate, and hospitalizations. This system is secure, automatic, and resilient, helping users maintain social distancing while obtaining current information about COVID-19 in their location using voice commands. Our innovative approach, serverless architecture, and big data methodology can assist millions of people in staying informed and help officials make educated decisions about reopening businesses, institutions, or activities.
+
+Keywords:
+Big Data, Voice Computing, COVID-19, Alexa, Lambda, Cloud, Visualization, Serverless, No-SQL, AI, Microservices, AWS.
+
+Introduction:
+Voice-first applications are becoming integral to our lives, and during the COVID-19 pandemic, obtaining up-to-date virus data has become crucial. This paper discusses pandemic data discovery, evolution, storage, security, and availability. It is vital to obtain reliable, up-to-date local information and deliver it to users across various locations. Voice assistants are AI devices capable of maintaining human conversation through voice recognition, speech synthesis, and natural language processing (NLP). These devices are usually integrated into cloud ecosystems, understanding voice commands and providing meaningful responses.
+
+We designed a reliable and robust methodology and architecture to regularly fetch data and provide it to users via simple voice commands. For Alexa Echo devices with displays, we offer comprehensive analytics and graphs explaining the current pandemic situation (multimodal experience). Our suite of Alexa skills and cloud ecosystem is self-sufficient, secure, robust, and reliable, enabling people worldwide to access coronavirus data and stay informed.
+
+COVID-19 Data:
+A. Situation in the World:
+Although many datasets are available online, finding one suitable for our purposes was challenging. Our initial requirements included:
+
+Reliability
+Frequent and regular updates
+API access
+Free of charge
+Homogeneous and self-sufficient data
+Completeness
+We selected data from Our World in Data (https://covid.ourworldindata.org), provided in CSV format and updated daily.
+
+B. Situation in the United States:
+We evaluated several exceptional datasets, including those from Johns Hopkins University of Medicine (https://coronavirus.jhu.edu/) and other sources, ultimately using CDC data (https://data.cdc.gov/) due to its reliability and convenient API. We store all historical COVID-19 data in our database, appending it daily for future analysis and research.
+
+C. Data Problems:
+We encountered multiple data problems, such as data formatting issues, new or missing columns, misspelled column names, sporadic outages, extra index columns, data errors, or missing files. Some countries or states might miss data for specific dates, and some sources ceased publishing data.
+
+Architecture:
+Our goal was to create a self-sufficient, automatic, voice-activated system that loads, processes, and updates data automatically, presenting it to users via voice and optional Echo display devices. Alexa screens show up-to-date graphs and Echo cards with information. Data is loaded hourly through CloudWatch scheduling rules. Our architecture includes three Lambda functions per skill: load data, generate graph, and the main Alexa skill function, processing voice device commands and generating voice and multimedia output. The framework automatically triggers the main function whenever a user issues a voice command.
+
+Functionality and Usability:
+A. AWS Echo Devices:
+We implemented our skills for Amazon Echo devices using AWS cloud infrastructure and Alexa interaction models. Our skills are designed to provide the most relevant and understandable information to users using the most appropriate hyperparameters. We focused on concise, vital statistical information like total cases, total deaths, new cases, new deaths, and mortality rate. When a user inquires about a specific locality, we provide these five numbers and display a graph if the request comes from a voice device with a display.
+
+B. Multi-modal Skills:
+Multi-modal experience is the best practice for voice-first applications. It allows users to interact with information through multiple methods—voice, touch, audio, or visual—providing a rich user experience and making applications more convenient.
+
+C. Google Assistant Devices:
+We explored frameworks covering both AWS and Google voice platforms. Jovo is a framework designed to work for Amazon Alexa, Google Assistant, and Samsung Capsules, featuring automatic conversion of existing Alexa interaction models into Jovo models.
+
+Future Work and New Features:
+COVID-19 is expected to stay with us for a while. Our Alexa skills development has become an ongoing journey, with new features, data site updates, and format changes. For example, in January 2021, vaccination data was added to several COVID-19 data collection sites.
+
+Conclusion:
+Our solution and methodology employ the most advanced and innovative architectures using state-of-the-art cloud, serverless, voice, and database technologies. We have designed a self-sufficient, reliable, automatic voice application approach, helping people obtain up-to-date coronavirus analytical information using voice commands. The advantages include efficiency, automation, scalability, extensibility, code reuse, and secure cloud ecosystem integration. Voice-first devices have become increasingly relevant during the pandemic, providing vital information using voice assistants in public places or private homes without physical contact.
