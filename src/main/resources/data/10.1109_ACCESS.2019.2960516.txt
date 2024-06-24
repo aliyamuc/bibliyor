@@ -1,0 +1,51 @@
+Real-Time Context-Aware Microservice Architecture for Predictive Analytics and Smart Decision-Making
+
+GUADALUPE ORTIZ 1, JOSÉ ANTONIO CARAVACA 1, ALFONSO GARCÍA-DE-PRADO 1, FRANCISCO CHÁVEZ DE LA O 2, AND JUAN BOUBETA-PUIG 1 1UCASE Software Engineering Group, School of Engineering, University of Cádiz, Puerto Real 11519, Spain 2University Centre of Merida, GEA Artificial Evolution Group, University of Extremadura, Badajoz 06800, Spain Corresponding author: Guadalupe Ortiz (guadalupe.ortiz@uca.es)
+
+Abstract
+
+The evolution of the Internet of Things (IoT) and the large amount of data flowing through systems provide a scenario for Big Data analytics and real-time context-aware predictions and smart decision-making. This requires a scalable system for constant streaming processing, with decision-making and action-taking abilities based on predictions. This paper proposes a scalable architecture to provide real-time context-aware actions based on predictive streaming processing of data, evolving from a previous event-driven service-oriented architecture. The proposed architecture has been enhanced with predictive analytics and complex event processing techniques, allowing context-aware information notification ahead of time, and has been refactored towards a microservice architecture pattern, improving maintenance and evolution. The architecture's performance has been evaluated with an air quality case study.
+
+Keywords: Context awareness, context-aware services, service-oriented architecture, decision making, microservice architecture.
+
+Introduction
+
+The evolution of the Internet of Things (IoT) has favored information provision by multiple sensors and devices connected to the Internet, generating a large amount of data termed Big Data. Big Data refers to a large amount of heterogeneous data analyzed to improve decision-making in various domains. However, the amount of data generated requires constant streaming processing to obtain real-time relevant information for business decision-making.
+
+Context-aware applications gather user contexts to adapt their behavior to users’ needs and situations, improving user experience. Context awareness has become fundamental for software engineering, highlighted by the European Union's Horizon 2020 challenge for context-aware IoT computation.
+
+Background
+
+Microservice architecture pattern is an alternative for monolithic architectures and applications, proposing splitting applications into small interconnected services. Richardson provides 44 patterns for microservices architecture, focusing on loosely coupled collaborating services with access to their own databases and communication via HTTP/REST synchronous requests or asynchronous message queueing protocols. Hadoop and Apache Spark are popular tools for Big Data processing, providing distributed, fault-tolerant, and highly available systems for real-time data processing.
+
+Related Work
+
+Time series analysis is crucial for IoT domains, with models such as ARIMA, ARIMAX, Exponential Weighted Moving Average, Holt-Winters method, GRACH, and ARGRACH. Libraries like Econometrics, Pandas, Matlab, R’s zoo and xts packages, ChronixDB, and FLINT allow time series analysis under the Big Data paradigm. Previous works have used these models and libraries for financial data, traffic flow prediction, and healthcare data analysis.
+
+Architecture
+
+The proposed architecture includes several independent services and components:
+
+Sensors: Physical or virtual sensors send measurements to a message queue.
+Message Broker Service: Implements an asynchronous mechanism for decoupling source and target messages.
+Domain Database: Stores historical data of sensor measurements and predictions.
+Context Database: Stores user context information and recommendations.
+Domain REST Service: Provides an API for accessing information.
+Context REST Service: Provides an API for user interaction and context-based recommendations.
+Prediction Module Service: Analyzes data received from sensors and processes them to predict future data using models like ARIMA.
+Enterprise Service Bus: Processes information received from sensors and predicted data.
+CEP Engine: Analyzes and correlates data to detect situations of interest.
+Context Broker Service: Determines notifications based on alerts and user contexts.
+Mobile Notification Service: Sends alerts to users.
+Mobile App: Allows users to check data and receive alerts.
+Prediction Module
+
+The prediction module, implemented using Hadoop and Spark, processes data to predict pollutant levels and notify users of potential health risks. The ARIMA model, suitable for time series, is used for predictions.
+
+Evaluation
+
+The prediction module's accuracy was evaluated using a 10-fold cross-validation technique with data from the Andalusian local government. The performance of the prediction module and the entire architecture was tested, showing efficient processing times for a large number of incoming messages.
+
+Conclusion
+
+The proposed architecture provides real-time context-aware predictions and notifications, improving decision-making and user experience. Future work will test the system in different domains and prediction models, enhancing its applicability and performance.

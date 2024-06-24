@@ -1,0 +1,50 @@
+Theodolite: Scalability Benchmarking of Distributed Stream Processing Engines in Microservice Architectures
+
+Sören Henning, Wilhelm Hasselbring
+Software Engineering Group, Kiel University, Kiel, Germany
+
+Distributed stream processing engines are designed to process big data volumes continuously with a focus on scalability. The Theodolite method benchmarks the scalability of these engines by defining use cases that microservices implementing stream processing must fulfill. For each use case, relevant workload dimensions affecting scalability are identified, proposing one benchmark per use case and workload dimension.
+
+We present a benchmarking framework that executes benchmarks for a given use case and workload dimension by implementing the use case’s dataflow architecture for different workloads and various numbers of processing instances. This identifies how resource demand evolves with increasing workloads.
+
+This paper identifies four use cases derived from processing Industrial Internet of Things data and seven corresponding workload dimensions. We provide implementations of benchmarks with Kafka Streams and Apache Flink and a framework to execute scalability benchmarks in cloud environments.
+
+1. Introduction
+The era of big data requires software systems to scale out by being distributed among multiple computing nodes in elastic cloud environments. Software architects use design patterns such as microservices and event-driven architectures, where loosely coupled components communicate asynchronously via a messaging system. Stream processing engines like Apache Samza or Apache Kafka Streams process data within microservices by transforming, aggregating, and joining it. Scalability is achieved by processing only parts of the data or operations in parallel.
+
+Evaluating the scalability of big data architectures with increasing workloads is challenging. The scalability might depend on the stream processing engine and the deployment options, making it time-consuming to evaluate and fine-tune microservices. Benchmarks are commonly used to compare technologies or configurations in empirical software engineering, aiding in architectural, implementation, and deployment decisions.
+
+While performance qualities like throughput or latency of stream processing engines have been benchmarked extensively, benchmarking their scalability is still lacking. This paper presents Theodolite, the first method for benchmarking the scalability of stream processing engines. The method defines common use cases for stream processing inspired by industrial settings, identifies workload dimensions, and proposes a benchmarking framework to test system scalability under different workloads and deployment options. We provide benchmark implementations for Kafka Streams and Apache Flink, with an evaluation of their scalability for different deployment options.
+
+2. Related Work
+Scalable stream processing, cloud computing scalability, and benchmarking are active research areas. This paper intersects these fields, presenting the first scalability benchmarking method for stream processing engines. We relate our work to existing research on scalable stream processing, benchmarking stream processing engines, and benchmarking scalability.
+
+3. Benchmarking Method
+The Theodolite method benchmarks the scalability of stream processing engines in microservices by focusing on use-case-oriented benchmarks. It evaluates the scalability of an entire microservice rather than individual processing steps. We identify four common use cases based on functional requirements and include a messaging system in all benchmarks.
+
+Scalability is defined as the ability to handle increasing workloads with additional resources. Different dimensions of workloads are considered for benchmarking scalability, designing one benchmark per use case and workload dimension. Our benchmarking framework executes the benchmarks, determining how resource demand evolves with increasing workloads.
+
+4. Identification of Use Cases
+We identify four use cases for stream processing engines deployed as microservices, derived from the Titan Control Center, an analytics platform for Industrial Internet of Things data. Each use case receives data from a messaging system and publishes processing results back to it, focusing on required processing steps.
+
+Use Case 1: Database Storage – Simple storage of events or messages in a NoSQL database.
+Use Case 2: Downsampling – Reducing the amount of data by aggregating records within time windows.
+Use Case 3: Aggregation Based on Time Attributes – Aggregating messages with the same time attribute to show patterns.
+Use Case 4: Hierarchical Aggregation – Aggregating data for groups of sensors and adjusting group hierarchies at runtime.
+5. Identification of Workload Dimensions
+We define workload dimensions impacting scalability for each use case, which include message frequency, amount of different keys, time window size, amount of overlapping windows, amount of time attribute values, number of elements in groups, and number of nested groups.
+
+6. Metrics and Measurement Methods
+Our benchmarking method measures scalability by determining the required number of instances per workload. Auxiliary metrics assess whether instances are sufficient to process the workload, based on output message counts or queue sizes. Scalability graphs illustrate how resource demand evolves with increasing workloads.
+
+7. Benchmarking Framework Architecture
+Our framework architecture executes scalability benchmarks, configured by use case implementation, system configurations, workload dimensions, and workload generators. It consists of components for experiment control, workload generation, messaging, microservice processing, monitoring, and analysis.
+
+8. Cloud-Native Implementation
+We provide an open-source implementation of our benchmarking framework, deploying all components as containers in a cloud environment orchestrated by Kubernetes. Apache Kafka is selected as the messaging system, and metrics are collected using Prometheus and visualized in Grafana.
+
+9. Experimental Evaluation
+We evaluate different deployment options for Kafka Streams and Flink, benchmarking scalability for the identified use cases and workload dimensions. Experiments are conducted in a private cloud, assessing the impact of Kafka partition count, commit intervals, resource allocation, and Flink checkpointing.
+
+10. Conclusions and Future Work
+The Theodolite method benchmarks the scalability of stream processing engines, proposing use-case-oriented benchmarks and evaluating scalability along different workload dimensions. Future work includes designing benchmarks for more complex use cases, automating configuration tuning, and optimizing benchmark execution.

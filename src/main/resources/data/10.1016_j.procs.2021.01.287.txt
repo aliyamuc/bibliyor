@@ -1,0 +1,55 @@
+Prototyping Machine-Learning-Supported Lead Time Prediction Using AutoML
+
+Janek Bender, Jivka Ovtcharova
+FZI Research Center for Information Technology, Haid-und-Neu-Strasse 10-14, 76135 Karlsruhe, Germany
+
+Abstract
+
+Many Small and Medium Enterprises (SMEs) in Make-To-Order (MTO) and Small-Series Production struggle with accurately predicting lead times for highly customizable orders. This paper investigates using AutoML integrated into existing enterprise systems to enable Lead Time Prediction (LTP) based on Machine Learning (ML) models. The prediction uses order data from an ERP system and real-time factory state informed by an IIoT platform. Simulation data fed the AutoML model generation, and a lightweight web-based microservice was developed to infer lead times of incoming orders during live production. AutoML systems allow for swift (re)training and benchmarking of models but may come at the cost of overall lower model quality.
+
+Keywords: Production, Lead Time Prediction, AutoML, Machine Learning
+
+1. Introduction
+
+Small and Medium Enterprises (SMEs) in Make-To-Order (MTO) and Small-Series (SS) Production face complex optimization problems in job scheduling due to highly customizable orders and short delivery times. Accurate planning is essential and must be flexible to accommodate high-priority orders. Planning horizons, especially with automotive suppliers, often span weeks at most.
+
+2. Related Work
+
+Several works have addressed ML-supported LTP:
+
+Data Mining and ML Approaches:
+
+Regression Trees (RT) for LTP (Choudhary et al., 2009).
+Various ML techniques like Regression Models (RM), Artificial Neural Networks (ANN), and Support Vector Machines (SVM).
+Challenges Identified:
+
+Lack of real-world data integration.
+Limited adaptability and generalization of models.
+Importance of tight integration with MES, IoT, and Digital Twins.
+Promising potential of AutoML for easing model training and monitoring.
+3. Problem Modelling
+
+ML-supported LTP is considered a regression problem where the goal is to predict the LT of individual production steps. The sum of these steps forms the order's LT. Key inputs include order features and factory state.
+
+4. Prototype
+
+4.1. Architecture
+
+The system integrates ERP and MES with an ML-component using AutoML. The architecture includes:
+
+An ERP system for order data.
+An MES for shop floor control.
+Modular web-based microservices for LTP.
+Integration with commercial ERP systems and MES using REST or OPC-UA.
+Real-time factory state monitoring through an IIoT platform using Apache StreamPipes.
+4.2. Simulated Data
+
+Simulation data based on a partner SME's use case was used to test the prototype. Orders for three base products (Simple, Advanced, Complex) were generated, producing datasets for training.
+
+4.3. Training & Inference using AutoML
+
+H20.ai's AutoML capabilities were used to train multiple models on the simulated data. The best performing model for each product was selected based on RMSE.
+
+5. Conclusion & Outlook
+
+The paper presents an ML-supported LTP approach integrated into an enterprise architecture for SMEs using AutoML. While technically feasible, challenges like concept drift and model generalization remain. Future work includes validation with real-world data and better integration of automated model monitoring and retraining.

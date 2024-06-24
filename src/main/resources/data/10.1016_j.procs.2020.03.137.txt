@@ -1,0 +1,47 @@
+Architecture Proposal for Machine Learning Based Industrial Process Monitoring
+Lorenz Rychener, Frédéric Montet, Jean Hennebert
+Institute of Complex Systems, HES-SO, HEIA-FR, Boulevard de Pérolles, 1700 Fribourg, Switzerland
+
+Abstract
+In the context of Industry 4.0, an emerging trend is to increase the reliability of industrial processes by using machine learning (ML) to detect anomalies in production machines. The main advantages of ML are its ability to (1) capture non-linear phenomena, (2) adapt to many different processes without human intervention, and (3) learn incrementally and improve over time. This paper analyzes the implications of including ML components into traditional anomaly detection systems. Our findings, based on a prototype deployed for chemical reactors, indicate significant impacts on the architecture of classical alarm systems, necessitating long-term data storage for model training, CPU-intensive operations, a variety of algorithms for error detection, and the integration of active learning with a human-in-the-loop approach. These insights drive the proposal for a microservice-based architecture for alarm systems in industrial machinery.
+
+Keywords: System Architecture, Rule Engine, Anomaly Detection, Monitoring, Industry 4.0
+
+Introduction
+Today’s competitive industrial landscape drives industries towards shorter product development life-cycles and increased production efficiency, leading to enhanced automation and monitoring of production machines, aligned with Industry 4.0 principles. Reliable anomaly detection systems are essential for orchestrating industrial machines.
+
+Anomaly Detection (AD) must address diverse issues, including different anomaly categories (point, contextual, collective), defining normal system behavior, domain dependency, rarity of anomaly examples, and noise differentiation. ML and deep learning (DL) have gained popularity for AD due to their capabilities to capture non-linear phenomena, adapt to various processes, and learn incrementally.
+
+This paper reviews the challenges in monitoring industrial processes, integrates ML into industrial processes, and proposes an alarm system architecture combining classical and ML approaches for fault detection.
+
+Industrial Process Monitoring
+Monitoring industrial processes presents challenges due to data diversity, real-time abnormal behavior detection requirements, and the rarity of anomalies. ML offers solutions through self-adaptive, high-dimensional learning deployable across various applications. Unsupervised methods model normal machine behavior, while supervised methods are used as sufficient anomaly examples become available.
+
+Inclusion of Machine Learning in Industrial Processes
+Successful ML inclusion addresses data diversity, high computational demands, and anomaly rarity. ML's versatility reduces the effort needed to handle process diversity, and advances in DL minimize human intervention. Additionally, ML can model multivariate data effectively.
+
+Architecture
+We advocate for a decentralized, scalable system architecture adaptable to ML needs. The proposed architecture comprises three layers: Industrial, ICT-Service, and User. The Industrial Layer handles data collection and storage, the ICT-Service Layer processes data and triggers alarms, and the User Layer provides client interfaces.
+
+Industrial Layer
+Block 1: Industrial machinery from which sensor data and settings are observed.
+Block 2: Contextual data sources (e.g., MES, ERP systems) augment raw sensor data.
+Block 3: Industry 4.0 gateway for data transfer and short-term data buffering.
+Block 4: Long-term storage database for ML model creation, scalable across multiple machines.
+ICT Services Layer
+Block 5: Detection agents identifying specific data patterns (events).
+Block 6: ML-based event detection system.
+Block 7: Active learning feedback loop involving user interaction for rule verification and model training.
+Block 8: Rule induction system discovering new, complex rules.
+Block 9: Rule-based decision engine triggering alarms based on rules.
+User Layer
+Block 10: Application communicating alarm notifications and managing rules.
+Block 11 & 12: Devices and presentation agents (e.g., smartphones, web browsers).
+Use Case: Chemical Reactor
+A partial implementation for an industrial chemical reactor at the School of Engineering and Architecture of Fribourg demonstrates the proposed architecture. Equipped with sensors measuring various parameters, the reactor data is processed through the described architecture to detect incorrect usage patterns.
+
+Discussion
+The inclusion of ML in industrial machines, driven by IoT and Industry 4.0 trends, poses technical challenges, such as incorporating ML into classical rule-based systems and processing real-time data streams. A modular microservice-based architecture addresses these challenges, offering benefits like maintainability, scalability, and fault tolerance. Custom development and individual retraining of ML models are necessary for unique industrial machinery, promising improved fault detection accuracy and reduced production costs.
+
+Conclusion
+This paper highlights the issues in Industrial Process Monitoring and the potential of ML to address these challenges. The proposed architecture combines classical and ML-based detection methods, emphasizing a modular microservice-based approach for adaptability across various application cases.

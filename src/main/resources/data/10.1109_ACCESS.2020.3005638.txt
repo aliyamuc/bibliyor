@@ -1,0 +1,42 @@
+Telemonitoring System for Infectious Disease Prediction in Elderly People Based on a Novel Microservice Architecture
+HURIVIADES CALDERÓN-GÓMEZ, LUIS MENDOZA-PITTÍ, MIGUEL VARGAS-LOMBARDO, JOSÉ MANUEL GÓMEZ-PULIDO, JOSÉ LUIS CASTILLO-SEQUERA, JOSÉ SANZ-MORENO, AND GLORIA SENCIÓN
+
+ABSTRACT This article describes the design, development, and implementation of a set of microservices based on an architecture that enables detection and assisted clinical diagnosis within the field of infectious diseases of elderly patients, via a telemonitoring system. The system updates a medical database with vital signs from biosensor kits applied by nurses to elderly people daily. The database is hosted in the cloud and managed by a flexible microservices software architecture. The implementation of a hybrid cloud architecture supports high-performance applications for the pre-diagnosis of infectious diseases in elderly patients. The system is designed to be cost-effective for people in disadvantaged areas and supports distributed computing, big data, and NoSQL structures, allowing the use of machine learning and AI algorithms to discover knowledge patterns from the overall population.
+
+INDEX TERMS Artificial intelligence, e-health, elderly people, infectious diseases, microservice architecture, microservices, telemonitoring.
+
+I. INTRODUCTION
+A 74% rise in the population aged over 65 is expected in Europe by 2060, causing high consumption of resources in primary and specialized care. Frequent use of emergency services or prolonged hospital stays, mostly due to infections, is common among this group. These patients often seek emergency care at advanced disease stages due to non-specific symptoms.
+
+The diagnosis of infectious diseases is challenging in areas with limited medical care, leading to increased mortality rates due to treatment delays. Increasing human resources for elderly care is unsustainable, making telemonitoring a viable alternative. Regular monitoring of vital signs can prevent severe health problems and reduce emergency assistance needs. The SPIDEP project aimed to build an intelligent system for early diagnosis of infectious diseases, integrating a machine learning-based inference system.
+
+This article is part of a study on infectious diseases developed with clinical teams from various institutions. It aims to increase knowledge in the pre-diagnosis of infectious diseases and offer an alternative vision of telemonitoring of elderly people.
+
+II. RELATED WORK
+Microservices allow for the development of applications as sets of small services that run independently, using various communication protocols. Studies have suggested combining this pattern with computational paradigms like cloud, fog, or edge to improve medical diagnosis accuracy.
+
+Mendes et al. used microservices for remote monitoring of biometrics in elderly people. Grgurić et al. presented SmartHabits, an IoT-based system for reassuring family members about their elderly relatives. Roca et al. proposed a chatbot architecture for chronic patient support. Semenov et al. suggested an FHIR-based microservices platform for integrating hospital information systems. Alvarez et al. applied a microservices-based architecture for tele-rehabilitation devices. Andrikos et al. developed a teleconsultation system for radiologists. Khoonsari et al. described a workflow for metabolomics data analysis using microservices.
+
+III. OVERVIEW OF THE SPIDEP ARCHITECTURE
+A. DESIGN OF THE ARCHITECTURE
+The architecture supports versatile high-performance applications using microservices, divided into five functional layers:
+
+Things layer: Interacts with hardware and validates signals.
+Network layer: Sets up connections for asynchronous data uploads.
+Processing layer: Microservices communicate via REST protocol. Smartphones and tablets access through an API gateway, and computers through user interfaces.
+Microservices layer: Contains services for medical personnel and administrative staff.
+Infrastructure layer: Supports communications, scalability, availability, and data integrity. Uses Docker containers and Kubernetes for container orchestration.
+B. NEW ASPECTS OF THE ARCHITECTURE
+The proposal uses microservices for clinical forecast scenarios, continuously building an online database for predictive models. A recommender system supports remote assistance in interpreting changes in vital signs.
+
+C. ARCHITECTURE IMPLEMENTATION
+The SPIDEP platform uses microservices to support communication with the central cloud environment, improving decision support for pre-diagnosis. Three versions were developed, with the current one using hybrid instances in MariaDB Galera Cluster and NoSQL.
+
+IV. VALIDATION OF RESULTS
+Performance tests were conducted using two AKS-controlled environments, comparing hybrid instances in MariaDB Galera Cluster and NoSQL (SPIDEPMS-T1-HB) with a traditional SQL instance (SPIDEPMS-T2-SQL). The tests showed that SPIDEPMS-T1-HB met performance criteria, while SPIDEPMS-T2-SQL did not.
+
+V. DISCUSSION
+The study evaluated the performance of SPIDEP microservices. It was found that manually created microservices based on traditional SQL do not always perform better than monolithic implementations. Three aspects are important for a robust architecture: scalability, communication protocols, and fine-grained microservices.
+
+VI. CONCLUSIONS AND FUTURE WORK
+The SPIDEP platform supports early diagnosis of infectious diseases, suitable for distributed computing and big data structures. Future research includes optimizing SPIDEP performance with different programming languages and integrating Kafka for event-driven management. Further tests are planned with real patient data.

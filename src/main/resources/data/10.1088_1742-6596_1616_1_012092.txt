@@ -1,0 +1,42 @@
+Research and Application of High-Performance Data Storage and Transmission Technology in Microservice Environment
+Kunying Li, Yu Ding, Ying Shi, Liling Wang, Zebing Zhen
+
+Computer Application Technology Department, PetroChina Research Institute of Petroleum Exploration & Development, Beijing 100083, China
+
+Abstract: With the development of the Internet, various application systems are emerging, bringing increased server access, content, and user interaction. The new generation of microservice software development frameworks puts pressure on data transmission and storage. This paper proposes a cache service architecture designed by sentinel mode. Redis is used as the core intermediary layer for high-performance storage to address lightweight and high concurrent data. Multiple linear regression analysis determines data needing asynchronous and heavyweight transmission, managed by RabbitMQ message queue. The approach realizes efficient storage, expansion, and timely information communication in a microservice environment.
+
+Introduction
+The advent of big data and increasing applications have rendered traditional shared memory storage inefficient, increasing data loading times and affecting system response times. Ensuring efficient and stable massive data interaction is crucial. Current solutions for data storage and transmission range from algorithmic to hardware implementations, yet no single technology addresses all challenges effectively. This paper proposes using high memory servers to cache data across the cluster, improving management node performance and avoiding microservice master node disk space bottlenecks. Redis supports various data types but is unsuitable for asynchronous and large-scale data processing, which RabbitMQ handles. The combined system ensures efficient high-performance data storage in microservices.
+
+Optimization Design of High-Performance Data Storage
+The proposed data storage and transmission scheme involves an intermediary media platform handling data upload, subscription, publication, and deletion. This middle layer must be highly usable, expandable, available, and maintain real-time data consumption, asynchronous transmission, and persistent storage. Combining Redis and RabbitMQ addresses these needs.
+
+Cache Server Architecture: The cache server operates in cluster mode, with a primary node for read-write operations and a secondary node for backup. The architecture includes 16384 hash slots, optimizing memory use. The sentinel service analyzes packet information, minimizing CPU and memory costs during data allocation.
+
+Message Communication Pipeline: For large-scale data processing, RabbitMQ's message model is used. It includes a message publisher, subscriber, and server, ensuring data integrity and reliable transmission. This setup handles data storage and retrieval efficiently.
+
+Server Load Distribution Processing
+Server load distribution ensures data storage and transmission reliability, service access efficiency, and storage space saving. Multiple linear regression analysis evaluates CPU utilization (C), memory utilization (M), disk read-write efficiency (D), and current time interval (P) to determine the final data execution time (T):
+
+𝑇
+=
+𝛼
+𝐶
++
+𝛽
+𝑀
++
+𝛾
+𝐷
++
+𝛿
+𝑃
+T=αC+βM+γD+δP
+
+Results indicate that disk write efficiency peaks at night, reducing average response time. A dual execution optimization algorithm, AssesModel, prioritizes message execution, enhancing performance and reducing delay risks.
+
+Experimental Results and Analysis
+Using Windows Server 2012 R2 and .Net core, Redis and RabbitMQ were deployed in cluster mode with sentinel service monitoring. Randomly generated test data confirmed the feasibility of the proposed scheme, with CPU, memory, and disk I/O flow improvements observed. The system maintained an average response time within 200ms, meeting experimental requirements.
+
+Conclusion
+This paper constructs a cache service architecture for high-performance data storage in microservice environments. Combining Redis and RabbitMQ, along with multiple linear regression analysis and message queue optimization, ensures efficient data throughput, storage, and communication. The system offers a scalable and reliable solution for future projects.

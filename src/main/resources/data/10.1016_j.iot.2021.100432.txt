@@ -1,0 +1,53 @@
+An Extended Meta Learning Approach for Automating Model Selection in Big Data Environments Using Microservice and Container Virtualization Technologies
+Abstract
+For a given machine learning task, various algorithms and configurations are tested until an adequate solution is found. This process is resource-intensive and time-consuming. Meta learning addresses these issues by recommending a promising learning algorithm based on meta features from a dataset. This paper introduces a new concept for enhancing the predictive performance of meta learning classification models by generating new meta examples. The concept is realized and evaluated in a microservice-based meta learning framework, demonstrating excellent performance in assigning the adequate forecasting model for time series datasets. The new meta example generation concept enhances the predictive performance of the meta learner up to 16.77% and 27.07% for original and encoded representation forms of meta features, respectively.
+
+Introduction
+Machine Learning (ML) designs algorithms that allow computers to evolve behaviors based on empirical data. ML has advanced in various application areas, becoming crucial for providing methodologies and ready-to-go ML software for non-expert users.
+
+Related Work
+ML offers various algorithms for modeling and discovering hidden patterns in data. Building a ML model by non-expert users is complex and time-consuming. Meta learning solves the problem of automated model selection by learning the mapping between available learning algorithms and meta features of the task itself.
+
+Automated Model Selection Using Meta Learning: Framework Concept and Architecture
+User Interface (UI) Layer
+The UI layer consists of web applications that interact with the service layer via RESTful APIs, providing functionalities such as data management, model management, job execution, cluster configuration, and automated model selection.
+
+Service Layer
+This layer abstracts the interface of the UI applications to the ML runtime environment through five microservices: Job Management Service, Data Management Service, Data Preprocessing Service, Meta Knowledge Extraction Service, and Meta Learning Service. These services provide functionalities for executing ML tasks, storing datasets and models, preprocessing data, extracting meta knowledge, and building meta learning models.
+
+Persistence and Processing Layer
+This layer communicates with the service layer to perform ML tasks on the cluster, hiding the low-level details of the runtime environment. It includes functionalities for creating job runtime directories and storing data items managed by the Data Management Service.
+
+Generating Efficient Meta Examples for Time Series Model Selection
+Dataset
+The Ausgrid Solar Home Electricity Data is used for evaluating the approach. It offers generated PV electrical energy time series for 300 households with a temporal resolution of 30 minutes from 2010 to 2013. After preprocessing, 238 time series are used.
+
+Concept and Methodology
+Meta features are extracted from the input energy time series datasets, which are then used to build a knowledge matrix. Forecasting models are built, and the best performing model is set as a label for each dataset. The new meta examples are generated using weather-based, time-based, and model-based approaches.
+
+Weather-based Approach
+Weather data is used to generate new time series datasets based on different weather conditions. Days are classified and new time series are created by appending days in each weather class.
+
+Aggregation-based Approach
+Time series datasets are aggregated at different levels to generate new datasets, which are then used to create meta examples.
+
+Model-based Approach
+ML algorithms are used to simulate new time series datasets, which are then used to create meta examples.
+
+Power Generation Forecasting Scenario
+The scenario involves one-day-ahead forecasting of solar power generation. The MASE is used to measure the forecast error. The best performing model for each time series dataset is used as a label in the knowledge matrix.
+
+Evaluation and Empirical Study
+The predictive accuracy of the meta learning framework in selecting the most appropriate forecasting model is evaluated. The execution time and framework overhead are measured, and the effect of increasing the number of meta examples on the predictive performance of meta learners is investigated.
+
+Meta Learning for Time Series Model Selection: Use Case Study
+100 time series datasets are used for training the meta learner, and 10 datasets for testing. The experiments are repeated five times, and the mean results are presented. The predictive performance of different categories of meta features is compared.
+
+Framework Execution Time and Overhead
+The total time for different tasks is measured, highlighting the efficiency of the framework. The extraction time for each group of meta features is analyzed.
+
+Effect of Generating New Meta Examples
+The effect of new meta examples on the predictive performance of the meta learner is compared using original and encoded representations of meta features. The relative accuracy improvement is measured for different extending scenarios.
+
+Conclusion
+The proposed framework efficiently supports non-expert users in selecting the best ML model for a given task, demonstrating significant improvements in predictive performance through the generation of new meta examples.

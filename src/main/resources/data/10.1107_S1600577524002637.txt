@@ -1,0 +1,33 @@
+A distributed data processing scheme based on Hadoop for synchrotron radiation experiments
+
+Authors: Ding Zhang, Ze-Yi Dai, Xue-Ping Sun, Xue-Ting Wu, Hui Li, Lin Tang, Jian-Hua He
+
+With the development of synchrotron radiation sources and high-frame-rate detectors, the amount of experimental data collected at synchrotron radiation beamlines has increased exponentially. Data processing for synchrotron radiation experiments has entered the era of big data. It is becoming increasingly important for beamlines to process large-scale data in parallel to keep up with the rapid growth of data. Currently, there is no set of data processing solutions based on the big data technology framework for beamlines. Apache Hadoop is a widely used distributed system architecture for solving the problem of massive data storage and computation. This paper presents a set of distributed data processing schemes for beamlines with experimental data using Hadoop. The Hadoop Distributed File System (HDFS) is utilized as the distributed file storage system, and Hadoop YARN serves as the resource scheduler for the distributed computing cluster. A distributed data processing pipeline that can carry out massively parallel computation is designed and developed using Hadoop Spark. The entire data processing platform adopts a distributed microservice architecture, which makes the system easy to expand, reduces module coupling, and improves reliability.
+
+Introduction
+
+Synchrotron radiation facilities are powerful tools in science and technology research. After over half a century of development, the diffraction-limited storage ring has become the dominant trend, i.e., the fourth-generation light source. MAX IV in Sweden, ESRF-EBS in France, and Sirius in Brazil are the first three constructed fourth-generation light sources in the world. There are more than ten laboratories that plan to build a new facility or upgrade their recent third-generation facilities. In mainland China, HEPS in Beijing and HALS in Hefei are under construction. The Wuhan Advanced Light Source (WALS) phase I project is designed as a fourth-generation light source. The fourth-generation light sources will exceed the performance of previous sources by one or more orders of magnitude in terms of brightness, coherence, and shortness of pulse duration. The high degree of coherence will allow efficient focusing of the synchrotron beams to the nanometre range. Coherence-based techniques, such as coherent diffraction imaging, will potentially reach sub-nanometre resolution. Recent advances in synchrotron light sources and innovative detector technology have led to generating massive amounts of data in users' synchrotron radiation experimental processes. Beamlines need to perform large-scale parallel data processing to ensure the processing speed matches the speed of data growth. A massive amount of data also provides a solid foundation for big data technologies, such as machine learning. Machine learning is expected to be a significant trend in data analysis technology for beamlines.
+
+Distributed Data Processing
+
+Construction of a Hadoop Distributed Cluster
+
+In terms of software, HDFS, YARN, and HBase in the Hadoop ecosystem are chosen to build a distributed processing cluster. HDFS is a distributed file storage system based on Google’s GFS. YARN is a resource management component proposed by Hadoop version 2.0. HBase is an open-source implementation of Google Bigtable, which utilizes HDFS as a file storage system and Zookeeper as a collaborative service.
+
+In terms of hardware, the distributed cluster is built using the infrastructure provided by the Advanced Light Source Research Center of Wuhan University. The version of Hadoop used is 3.3.4, and the version of HBase is 2.5.4. Two CentOS7.6 servers are used to build a two-node cluster.
+
+Distributed Automatic Processing Pipeline for Crystallography
+
+Spark is a dominant distributed batch computing framework in big data computing. It supports various types of functionality, including offline batch processing, SQL-like processing, machine learning, graph computation, and more. The Spark architecture consists of a Cluster Manager and multiple Worker nodes. Spark abstracts data into an RDD (Resilient Distributed Dataset), and all data processing in Spark is based on RDD operations.
+
+The DIALS (Diffraction Integration for Advanced Light Sources) project develops a software suite for the analysis of crystallographic X-ray diffraction data. The workflow of DIALS is decomposed into tasks such as spot finding, indexing, refinement, and integration. This paper utilizes Spark to transform spot-finding and integration in DIALS into tasks that can perform multi-node parallel computing within a computer cluster. The Spark-DIALS pipeline primarily incorporates dials.import, dials.find_spots, dials.index, dials.refine, dials.integrate, dials.symmetry, and dials.scale from the original DIALS.
+
+Pipeline Testing
+
+The raw experimental data used for pipeline testing were an example dataset consisting of 1800 thaumatin diffraction patterns collected at the BioMAX beamline, MAX IV. The size of the entire dataset is 5.15 GB. The crystals of thaumatin were grown from solutions of thaumatin (20–50 mg ml−1) in NaK tartrate (1.0 M), HEPES pH 7 (100 mM), and 25% glycerol. The experimental acquisition parameters for this dataset are provided.
+
+The test compared the results of the dataset processed by xia2(dials) and Spark-DIALS. The results of Spark-DIALS are consistent with those of the original DIALS. Spark-DIALS offers substantial improvements in computational efficiency compared with the original DIALS on large diffraction datasets.
+
+Conclusion
+
+The data processing of beamlines has entered the era of big data. This paper presents a case study on synchrotron radiation biomolecular crystallography to illustrate a beamline distributed data processing scheme based on the Hadoop ecosystem. We build a distributed file storage system for experimental crystallography data using Hadoop HDFS and develop a resource scheduling system using Hadoop YARN. The Spark-DIALS pipeline enhances functionality and performance, enabling effective utilization of distributed computing clusters' resources. Future research will integrate Hadoop distributed big data computing frameworks with GPU clusters for improved performance.

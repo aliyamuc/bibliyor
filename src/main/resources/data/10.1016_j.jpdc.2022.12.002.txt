@@ -1,0 +1,75 @@
+A Federated Collaborative Recommendation Model for Privacy-Preserving Distributed Recommender Applications Based on Microservice Framework
+
+Wenmin Lin, Hui Leng, Ruihan Dou, Lianyong Qi, Zhigeng Pan, Md. Arafatur Rahman
+
+Abstract
+
+The wide adoption of IoT technologies has accelerated the accumulation of big data. Recommender systems (RS) are effective methods to extract user-interested items from large volumes of data. However, implementing a recommender system over distributed error-prone IoT devices faces challenges. Distributed IoT devices may fail to deliver local data due to hardware malfunction, causing unavailability of the recommender system. Collecting raw data from these devices may lead to data privacy issues. To address these challenges, we propose a federated collaborative recommendation model based on a microservice framework for privacy-preserving distributed recommendation applications. Federated learning trains the collaborative recommendation model while keeping raw data on each device locally. Microservice framework encapsulates different functions of the federated recommender model, allowing distributed devices to participate via service registration and discovery. We enhance the Neural Collaborative Filtering model with the FedNeuMF model by integrating auxiliary user profiles and item attributes to improve recommendation accuracy. Experiments on three real-world datasets demonstrate our proposal's effectiveness.
+
+Introduction
+1.1. Background
+
+The prevalence of IoT technologies generates large-scale data sources characterized by heterogeneity, volume, and sparsity. Recommender Systems (RS) can solve information overload issues by extracting user preferences and filtering relevant items from large datasets. Traditionally, distributed data sources are sent to a centralized cloud server for processing and recommendation decisions. This centralized approach poses availability and security issues, including hardware malfunctions and potential privacy data leakage.
+
+1.2. Motivating Example
+
+An example illustrates the problem addressed. An end user, Mia, travels and seeks cost-effective hotels. Maps and Airbnb services can provide recommendations, but Mia has historical data only on Maps. Airbnb needs access to Maps' data to offer accurate recommendations, which raises privacy and data-sharing challenges.
+
+1.3. Our Work and Contribution
+
+We propose a distributed recommendation model, FedNeuMF, combining microservice and federated learning frameworks for efficient and privacy-preserving recommendations. We enhance the Neural Collaborative Filtering model with auxiliary information to improve feature extraction accuracy. Experiments on public datasets validate our model's performance.
+
+Related Work
+2.1. Collaborative Filtering Based Recommendation Models
+
+Collaborative Filtering (CF) methods, including user/item-based techniques and hybrid approaches, are widely used in recommender systems. Advances in deep learning have introduced neural network-based models, such as Autoencoders and RNNs, for more accurate recommendations. Our work enhances the Neural Collaborative Filtering model with multi-source data to improve accuracy.
+
+2.2. Microservice Based Distributed Systems
+
+Microservice architecture offers a flexible solution for building distributed systems, allowing services to communicate via lightweight protocols. This approach enhances scalability and reliability. Our model uses microservices for decentralized recommendation model training and parameter aggregation.
+
+2.3. Privacy-Aware Recommendations
+
+Privacy concerns in recommender systems are addressed through cryptographic algorithms and federated learning. Federated learning allows decentralized model training while keeping data local, enhancing security and privacy.
+
+Preliminary Knowledge and System Overview
+3.1. Federated Recommendation System
+
+Federated recommendation systems train models collaboratively while keeping data local. A centralized server aggregates intermediate parameters from distributed participants to update the global model.
+
+3.2. The Neural Matrix Factorization (NeuMF) Model
+
+The NeuMF model combines matrix factorization with neural networks for accurate user-item interaction modeling. We enhance NeuMF by integrating user profiles and item attributes.
+
+3.3. System Overview
+
+Our system involves service registration, local training, parameter aggregation, and recommendation prediction phases. Distributed systems register as microservices and participate in federated training to generate accurate recommendations while preserving privacy.
+
+Federated Collaborative Recommendation Model Based on Microservice Framework
+4.1. Service Registration and Service Discovery
+
+Distributed systems register as microservices to participate in federated model training. The centralized server selects participants for collaborative training.
+
+4.2. Local Training
+
+We enhance NeuMF by incorporating multi-source data, including user profiles and item attributes, for accurate feature extraction. The local training process involves updating model parameters using these enhanced features.
+
+4.3. Parameter Aggregation
+
+Local model parameters are aggregated by the centralized server using the FedAvg algorithm to update global item-related weights for the next training round.
+
+4.4. Recommendation Prediction
+
+After training, the model predicts user-item interactions, generating recommendations based on aggregated parameters.
+
+Experimental Evaluation
+5.1. Prototype Design
+
+We implement the FedNeuMF model using Docker-compose for microservice orchestration. The prototype includes local training, data storage, aggregator, member, and configuration services.
+
+5.2. Performance Evaluation
+
+Experiments on public datasets (Santander, Amazon Atoys, Amazon Amusic) compare FedNeuMF with MF and NCF models, showing superior performance in hit ratio (HR@10) and normalized discounted cumulative gain (NDCG@10).
+
+Conclusion and Future Work
+Our proposed FedNeuMF model combines federated learning and microservice frameworks for efficient, privacy-preserving recommendations. Future work will address data imbalance issues and explore methods to improve recommendation model efficiency.

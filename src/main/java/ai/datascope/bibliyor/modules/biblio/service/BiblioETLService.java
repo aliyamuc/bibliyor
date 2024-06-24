@@ -50,8 +50,10 @@ public class BiblioETLService {
 
     @Transactional
     public void etlForDOIList(String[] doiList){
+        int i=0;
         for(String doi : doiList){
-            log.info("Processing DOI: {}", doi);
+            i++;
+            log.info("{} - Processing DOI: {}", i, doi);
             this.etlForDOI(doi);
         }
     }
