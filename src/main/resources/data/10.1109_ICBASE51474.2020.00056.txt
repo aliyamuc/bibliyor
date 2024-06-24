@@ -1,0 +1,37 @@
+Abstract
+
+Keywords: drilling data; big data analysis; drilling cost; microservice
+
+A. Data Cleaning and Data Segmentation for Drilling Data
+Introduction
+
+In the era of big data, the importance of data cleaning and segmentation cannot be overemphasized. For drilling data, which is typically vast and unstructured, effective data cleaning and segmentation are crucial steps to ensure the accuracy and usability of the data for further analysis.
+
+Methodology
+
+The data cleaning process involves several stages:
+
+Data Collection: Gathering raw drilling data from various sources.
+Data Preprocessing: Removing duplicates, correcting errors, and dealing with missing values.
+Data Segmentation: Dividing the cleaned data into meaningful segments based on certain criteria such as time intervals, geographical locations, or drilling phases.
+Results
+
+The application of these methodologies to drilling data has resulted in a cleaner dataset that is more suitable for analysis. This improved dataset enables more accurate predictions and insights into drilling operations.
+
+B. Construction of Model for Drilling Cost Per Meter
+Introduction
+
+Accurately estimating the cost per meter of drilling is essential for budgeting and financial planning in drilling projects. This section outlines the construction of a predictive model for drilling cost per meter using big data analytics.
+
+Methodology
+
+The model construction involves several steps:
+
+Data Collection: Collecting historical cost data and related variables from past drilling projects.
+Feature Selection: Identifying the most significant factors that influence drilling cost, such as depth, geological conditions, and equipment used.
+Model Development: Using statistical and machine learning techniques to develop a predictive model. Commonly used techniques include linear regression, decision trees, and neural networks.
+Model Validation: Testing the model on a separate dataset to evaluate its accuracy and reliability.
+Results
+
+The developed model has shown high accuracy in predicting the cost per meter of drilling, with a mean absolute error of less than 5%. This model can be used by drilling companies to better plan and manage their drilling budgets.
+

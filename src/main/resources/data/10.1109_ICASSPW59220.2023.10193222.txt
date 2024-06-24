@@ -1,0 +1,58 @@
+AI-TOOLKIT: A MICROSERVICES ARCHITECTURE FOR LOW-CODE DECENTRALIZED MACHINE INTELLIGENCE
+Vincenzo Lomonaco, Valerio De Caro, Claudio Gallicchio, Antonio Carta, Christos Sardianos, Iraklis Varlamis, Konstantinos Tserpes, Massimo Coppola, Mina Marmpena, Sevasti Politi, Erwin Schoitsch, Davide Bacciu
+
+ABSTRACT
+Artificial Intelligence and Machine Learning toolkits like Scikit-learn, PyTorch, and Tensorflow provide a solid starting point for rapid prototyping of R&D solutions but are challenging to port to heterogeneous decentralized hardware and real-world production environments. Outsourcing deployment solutions to scalable cloud infrastructures such as Amazon SageMaker or Microsoft Azure is common. This paper proposes an open-source microservices-based architecture for decentralized machine intelligence, enabling flexible integration of cutting-edge functionalities while maintaining complete control over deployed solutions with minimal costs and maintenance efforts.
+
+Keywords: Artificial Intelligence, Microservices, Decentralized Learning and Inference, Pervasive Computing
+
+INTRODUCTION
+Artificial Intelligence and Machine Learning solutions enable advanced technologies from autonomous vehicles to digital personal agents. However, these solutions often require large quantities of high-quality labeled data, scalable infrastructure for continuous training, and strong expertise in AI, data science, and engineering. These needs often prevent small and medium enterprises from adopting these technologies due to the high costs and frictions of development.
+
+Open-source R&D libraries like Scikit-learn, PyTorch, and Tensorflow have lowered the barriers to developing machine-learning-based R&D projects but still require specialized human resources for prototyping and deployment. This paper proposes a microservice-based architecture for decentralized machine intelligence, offering original contributions in design, development, and deployment.
+
+OVERALL ARCHITECTURE DESIGN
+The AI-Toolkit, developed within the European project TEACHING, supports the development of trustworthy autonomous cyber-physical applications through Human-Centred Intelligence. Leveraging the TEACHING platform, a distributed computing infrastructure based on dockerized microservices, it allows dynamic definition of data workflows that run on any platform supporting Docker containers. Application developers use an abstract language to describe data workflows, which are then implemented transparently.
+
+The TEACHING platform supports core functionalities developers and application developers/providers. Core developers manage the code through a GitHub project, with an automated CI/CD pipeline building the Docker images. Application developers define the application model as a data workflow and deploy it on target systems. The platform focuses on monitoring, quantification, integration, and programmability, achieved through data workflows and architecture patterns allowing dynamic workflows with minimal code intervention.
+
+AI-TOOLKIT AND OFF-THE-SHELF NODES
+The AI-Toolkit implements AI microservices for TEACHING applications, defining a computational graph as a docker-compose application. Nodes in the graph act as data Producers, Consumers, or both, communicating via RabbitMQ. The AI-Toolkit supports various functionalities:
+
+Sequence Learning: Support for recurrent neural networks for time-series forecasting and classification. Learning from structured sequential data is a key property of intelligence, inherently related to predicting the future and knowing "what is next."
+
+Stress Prediction: Predictor for stress recognition based on physiological data like Electrodermal Activity (EDA) or Photoplethysmographic (PPG) signals. This module is built on sequence learning algorithms and provides state-of-the-art stress recognition capabilities.
+
+Human-Centric Personalization via Reinforcement Learning: Predictors personalization based on reinforcement learning, important for tasks and environments where learning comes through intrinsic or extrinsic rewards.
+
+Anomaly Detection and Cybersecurity: Identifying irregularities is crucial for any autonomous system. The Long Short-Term Memory AutoEncoder architecture facilitates semi-supervised learning from sequential data, enabling intrusion detection and support for cybersecurity measures.
+
+Dependable and Privacy Estimation: Applications that balance privacy and performance through tunable trade-offs, ensuring dependable functionalities while being aware of privacy leaks through learning.
+
+The AI-Toolkit also supports lower-level functionalities like base Python classes, training and inference, reservoir computing, pre-processing, federated learning, and continual learning, enabling custom node definition.
+
+APPLICATION DEFINITION AND DEPLOYMENT
+TEACHING applications can be deployed on any OS supporting Docker Compose. Running the computational graph for an application is as simple as running docker-compose within a configured environment.
+
+AI-TOOLKIT LOWER LEVEL FUNCTIONALITIES
+Base Python Classes: Set of base Python classes that can be inherited to simplify the development of new nodes. Each node in the application computational graph can be instantiated with different parameters defining its behavior.
+
+Training and Inference: Each AI node can be used for inference (prediction only), training, or both. This flexibility allows for different deployment scenarios depending on the application's needs.
+
+Reservoir Computing: Efficient for learning on constrained hardware and edge devices. General Echo State Networks (ESN) for sequential classification and time-series forecasting are implemented in TensorFlow, making them smaller and less energy-demanding.
+
+Pre-processing: Nodes offering data preprocessing and synchronization functionalities.
+
+Federated Learning: Supports distributed computational graphs performing federated learning, enabling transparent support with a basic web server indication to create clone groups.
+
+Continual Learning: Supports training in a continual setting with experience replay to address issues related to catastrophic interference from non-stationary data streams.
+
+CUSTOM NODE DEFINITION
+The AI-Toolkit is designed for modularity and flexibility, allowing easy customization and development of custom nodes. Implementing a new node involves defining three key methods: init, build, and call, enabling lazy initialization and execution logic for each node.
+
+STRESS LEVEL PREDICTION USING ECHO STATE NETWORKS
+An example application of the AI-Toolkit is real-time stress-level prediction based on Electrodermal Activity (EDA) signals. EDA signals can be collected with non-invasive wearable sensors, and predictions can be computed on the edge for better privacy and personalization. The off-the-shelf stress-prediction node using Echo-State-Networks (ESNs) can achieve high accuracy in classifying stress levels in real-world data scenarios, such as an autonomous driving simulator.
+
+CONCLUSIONS & FUTURE WORKS
+This paper proposed a low-code microservices architecture for decentralized machine intelligence, providing a starting point for pervasive and autonomous AI systems. Future work includes providing a visual low-code solution, expanding off-the-shelf nodes and Docker images, and enhancing support for custom functionalities.
+
