@@ -1,0 +1,83 @@
+A 5G PaaS Collaborative Management and Control Platform Technology Based on Cloud Edge Collaboration Based on Particle Swarm Optimization Algorithm
+
+Li Qing
+Shenzhen Power Supply Bureau Co., Ltd, Shenzhen, Guangdong 518048, China
+
+Abstract—The traditional cloud computing technology architecture mainly adopts the way of full set for the construction and operation of cloud computing center. With the development of cloud computing technology and the popularization of application, this all centralized mode of cloud computing may not be the optimal solution. Especially in the case of 5G derived vertical business scenarios, for the cloud collaborative management and control platform of power system, the system efficiency of full centralized mode is relatively low. In this paper, through the research on the key technologies of multi-form PaaS platform in 5G scenario, the cloud-side collaborative 5G PaaS power system cloud collaborative management and control platform is realized. The platform is based on cloud-native flexible microservice technology components and elastic resource computing and integrates big data and artificial intelligence platform. This paper constructs a new generation of PaaS platform which is universal in the whole domain, unified in standard, multi-cloud collaboration, and flexible expansion, and realizes the global cloud, global virtualization, and global perceptual construction of cloud collaborative management and control platform under 5G scenario. The platform has a certain reference value for the upgrading of cloud collaborative management and control of the power system.
+
+Keywords—Particle swarm optimization, cloud edge collaboration, 5G, Platform as a Service (PaaS)
+
+I. INTRODUCTION
+
+Cloud computing has been developing for more than ten years. Cloud computing, based on communication and Internet technology, has changed the use and interaction mode of infrastructure, platform, and application, and provided lower cost and higher efficiency services through resource sharing and flexible scheduling, which greatly accelerated the process of digitization.
+
+The traditional cloud computing technology architecture mainly adopts the way of full set for the construction and operation of cloud computing center. With the development of cloud computing technology and the popularization of application, this all centralized mode of cloud computing may not be the optimal solution, especially in the vertical business scenarios derived from 5G. For example, the AR / VR application scenario of image data collection and processing, the scene of the Internet of vehicles requiring real-time interaction, and the business remote diagnosis and treatment scene with high requirements for business continuity. If all the data are uploaded and distributed after being processed by the central node, the transmission cost is high, the time is prolonged, and the efficiency is low. If there are network problems or central node failures, even short-term cloud service interruption will bring serious impact. In addition, centralized cloud computing can't solve the security trust problem that customers can't allow data out of their control, let alone their own system.
+
+In this context, edge computing technology, as an extension and supplement of cloud computing technology, develops and grows rapidly. Edge computing is an upgrade of cloud computing from fully centralized mode to distributed mode. It is not an independent subversive technology. Edge computing node and cloud computing center are a logical whole. Edge computing nodes can transform unstructured data such as images into structured information locally, and even introduce artificial intelligence technology to deploy a lot of work locally, which can greatly reduce the dependence and consumption of transmission resources, and greatly improve the local data response speed. The cloud computing center sends the algorithm to the edge computing node, and the edge technology node provides computing power to process the local data, and the results are also stored locally. This mainly meets the requirements of security control and privacy protection, and at the same time, it can give full play to the advantages of rapid iterative refresh of cloud services, and ensure that the rules of data processing can be updated in time. Through the distributed computing technology and reasonable resource scheduling management, the computing power, storage and other resources of edge computing nodes are unified with the cloud computing center to form a highly efficient cloud edge collaborative computing platform with centralized logic and physical dispersion.
+
+5G brings large-scale connection digitization and slicing private network for industry customers, further improving the digital level and digital operation ability of basic connection. The high reliability and low latency requirements of a series of vertical services derived from 5G also put forward higher requirements for IT technology, which promotes the evolution of cloud computing from centralized to distributed edge computing. The collaboration between cloud computing and edge computing will become the mainstream of 5G.
+
+II. 5G'S NEW DEMAND FOR PAAS PLATFORM
+
+PaaS is the product of cloud computing era. PaaS platform, as the key technology layer in the cloud-based architecture, provides a set of standard, efficient, stable, and extensible technical services for enterprise SaaS (software as a service), and provides seamless connection and management for application cloud.
+
+5G has brought about double changes in communication network architecture and computing architecture. The trends of software-defined network, service-oriented architecture, edge computing, wireless network virtualization, and so on make the network develop towards the cloud-native architecture. As a key technology layer in the native cloud architecture, PaaS platform will be fully applied and developed, which means that PaaS platform will be ubiquitous and become very important in the future 5G ecosystem.
+
+PaaS platform provides micro-service management and control, DevOps, and container resource management capabilities, such as network service agile construction, network service governance, network service opening, network service multi-protocol access, network service security access authentication, network service arrangement, deployment resource flexible scheduling, etc., so as to realize the characteristics of software, agility, openness, and easy expansion of 5G core network.
+
+As the key capability of 5G evolution, edge computing provides network, computing, and IT service environment and capability at the edge of mobile network closer to customers, and has the characteristics of ultra-low latency, ultra-large bandwidth, localization, and high real-time analysis and processing. These require PaaS platform to provide edge application development framework, edge application deployment, edge resource scheduling, edge task scheduling, edge device information collection and instruction issuing, edge application operation and maintenance monitoring, edge application high-speed message transmission, and so on.
+
+Under the 5G ecology, only the 5G PaaS platform where cloud computing and edge computing play together can play the 5G March.
+
+III. OVERALL DESIGN OF CLOUD-EDGE COLLABORATIVE 5G PAAS PLATFORM
+
+A. 5G PaaS platform reference architecture
+
+According to the positioning and architecture blueprint of PaaS of mainstream manufacturers in the standard industry, and referring to the vision and goal blueprint of NG PaaS defined by the European Union, this paper holds that the cloud-side collaborative 5G PaaS platform needs to efficiently enable cloudization and service in different fields in the 5G ecosystem and can connect different participating roles in the 5G ecosystem. Then, the PaaS capabilities in these professional fields are organically combined with the business requirements of different roles in the 5G ecosystem, and integrated into a unified and open operating environment. By arranging the business and services in the network domain, IT domain, and vertical industry domain, the business innovation in the 5G ecosystem can be efficiently enabled.
+
+B. Positioning of 5G PaaS platform
+
+In this paper, the 5G PaaS platform is positioned as the soil of 5G ecology. It absorbs the rain and dew of big data and bathes in the sunlight of AI. It helps 5G by constructing a new generation PaaS platform that is universal, unified in standards, collaborative, and flexible in the cloud. Empower digital innovations such as business support system (BSS), operation support systems (OSS), internet of things (IoT), network function virtualization (NFV) of 5G, and 5G vertical services. Inject intelligent operation and maintenance into the system, improve the efficiency of software system development, operation and maintenance, and support the digital operation of enterprises.
+
+IV. KEY TECHNOLOGY DESIGN OF CLOUD-EDGE COLLABORATIVE 5G PAAS PLATFORM
+
+A. Container technology
+
+The container platform under the 5G PaaS platform integrates the functions of running environment, resource scheduling, and service management, and provides mature and stable flexible computing services in a multi-tenant and self-service manner based on open source Kubernetes, Mesos, Marathon, and Docker. It supports cloudy and collaborative docking of private cloud, public cloud, and edge cloud, and provides functions and services such as visual management, deep monitoring, hybrid scheduling, automatic deployment, and safe disaster recovery, and provides dynamic capacity expansion and contraction.
+
+B. Microservice architecture
+
+The microservice architecture under traditional cloud computing is also suitable for the application microservice construction of edge computing. The 5G PaaS platform provides a series of flexible and pluggable micro-service technology components, which can be requested and assembled flexibly for different scenarios such as cloud computing, edge computing, 5G network, and 5G vertical services.
+
+C. DevOps
+
+The 5G PaaS platform relies on DevOps to create a safe, controllable, automated, and repeatable software production line. The processes and tools related to software delivery are integrated on one platform, and seamlessly connected with the container platform, providing one-stop capability of continuous integration and continuous release of cloud computing applications and edge computing applications, and supporting the lean operation of PaaS platform.
+
+The core of DevOps platform is software production pipeline. Firstly, the infrastructure programming control is realized through configuration management. Secondly, every working node is connected by constructing continuous production pipeline to realize automatic software delivery. Finally, the production process and running status of the whole software will be monitored and recorded in a centralized way. Through operation analysis, problems or deficiencies will be found out, and then the production process and management nodes will be continuously improved.
+
+D. Edge computing 5G PaaS platform
+
+The edge computing architecture of 5G PaaS platform provides a modeled open interface at each layer, which realizes the full-level opening of the architecture, vertical management services, data life cycle services, security services, and intelligent services in the whole process and life cycle of the business.
+
+E. Edge application development framework
+
+The 5G PaaS platform provides an edge application development framework and completes the development of device access edge gateway and business logic development based on device data and events through the local function calculation framework. Such as: unit conversion of equipment data locally, filtering data locally, forwarding data locally to local storage or application, accessing other service interfaces locally, etc.
+
+F. Edge task scheduling framework
+
+The original background task scheduling framework of 5G PaaS platform is based on the cloud, which expands the background task development and scheduling execution of edge applications. At the same time, it relies on the elastic computing platform to dock the edge computing resources and realize the elastic resource scheduling of background task execution instances.
+
+V. THE 5G PAAS PLATFORM SUPPORTS THE END-OBJECT CLOUD SCENARIO CASE OF CLOUD EDGE COLLABORATION
+
+A. Scenario description of smart grid (End Cloud)
+
+Smart grid business upgrades massive power consumption equipment and substation equipment to edge computing terminal nodes, sinks some functions of power plants and power grid central systems to these nodes, collects and directly processes data, and cooperates with AI algorithm on nodes to analyze data in real time, respond to users and feed back results. This cloud-side collaborative architecture improves the response speed of power grid, reduces the central pressure, and realizes a faster, wider, and smarter smart grid.
+
+B. Construction idea of supporting end object cloud on 5G PaaS platform
+
+End-object cloud needs 5G network to provide communication network support with ultra-low delay. By providing energy suppliers with special network slices required by intelligent distributed feeder system, mobile operators can complement the advantages of energy suppliers, which enables them to carry out intelligent analysis and respond to abnormal information in real time, thus achieving faster and more accurate power grid control.
+
+VI. CONCLUSION
+
+Through the continuous construction and capability enhancement of 5G PaaS platform with cloud edge collaboration, 5G PaaS platform brings customers the value of agile business microservice construction, flexible extended architecture, continuous service governance, 360° system operation and maintenance, and open business operation, which helps the sustainable development of 5G, cloud computing, and edge computing, and injects surging power into 5G of Internet of things.
+

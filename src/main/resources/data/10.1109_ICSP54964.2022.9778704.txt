@@ -1,0 +1,37 @@
+Research on Oil Drilling BOM Microservice System Based on Big Data
+
+Pengxin Zhang
+School of Computer Science, Xi’an Shiyou University, Xi’an, China
+zhpengxin@foxmail.com
+
+Ming Fang
+School of Computer Science, Xi’an Shiyou University, Xi’an, China
+mfang@xsyu.edu.cn
+
+Abstract
+Currently, the design and preparation of the drilling BOM are based on previous construction experience and with reference to some statistical methods. A significant drawback is that the sample data for manual statistical reference is small, and the calculation results are easily affected by extreme data. To fully exploit the value of data and improve the utilization rate of materials, this paper integrates data mining algorithms into the selection of drilling materials, designs, and implements a microservice system for drilling materials list based on big data mining, and performs intelligent analysis on the selection of drilling materials to reduce material consumption. The system is based on microservice architecture, and a RESTful style communication mechanism is used between all services, which reduces the complexity of individual services and improves the reliability, scalability, and efficiency of the whole business system.
+
+Keywords: Bill of materials, Oil drilling, Big data mining, Microservice system, Intelligent analysis
+
+I. Introduction
+With a wide variety of oil drilling materials, large inputs, and a high proportion of drilling costs, optimizing the design of the drilling BOM is important for improving drilling efficiency and reducing costs. Traditional drilling BOM management systems only change the BOM from manual to computer management, requiring professional technicians to design and compile the BOM without effectively using the data values in the database. This paper uses massive drilling data, adopts a big data mining method based on Hadoop, and combines a microservice framework to design and implement a big data-based oil drilling BOM management microservice system to assist personnel in designing and compiling the drilling BOM more scientifically and reasonably, reducing material consumption and providing data-driven decisions for oil drilling enterprise managers.
+
+II. Overview of Oil Drilling BOM Microservice System
+The system adopts Spring Cloud for microservice architecture implementation, Hadoop as the underlying framework for big data processing, and MySQL relational database combined with HDFS and HBase as the big data storage warehouse.
+
+The microservices architecture involves developing a set of small services, each focusing on a specific business function, running independently. This approach contrasts with traditional monolithic architectures where the entire application is developed and deployed as a single unit. Key features and components include:
+
+Independent Services: Each microservice has a unique access address, facilitating independent development, deployment, and scaling.
+Nginx: Acts as a reverse proxy to direct incoming requests to the appropriate microservice.
+Spring Cloud Gateway: Enhances security for Open Services with dynamic routing and request authentication.
+Spring Cloud Ribbon: Implements client-side load balancing to ensure high availability.
+Sentinel: Provides traffic control, fusion degradation, and load protection for stability.
+Spring Cloud Config and Nacos: Manage distributed system configurations and service discovery dynamically.
+III. Design of a Big Data-Based Drilling BOM
+The system designs BOM recommendations in different drilling environments, involving data pre-processing, data mining, data modeling, and result visualization, with KNN as the selected data mining algorithm. The process includes:
+
+Data Pre-processing: Standardizing and normalizing data, removing outliers and filling in missing values.
+Feature Extraction: Selecting relevant attributes that impact BOM design.
+Modeling and Recommendations: Building a recommendation model using KNN, classifying target values, and providing material recommendations.
+IV. Conclusion
+Based on microservice and Hadoop technology, this system integrates with existing BOM systems in oilfield enterprises and adds new services for big data analysis. It provides users with a visual interface for data integration, pre-processing, mining, and presentation, allowing data analysts to focus on data analysis without the underlying code, enhancing productivity and offering more scientific decisions for oil drilling BOM design.

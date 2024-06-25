@@ -1,0 +1,66 @@
+An Efficient Microservices Architecture for MLOps
+
+Seol Roh
+Department of Computer Science and Engineering
+Kyung Hee University
+Gyeonggi-do 17104, Republic of Korea
+seven800@khu.ac.kr
+
+Ki-Moon Jeong
+Center for Supercomputing Technology Development
+Korea Institute of Science and Technology Information
+Daejeon-si 34141, Republic of Korea
+kmjeong@kisti.re.kr
+
+Hye-Young Cho
+Center for Supercomputing Technology Development
+Korea Institute of Science and Technology Information
+Daejeon-si 34141, Republic of Korea
+chohy@kisti.re.kr
+
+Eui-Nam Huh
+Department of Computer Science and Engineering
+Kyung Hee University
+Gyeonggi-do 17104, Republic of Korea
+johnhuh@khu.ac.kr
+
+Abstract: In a microservices architecture, each service has a database. Hence, it is important to communicate and synchronize data between services. The SAGA pattern is a traditional microservices architecture pattern, and the command query responsibility segregation (CQRS) pattern has recently attracted increasing attention. Machine learning model operation management (MLOps) aims to stably deploy and maintain the system by preprocessing big data and learning machine learning models. Data processing in the microservices architecture is important because considerable data is used. This paper proposes an appropriate architecture for each microservice to perform efficiently in the MLOps environment.
+
+Keywords: microservice; Distributed Cloud; SAGA; CQRS; MLOps
+
+I. INTRODUCTION
+Society has become big data-centered in the big data generation of the 4th industrial revolution. Fields, such as artificial intelligence and machine learning, are in the limelight. Accordingly, interest in machine learning model operation management (MLOps) and microservices architecture (MSA) has also increased. MLOps is used when the DevOps (development and operations) process is applied to a machine learning system. In other words, based on the huge amount of data, the data is preprocessed and verified inside the ML process; a learning method is determined, and a model is developed to perform large-scale learning and distribution. In this paper, ML Pipeline services, such as data preprocessing, verification, model learning, and model deployment required for MLOps configurations, are divided according to the MSA.
+
+Ruibo Chen presented an AIOps system based on microservice platforms but did not deal directly with MLOps. Tim Raffin presented a design for the MLOps structure and deployment process as a reference architecture for operationalizing a machine learning model. Ruibo Chen and Tim Raffin performed MSA designs that did not consider data transactions. To the best of our knowledge, no research has been conducted that has contributed to improving MLOps performance by combining MLOps and MSA. Therefore, when designing an MSA in artificial intelligence and machine learning using big data, it is necessary to provide services to users quickly by considering data flow and transactions.
+
+This study focused on MSA to obtain better processing performance than the existing monolithic architecture using an MLOps system. This paper proposes a suitable architecture using representative patterns, the SAGA pattern, and command query responsibility segregation (CQRS) pattern.
+
+II. RELATED WORK
+
+A. Microservices Architecture
+Unlike the monolithic structure in which the service structure is integrated into one, the microservice structure is composed of several microservice units. The advantage is that microservices can be deployed independently and expanded, and there are no restrictions on programming languages between microservices. Each service runs while communicating with lightweight mechanisms, such as RESTful APIs. Elements, such as those for each service to communicate, a registry for each service, service monitoring and management, migration tools, and deployment process tools for smooth deployment of services, are sometimes necessary to apply the microservice structure to the system smoothly. Recent research has indicated that Microservices have been applied successfully by Netflix and SoundCloud in their cloud computing applications.
+
+B. SAGA Pattern
+The SAGA design pattern maintains data consistency across microservices in distributed transaction scenarios. In the existing monolithic architecture, data consistency is maintained using the transaction function of the DBMS itself. In MSA, DB exists for each service. The SAGA pattern maintains data consistency as services and DBs are distributed. When a transaction fails while processing an event between services in the MSA environment, data consistency and atomicity are guaranteed by providing a failure compensation transaction to services whose work has been completed. The SAGA pattern has been used elsewhere.
+
+C. CQRS Pattern
+In general, insert, update, delete, and select data are all performed in the same storage as a request from business logic. They are divided into commands that change the system state and those that query the system state. The most frequently used request is the part of querying the system state. If the insert, update, delete, and select functions are all included in the service, there is a disadvantage that all functions must be expanded according to the select request frequency. A CQRS pattern that separates reading and writing has been used to solve this problem. This pattern can prevent resource deadlock when MSA scales out and runs in service units.
+
+D. MLOps
+MLOps realizes at least five functions together, including data collection, data transformation, ML learning, ML deployment, and user service. It is a system that performs a series of MLOps pipelines to enable users to learn seamlessly with machine learning. Sasu Mäkinen et al. studied the importance of MLOps in the context of data scientists’ daily activities from 331 professionals in the ML domain. According to Sasu Mäkinen’s research, the most important challenge in ML is data, and data scarcity and data accessibility are important tasks. Interest in infrastructure issues in the MLOps environment is growing.
+
+III. SYSTEM ARCHITECTURE
+
+A. Problem Scenario
+Compared to the MLOps structure in MSA, the MLOps structure in the monolithic architecture has a limited problem in processing speed compared to the MSA, which is the Asynchronous Non-Blocking method, due to the Synchronous Blocking method. Therefore, the user might have to wait until the processing is completed using the MLOps system. In addition, there is a limited problem with the data read/write processing speed. Fig 2 presents the monolithic architecture. Because OPS dashboard, ML Pipeline services, and Data Access Layer are all connected to one database, they do not operate independently. As a result, it is very difficult to maintain a smooth MLOps service in the monolithic architecture as the number of users increases.
+
+B. Need Microservices Architecture for MLOps
+Fig 1 shows the proposed designed MSA. The users access Operation dashboard through API Gateway. In Ops dashboard, the users can manage model history through Model Management Service and register data to be trained. Data can be pre-processing, evaluation, and the result of validation can be checked. All these services are performed independently, and there is no need to wait for each service to be complete. Fig 3 shows the MLOps Model Life Cycle. Services within each pipeline are also divided into microservice units and configured in an MSA structure to ensure independence between services. In the MSA structure, the CI/CD of each microservice can be automated, and Build Automation and Deployment Automation can be performed through the Image Repository. In reality, where various models are continuously being developed, the MSA is suitable for the MLOps environment because of the nature of the machine learning field.
+
+The backing service refers to all services available through the network when the service is running. Examples include databases, message queues, and Simple Mail Transfer Protocol(SMTP). A message queue method is essential because MSA is an asynchronous, non-blocking method. It is common for each service to have a database. To this end, an asynchronous communication pattern using a message queue must be used to ensure consistency with the data of other services.
+
+C. Proposed Method
+The proposed efficient microservices architecture in MLOps environments. By applying the database-per-service pattern, each service must have a database. Loose coupling is a key feature of MSA because each microservice can store and retrieve data independently from its database. Among the microservices, the Model Management Service is the service that calls the database most frequently. The Create, Update, Delete Database, and Read Database are separated by applying the CQRS pattern because it is connected to the user terminal through the Operation dashboard service. The Model Training Service and Inference Service are equally applied, and Model Store is used because it trains and infers models. Accordingly, the orchestration-based SAGA Pattern was used to handle complex transactions spanning multiple microservices.
+
+IV. CONCLUSION
+This paper proposed efficient MSA recommendations in MLOps environments. Using MSA’s patterns, the databases of each MLOps service do not load when processing large amounts of data, and users can use machine learning services quickly. Future research will reflect the core-edge structure to cache MLOps services from the core cloud to the edge cloud so that the service can be provided to the user in real-time based on the situation. In addition, the infrastructure management of AIOps services can be managed efficiently, and a flexible system that can quickly process big data will be studied through research that recommends an optimized microservice structure tailored to AIOps.

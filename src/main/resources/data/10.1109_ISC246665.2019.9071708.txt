@@ -1,0 +1,90 @@
+A Microservice Based Architecture Topology for Machine Learning Deployment
+
+José Lucas Ribeiro, Mickael Figueredo, Adelson Araujo jr, Nélio Cacho, Frederico Lopes
+Department of Informatics and Applied Mathematics
+Federal University of Rio Grande do Norte
+Natal, Brazil
+zelucasr@gmail.com, mickaelfigueredo@gmail.com, adelsondias@gmail.com, neliocacho@dimap.ufrn.br, fred@imd.ufrn.br
+
+Abstract
+
+Smart solutions using machine learning and data analysis are increasingly popular. Big Data analysis poses challenges due to its requirements (Velocity, Volume, Value, Variety, and Veracity). This work presents a generic architecture named Machine Learning in Microservices Architecture (MLMA) that transforms monolithic machine learning pipelines into microservices with separate roles. We present two case studies from a Smart City initiative, discussing how each component of the architecture is applied in specific applications using machine learning predictions. Benefits of this architecture include prediction performance, scalability, code maintenance, and reusability.
+
+Index Terms: microservices, machine learning, design patterns, recommendation systems, predictive policing.
+
+I. Introduction
+
+Big data approaches have been used by many Smart City initiatives to discover patterns and insights that improve services. With the proliferation of data sources, improved processing approaches are necessary for scalability and maintenance. Big data's requirements (Velocity, Volume, Value, Variety, Veracity, and Complexity) challenge the extraction of meaningful information and the development of technologies. Cloud computing has emerged as a powerful way to deploy predictive systems using machine learning, necessitating appropriate architectural modeling.
+
+A recent trend in developing Smart City applications hosted in clouds is using microservice-based architectures. This architecture, adopted by companies like Amazon, IBM, and Microsoft, divides a system into small, highly decoupled services that perform specific tasks independently. This approach has several advantages, such as independent development and deployment, implementation in different programming languages, easy integration and deployment using container-based technologies like Docker, and improved code maintainability and resilience.
+
+In this work, we propose a generic architecture, MLMA, for implementing machine learning pipelines by separating processing steps into smaller services. This design improves performance and code maintenance. Independence between microservices enhances reusability within the same workflow. We assessed the feasibility of our approach through two case studies deployed in a Smart City initiative: a Recommendation System and Predictive Policing. We discuss different scenarios and derive useful insights for implementing the proposed architecture.
+
+II. Related Works
+
+Machine Learning (ML) is a powerful problem-solving tool but requires specific knowledge for implementation. To simplify this, REST ML encapsulates ML as microservices, making algorithms reusable and easier to implement. Parallelization algorithms also improve performance, as seen in the SERF framework for Deep Neural Network (DNN) services.
+
+Challenges arise in hosting multiple services and selecting appropriate technologies. Docker containers, hosted on virtual machines in cloud environments like OpenStack, facilitate monitoring applications. Solutions like SERF and frameworks for hosting applications using Docker and Kubernetes are gaining traction in the literature.
+
+III. Machine Learning in Microservices Architecture Topology
+
+The generic architecture addresses the need for scalable and maintainable AI models. It separates processing steps into microservices from data collection to prediction. The architecture's API allows various analyses, such as text or real-time image analysis. The generic workflow creates microservices based on the following components:
+
+A. Flow Controller Service and Post Processing Service
+
+These initial optional services generate information from classification results. The Flow Controller Service integrates results from Post Processing Services, transforming classification results into user information.
+
+B. Data Collector Service
+
+This service extracts information or data from defined sources to start the analysis process. It supports various data types and structures, making it robust for different contexts.
+
+C. Data Orchestrator Service
+
+The Data Orchestrator Service manages data collection, feature extraction, and classification/prediction services. It processes and structures data for subsequent services.
+
+D. Data Handler Service
+
+This service preprocesses data, cleaning or modifying it to fit specified patterns, such as stop-word filtering in text processing.
+
+E. Features Service
+
+The Features Service extracts information from raw or preprocessed data for training algorithms. Separating feature extraction from classification can improve performance in multilabel classification systems.
+
+F. Predict/Classification Service
+
+This service generates classification or prediction results. It dynamically loads new configurations to avoid redundancy, producing outputs in various structures.
+
+G. Volume
+
+This represents data storage locations, including model files for the Predict Service, supporting files or databases as needed.
+
+IV. Case Studies
+
+We implemented two case studies for the Natal Smart City Initiative, using our proposed microservice architecture.
+
+A. Tourism Recommendation based on Social Media Photos
+
+The FindTrip Platform generates tourism recommendations using photos. The process involves data collection, feature extraction, fuzzy logic inference, and recommendation generation, managed by the Orchestrator Service.
+
+Data Collector: Extracts user photos from social media or devices.
+Features: Classifies environments in photos using binary classifiers.
+Post Processing: Uses fuzzy logic to map tourism preferences.
+Recommendation: Relates preferences to attractions.
+Orchestrator: Manages the overall recommendation process.
+B. Predictive Policing
+
+Predictive policing uses algorithms to allocate police resources. The framework involves data collection, preprocessing, feature extraction, prediction, and post-processing, managed by the Orchestrator Service.
+
+Data Collector: Loads city-specific data.
+Data Handler: Processes spatial and temporal data.
+Features: Translates occurrences into machine learning inputs.
+Predict: Generates predictions using trained models.
+Orchestrator: Manages the prediction workflow.
+Post Processing: Optimizes patrol routes based on predictions.
+V. Evaluation and Results
+
+The MLMA architecture divides ML processes into microservices, offering advantages like parallelism and maintainability. Solutions like AWS Lambda and Azure Functions can address deployment complexity and costs. Processing times for the recommendation system show significant improvements with MLMA. Predictive policing benefits from scalable processing for multiple prediction requests.
+
+VI. Conclusion
+
+The proposed MLMA topology improves the deployment of ML applications in smart city contexts. It enhances performance, scalability, and code maintenance. However, the impact varies based on the application's needs. Evaluating topology before application is crucial, considering incoming requests and workflow complexity.

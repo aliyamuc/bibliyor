@@ -1,0 +1,42 @@
+MLOps: Automatic, Zero-touch and Reusable Machine Learning Training and Serving Pipelines
+Authors:
+Deven Panchal, AT&T, Middletown, NJ, USA, devenrpanchal@gmail.com
+Isilay Baran, AT&T, Middletown, NJ, USA, ib6391@att.com
+Dan Musgrove, AT&T, Middletown, NJ, USA, dm4812@att.com
+David Lu, AT&T, Dallas, TX, USA, dl1971@att.com
+Abstract
+Machine learning (ML) model building has become easier due to increased availability of ML toolkits, libraries, frameworks, and talent. However, integrating these models with business applications and taking them to production remains a challenge due to the need for diverse skill sets in software development, cloud, DevOps, system design, and data engineering. ML engineers and data scientists often work in silos, leading to difficulties in productionalizing ML models, wasted time, and effort. This paper demonstrates how to take an ML model to production using Acumos AI project components, creating zero-touch automatic and reusable ML model training and serving pipelines.
+
+Index Terms
+Acumos, Machine Learning, Deep Learning, MLOps, Platform, ML Pipelines, Microservices, Nifi, Reusable ML, Open Source, AI4EU
+
+I. Introduction
+Despite the ease of building ML models, productionalizing them remains challenging due to the need for various skill sets. This paper uses a Cloud Forensics ML model to demonstrate the creation of automatic, zero-touch, and reusable ML training and serving pipelines using Acumos. Various MLOps tools are discussed, highlighting Acumos' distinct benefits, including inbuilt federation and a design studio for creating AI pipelines.
+
+II. Acumos and Acumos Model Runner
+Acumos AI is an open-source project aiding every stage of ML productionalization. The Acumos Model Runner, in conjunction with the Acumos Java client, can onboard models to the Acumos AI ML platform marketplace, converting them to containerized microservices.
+
+III. Converting a Model to a Microservice Using the Model Runner
+Data scientists can create ML models in various languages and frameworks. Models are exported and onboarded to Acumos, where they are wrapped as microservices. This process yields artifacts that expose useful REST APIs. Onboarding to the Acumos Marketplace creates deployable docker images and TOSCA artifacts.
+
+IV. Machine Learning Model for Cloud Forensics
+Cloud forensics involves investigating cyber-crimes involving the cloud. This paper focuses on analyzing evidence data to prove or disprove an event. The dataset used consists of network, CPU, and memory usage features, classified as 'Attack' or 'Normal'. A deep learning model was created, achieving a high accuracy of 99.02% on the test set.
+
+V. Productionalizing Cloud Forensics ML Model
+Apache Nifi is used to create fully automated pipelines for training, retraining, and scoring models. Nifi supports configurable data routing, transformation, and system mediation. The cloud forensics model is onboarded to Acumos and integrated into a Nifi pipeline for automatic training, retraining, and serving.
+
+A. Training and Serving Pipelines
+Using Nifi and Acumos, pipelines are created to control the training, retraining, and scoring of models. The training/retraining job can be automated using Nifi or triggered manually or through business applications. The serving pipeline allows the model to be deployed and accessed via APIs.
+
+B. Model Onboarding and Deployment
+The model, once onboarded to Acumos, can be deployed to various platforms like AWS, Azure, GCP, Kubernetes, or run as a docker container locally. The deployment process ensures the model is wrapped with Acumos wrappers, making it accessible and manageable as a microservice.
+
+C. Model Retraining and Hot-Swapping
+Acumos enables hot-swapping of models, allowing new or improved models to replace the old ones without downtime. This ensures continuous improvement and adaptation to new data or changing requirements. The Nifi pipeline facilitates continuous training on fresh data and deploying the updated model.
+
+D. Reusability and Federation
+Acumos offers reusability through templates and federation features, enabling sharing of models between individuals, teams, or organizations. This promotes collaboration and efficient use of resources across different entities.
+
+VI. Conclusion
+Using Acumos and Nifi, we were able to create fully automatic zero touch pipelines for training, retraining, serving, and sharing models. We introduced a new concept of reusable infrastructure by showing how to perform hot model swapping when making use of Acumos Model runners.
+
