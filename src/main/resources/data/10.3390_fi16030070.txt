@@ -1,0 +1,37 @@
+Micro-FL: A Fault-Tolerant Scalable Microservice-Based Platform for Federated Learning
+
+Abstract:
+As the number of machine learning applications increases, growing concerns about data privacy expose the limitations of traditional cloud-based machine learning methods that rely on centralized data collection and processing. Federated learning emerges as a promising alternative, offering a novel approach to training machine learning models that safeguards data privacy. Federated learning facilitates collaborative model training across various entities. In this approach, each user trains models locally and shares only the local model parameters with a central server, which then generates a global model based on these individual updates. This approach ensures data privacy since the training data itself is never directly shared with a central entity. However, existing federated machine learning frameworks are not without challenges. In terms of server design, these frameworks exhibit limited scalability with an increasing number of clients and are highly vulnerable to system faults, particularly as the central server becomes a single point of failure. This paper introduces Micro-FL, a federated learning framework that uses a microservices architecture to implement the federated learning system. It demonstrates that the framework is fault-tolerant and scalable, showing its ability to handle an increasing number of clients. A comprehensive performance evaluation confirms that Micro-FL proficiently handles component faults, enabling a smooth and uninterrupted operation.
+
+Keywords: federated learning; microservices; fault-tolerant system design
+
+1. Introduction
+The rapid progression of machine learning technologies has propelled artificial intelligence applications, including fields such as computer vision, anomaly detection, fault diagnosis, and natural language processing. The rise of machine learning can be largely attributed to the accessibility of vast volumes of data and significant advancements in computational techniques and resources. However, the availability of extensive data poses significant risks of personal information leakage. Regulations like the European Union’s General Data Protection Regulation (GDPR) and the United States’ California Consumer Privacy Act (CCPA) aim to enhance the protection of personal data and privacy. Federated Learning (FL) is a technique introduced by McMahan et al. as a privacy-focused alternative to traditional machine learning approaches that require central data collection, allowing models to be trained directly at the data storage site of each user. Federated learning systems can be implemented in centralized (client-server) or decentralized (peer-to-peer) fashions. This study focuses on centralized federated learning systems and addresses challenges related to performance, scalability, and fault tolerance.
+
+2. Background
+
+2.1 Federated Learning
+Federated learning, introduced by Google, is a distributed machine learning strategy focused on data privacy. It involves numerous clients, such as edge devices and organizations, collaborating to train a shared global model without directly sharing data. The training process includes three steps: initialization, local model training and update, and global model aggregation and update. Federated averaging (FedAvg) is a commonly used method for aggregating local models.
+
+2.2 Microservices
+Monolithic architecture constructs an application as a single extensive codebase, while microservices emphasize the design and development of highly maintainable and scalable software. Microservices typically employ containerization technologies, such as Docker, allowing for effortless scalability with minimal latency and hardware resource footprints. Kubernetes is used for automating deployment, scaling, and management of containerized applications. Integrating a federated learning framework using a microservices architecture can facilitate the creation of a scalable and fault-tolerant federated learning system.
+
+4. Micro-FL
+The paper proposes Micro-FL, a microservice-based federated learning platform designed to handle an expanding user base, guarantee high availability, and offer fault tolerance. Suitable for deployment on-site or in the cloud, Micro-FL leverages the flexibility, modularity, scalability, and reliability that microservices provide. The principal contributions of this research paper are:
+
+Introduction of a Microservice-based Federated Learning (Micro-FL) Platform.
+Emphasis on Server-side Fault Management.
+Scalability and Dynamic Resource Allocation.
+5. Methodology
+The methodology for evaluating the fault tolerance capabilities of the proposed Micro-FL platform includes deploying the Micro-FL framework on Google Cloud Kubernetes Engine, generating clients using Docker containers and Kubernetes, injecting faults using Chaos-Mesh, and monitoring and evaluating performance using metrics such as global model performance, experiment execution time, and software performance metrics like CPU utilization and broker throughput.
+
+6. Results
+
+6.1 Federated Learning Performance
+The global model performs robustly without significant adverse effects under faulty conditions. The platform maintains consistent execution times and demonstrates fault tolerance, efficiently handling federated learning with minimal resource allocation.
+
+6.2 Software Performance Analysis
+Micro-FL provides a persistent operation and communication platform for federated learning, even during faults. The framework maintains constant throughput and CPU utilization under healthy conditions and adapts to faults by redistributing the load among operational Kafka brokers.
+
+7. Conclusions
+Micro-FL addresses the shortcomings of traditional centralized server designs for federated learning by providing a microservices-based, fault-tolerant, and scalable platform. The empirical performance analysis demonstrates its robustness and efficiency, making it a significant advancement in federated learning system design.

@@ -1,0 +1,51 @@
+Title:
+Towards a Concept for Building a Big Data Architecture with Microservices
+
+Authors:
+Aamir Shakir, Daniel Staegemann, Matthias Volk, Naoum Jamous, Klaus Turowski
+Otto-von-Guericke University Magdeburg
+
+Abstract:
+The abstract introduces microservices and Big Data as significant topics in computer science, highlighting their benefits such as flexibility and data-driven insights. It discusses the shift from monolithic to modular architectures in both domains, emphasizing the advantages of microservices in scalability and evolutionary design for Big Data applications.
+
+Keywords:
+Big Data, Microservice, Success Factors, Software Design, Software Architecture
+
+1. Introduction:
+The introduction addresses the exponential growth of data and the consequent need for advanced data architectures. It underscores the limitations of traditional methods in handling large datasets efficiently, necessitating the emergence of Big Data architectures. The paper aims to explore how microservices can enhance the agility and performance of these architectures.
+
+2. Background:
+This section delves into the definitions and evolution of Big Data. Initially a term for large, unstructured datasets, Big Data now encompasses various data characteristics like volume, variety, and velocity. The section discusses the challenges in processing such data and introduces monolithic architectures as conventional solutions, contrasting them with microservices.
+
+2.1 Big Data:
+Big Data is defined as extensive datasets requiring scalable architectures for efficient storage, manipulation, and analysis. It covers data characteristics such as volume, variety, and velocity, emphasizing the need for specialized architectures to handle them.
+
+2.2 Monolithic Architectures:
+Monolithic architectures are described as traditional software models where components are tightly integrated into a single unit. This approach limits scalability and modularity, hindering rapid deployment and modification of software components.
+
+2.3 Microservices:
+Microservices are introduced as an alternative to monolithic architectures, involving decomposing applications into small, independent services. Each service operates in its own process, communicating via lightweight mechanisms. Key characteristics include decentralized data management, evolutionary design, and technological independence.
+
+3. Microservices in Big Data:
+This section explores the application of microservices in Big Data architectures. It discusses various studies and implementations where microservices enhance scalability, adaptability, and data integrity in Big Data environments. Examples include event-driven architectures and platforms for online educational applications.
+
+4. Success Factors of Microservices in Big Data:
+Based on previous sections, this part identifies critical success factors for implementing microservice-favored Big Data architectures. Factors include maintaining data integrity across distributed services, flexibility in architectural design, extensibility for future enhancements, and decentralized governance.
+
+5. Example Transformation:
+The paper provides a case study illustrating the transformation of a traditional Big Data architecture into a microservice-based architecture. It outlines the steps involved in decomposing monolithic components into microservices, emphasizing modularization, scalability, and maintaining data consistency.
+
+5.1 Exemplary Big Data Architecture:
+Describes the foundational components of a typical Big Data architecture including data sources, batch processing, real-time message ingestion, analytical data storage, analysis and reporting, and orchestration.
+
+5.2 Transformation:
+Details the process of transforming the exemplary Big Data architecture into a microservice-oriented architecture. It discusses the challenges and advantages of this transformation, focusing on modularity, technological independence, and scalability.
+
+5.3 Advantages and Challenges:
+Evaluates the benefits and complexities introduced by the microservice architecture. Advantages include enhanced flexibility and scalability, while challenges include initial complexity in interface organization and overhead in maintaining data consistency.
+
+5.4 Evaluation of the Transformation in View of the Success Factors:
+Assesses how the transformation aligns with the identified success factors such as data integrity, flexibility, and extensibility. It discusses how the microservice approach addresses these factors more effectively than traditional monolithic architectures.
+
+Conclusion:
+Summarizes the findings and implications of adopting microservices in Big Data architectures. It highlights the benefits of modularity, scalability, and flexibility in adapting to evolving data needs, suggesting future research directions in optimizing microservice architectures for specific Big Data applications.

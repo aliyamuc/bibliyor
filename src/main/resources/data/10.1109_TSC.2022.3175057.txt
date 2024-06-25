@@ -1,0 +1,323 @@
+Title: PuzzleMesh: A Puzzle Model to Build Mesh of Agnostic Services for Edge-Fog-Cloud
+Abstract:
+
+Introduces PuzzleMesh as an agnostic service mesh composition model for processing large volumes of data in edge-fog-cloud environments
+Detailed description of the puzzle metaphor:
+
+Pieces: self-contained autonomous and reusable software artifacts encapsulated into containers and published as microservices
+
+Integrate apps with I/O interfaces (loops/sockets), parallel processing, and management software
+
+
+Puzzles: processing structures built by coupling pieces through loops and sockets
+
+Implement microservice architecture, implicit continuous dataflows, and transparent data exchange management
+
+
+Metapuzzles: recursive assemblies of puzzles
+
+
+Mesh: a pool of pieces, puzzles, and metapuzzles for designers to build services
+Prototype evaluation through satellite imagery case studies:
+
+Acquisition, pre-processing, manufacturing, preserving, and visualizing of satellite imagery
+
+
+Qualitative comparison highlights:
+
+Improved flexibility in building reusable and portable services
+Enhanced usability of services
+
+
+Performance comparison:
+
+Better results than other state-of-the-art tools
+
+
+
+
+Introduction:
+
+
+Context:
+
+Importance of cloud and web services in managing digital asset lifecycles
+Typical lifecycle stages: acquisition, preservation, processing, sharing, and visualization
+
+
+Problem statement:
+
+Existing frameworks have dependencies on specific infrastructures and platforms
+Requirement of third-party solutions for resource management
+Obstacles in deploying structures on different platforms and infrastructures
+
+
+Challenges in adding agnosticism to services:
+
+Creating a high-level service composition with necessary non-functional requirements
+Materializing the design of a service for automatic management on heterogeneous infrastructures
+Enabling implicit management of data exchange and events to avoid dependencies
+
+
+PuzzleMesh solution:
+
+High-level service composition based on configurable DAGs
+Self-contained processing model
+Implicit parallelism and data/task distribution
+Recursive coupling of pieces
+
+
+Agnosticism property:
+
+Enables organizations to design, implement, and manage services on heterogeneous infrastructures
+Mitigates vendor lock-in effects
+
+
+Non-functional requirements addressed:
+
+Portability
+Heterogeneity management
+Reusability/usability
+Efficiency
+
+
+Main contributions:
+
+Self-containing method for building infrastructure-agnostic processing structures
+Puzzle metaphor model for constructing reusable, portable, and efficient services
+Automatic and transparent dataflow control based on implicit parallelism and load-balancing
+
+
+
+
+Related Work:
+
+
+Categorization of existing frameworks:
+
+Design-oriented solutions:
+
+Parsl, DagOnStar: Python-based workflow design
+Makeflow, Pegasus: DAG configuration file interfaces
+
+
+Deployment-oriented solutions:
+
+HTCondor, Slurm: HPC cluster schedulers
+AWS: Cloud APIs
+
+
+
+
+Comparison criteria:
+
+Scope (design or deployment oriented)
+Degree of agnosticism:
+
+Language-agnostic (e.g., Pegasus, Makeflow)
+Platform-agnostic (e.g., DagOnStar, Istio)
+Infrastructure-agnostic (e.g., Comps)
+
+
+Non-functional requirements:
+
+Efficiency
+Portability
+Reliability
+Reusability
+
+
+
+
+Limitations of existing solutions:
+
+Dependency on third-party tools
+Platform or infrastructure specificity
+Lack of integral agnosticism
+
+
+PuzzleMesh positioning:
+
+Integration of design and deployment-oriented approaches
+Comprehensive agnosticism (language, platform, and infrastructure)
+Meeting multiple non-functional requirements in a single solution
+
+
+
+
+PuzzleMesh: A Mesh Model Based on a Puzzle Metaphor:
+
+
+Problem-solving process across four levels:
+
+Digital product lifecycle
+Lifecycle stages
+Apps deployed on each stage
+Environment where apps are deployed
+
+
+Detailed puzzle metaphor:
+
+Pieces:
+
+Components: app, management metadata, auto-management tools, sockets/loops, dependencies
+Encapsulation into containers for autonomy and portability
+
+
+Puzzles:
+
+DAG-based coupling of pieces
+Implementation of microservice architecture and implicit continuous dataflows
+
+
+Metapuzzles:
+
+Recursive assembly of puzzles for complex solutions
+
+
+
+
+Self-containing method:
+
+Encapsulation of all components into containers
+Decoupling of I/O calls from apps
+Implementation of implicit management microservices
+
+
+Implicit parallelism and load-balancing:
+
+Parallel patterns (e.g., manager/worker, divide&conquer)
+Load-balancing algorithm based on two pseudo-random choices
+
+
+Mathematical model:
+
+Formalization of pieces, puzzles, and metapuzzles
+Notation for interconnections and parallel patterns
+
+
+
+
+Design Principles and Implementation of a Prototype Based on PuzzleMesh Model:
+
+
+Design phases:
+
+Design: Service definition using declarative scheme
+Building: Recursive invocation of managers
+Deployment and orchestration: Container image creation and preparation
+Launching and choreographic: Container instance launching and auto-coupling
+Execution and operation: Service exposure and operation
+
+
+Implementation details:
+
+Programming languages: Python for microservices, C/C++ for control software
+Containerization: Docker
+Architecture: Microservices with HTTP/REST API interfaces (Flask framework)
+Data preparation schemes:
+
+LZ4 algorithm for compression
+Data deduplication for efficiency
+Information Dispersal Algorithm (IDA) for reliability
+CP-ABE for confidentiality and access control
+
+
+Content delivery: SkyCDS for serverless and multi-cloud scenarios
+Container orchestration: Docker Swarm and Kubernetes support
+
+
+Key features:
+
+Load balancing algorithm implementation
+Parallel pattern management
+Data preparation and exchange mechanisms
+Automatic deployment and coupling of containers
+Logging system
+
+
+
+
+Experimental Evaluation: A Case Study Based on Satellite Imagery:
+
+
+Case study: Managing satellite imagery lifecycle from AEM-ERIS ground station
+Evaluation environment:
+
+Two clusters:
+
+Local: Cinvestav Tamaulipas (4 machines)
+Cloud: Amazon EC2 West region (4 virtual machines)
+
+
+Dataset: Satellite imagery from MODIS (Aqua and Terra), Landsat 5, and Landsat 8
+
+
+Four evaluation phases:
+
+Data load-balancing in parallel patterns:
+
+Comparison of two-choices algorithm with Random and Round-Robin
+Metrics: Workload distribution, percentage of error
+
+
+Performance of implicit parallel patterns:
+
+Evaluation of acquisition, manufacturing, and visualization puzzles
+Metrics: Service times, throughput
+
+
+Performance of comprehensive services:
+
+Combination of puzzles into metapuzzles
+Metrics: Service times with increasing parallelism
+
+
+Direct comparison with state-of-the-art solutions:
+
+Compared against DagOnStar, Parsl, Makeflow, and Jenkins
+Metrics: Response time in local and cloud environments
+
+
+
+
+Detailed results for each phase:
+
+Load-balancing effectiveness: Two-choices algorithm outperformed others
+Parallel pattern performance: Significant improvements in service time and throughput
+Comprehensive services: Scalability demonstrated with increasing parallelism
+Comparative performance: PuzzleMesh outperformed other tools in both local and cloud environments
+
+
+
+
+Conclusion:
+
+
+Summary of key contributions:
+
+Self-containing method for infrastructure-agnostic services
+Puzzle metaphor model for flexible service composition
+Automatic dataflow control with implicit parallelism
+
+
+Highlights from case study:
+
+Efficiency in data processing using self-contained pieces, puzzles, and metapuzzles
+Improved performance compared to state-of-the-art solutions
+Demonstrated reusability and portability across fog and cloud infrastructures
+
+
+Ongoing work:
+
+Implementation of services for real-world use cases (e.g., environmental workflows for extreme weather events early detection)
+
+
+Future research directions:
+
+Adaptive continuous dataflow schemes for dynamic workload and infrastructure changes
+Implicit security and fault-tolerance schemes
+Adaptive maintenance schemes for microservice architectures
+
+
+Emphasis on PuzzleMesh's potential for managing large-scale data processing across edge-fog-cloud environments

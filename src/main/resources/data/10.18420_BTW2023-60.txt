@@ -1,0 +1,25 @@
+Towards a User-Empowering Architecture for Trustability
+
+Introduction and Motivation
+The paper addresses the increasing integration of Autonomous Intelligent Actors (AIAs) into society, such as AI systems in healthcare and expert systems. It highlights the ethical, legal, and social implications of trusting AIAs and proposes a microservice architecture for trustability analytics within the AI2VIS4BigData framework.
+
+Problem Statement and Research Questions
+The authors identify challenges in defining trust in AI, lack of standardized architectures for trustworthy AI, and the absence of practical engineering guidelines. They pose three main research questions:
+
+How can trustability of AIAs be practically modeled and analyzed?
+How can a user-empowering AIA maximize its trustability?
+How can systems be designed to enhance trustability?
+State of the Art
+The literature review covers trust in AIAs, emphasizing transparency and explainability in AI systems (XAI). It introduces the "looking-glass self" theory from psychology, exploring how AI can emulate human self-perception to enhance trust. The AI2VIS4BigData reference model is detailed, focusing on its application in big data analytics and visualization.
+
+Model Building
+The paper proposes a trustability analytics framework for AIAs. It discusses the complex nature of AIAs as emergent systems and the role of transparency in reducing uncertainty and fostering trust. Parameters like User Trust Potential (UTP) and Perceived System Trust Potential (PST) are introduced to quantify trust in AI systems based on user experience and system characteristics.
+
+Trustability Analytics
+The authors outline a framework for trustability analytics, defining trust as qualified reliance influenced by perceived risks and system attributes like accuracy, reliability, and transparency. They advocate for an XAI knowledge base to facilitate understanding and trust in AI systems through transparency and explanation of their decisions.
+
+Trust Bus
+A trust bus architecture is proposed to implement trustability analytics within AI2VIS4BigData. This architecture includes components like Actors and Entities Memory, Trust Production, Identity Management, and Emotion Management. It aims to assess and improve AI trustworthiness by modeling user interactions and perceptions.
+
+Conclusion
+The paper concludes by summarizing the proposed framework's potential to enhance trust in AIAs through transparency, explainability, and user empowerment. It emphasizes the need for further research and practical implementation of these concepts in real-world AI systems.

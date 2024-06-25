@@ -1,0 +1,125 @@
+A Microservice-Based Big Data Analysis Platform for Online Educational Applications
+
+Authors: Kehua Miao, Jie Li, Wenxing Hong, and Mingtao Chen
+Department of Automation Xiamen University, Xiamen 361005, Fujian, China
+Correspondence should be addressed to Wenxing Hong; hwx@xmu.edu.cn
+
+Received 9 February 2020; Accepted 19 May 2020; Published 3 June 2020
+Academic Editor: Chenxi Huang
+Copyright © 2020 Kehua Miao et al. This is an open access article distributed under the Creative Commons Attribution License, which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly cited.
+
+1. Introduction
+In recent years, data science and big data technology stacks have achieved explosive growth. In data science, especially machine learning, it mainly benefits from the improvement of computing power, especially the rapid development of GPU (Graphics Processing Unit), and the popularity of deep learning. In terms of big data technology stacks, new types of big data tools such as Spark have gradually replaced some components in the traditional Hadoop ecosystem, and the update iteration speed is persistent. Based on the rapid development of technology, the modularization and subdivision of work methods become more and more obvious. Traditional working methods, from setting up an experimental environment to data acquisition, data processing, modelling training, and data prediction, are often performed in a unified manner. And this way of working is obviously not suitable for new data science research methods. At present, people pay more attention to teamwork, so infrastructure environment sharing, data sharing, and model sharing have become mainstream workflows. Of course, a personal workspace based on sharing conditions is also essential.
+
+However, the development of big data and the deployment of operating environments often require development, operation, and maintenance personnel with professional knowledge to build and maintain, which is more difficult for ordinary teams, especially novice or student team. People often waste a lot of time on infrastructure and environmental construction, and these troubles are often accompanied by huge operation and maintenance problems. People need a multiuser based infrastructure environment platform.
+
+For data analysis of actual business scenarios, people’s thinking is focused on not only code but also text, pictures, and even mathematical formulas. People need a working code area for a markdown-like environment. The Jupyter Notebook provides such a working environment, but the Juypter Notebook is aimed at single-user members. For web-based platforms, JupyterHub is required. For workers with big data needs, they also need to integrate the experimental environment based on Hadoop, Spark, and JupyterHub.
+
+In data sharing and data stream processing, the security protection of data is often the most troublesome problem in the analysis of actual business scenarios. People often do not want to perform compatibility processing and desensitization of various data migrations. In team collaboration, the platform needs to be integrated with tools that can analyze data within the database. For team collaboration, data flow processing and model sharing are often accompanied. These abstract contents are often not suitable for collaborative analysis in a short time. People need a visualized modelling environment.
+
+In this paper, we present Qunxian Platform. Qunxian Platform is a big data analysis platform based on microservices. It helps to realize the sharing of data, computing power, and infrastructure resource. Moreover, it enables users to use a more friendly environment to record and share the experimental process and the visualized model. It uses JupyterHub and visualized modelling as its two main applications. The platform’s infrastructure environment components are the big data component and the data science environment. In order to easily adapt to the characteristics of rapid environmental changes, the platform uses microservices as a technical dependency; in particular, it uses Docker. The environment’s distributed file system uses the HDFS (Hadoop Distributed File System). The parallel computing architecture uses Apache Spark. Based on Spark and HDFS, Jupyter Notebook is used as the user’s code engineering environment. And JupyterHub manages a multiuser notebook environment in a unified manner. In terms of visualized modelling, the Greenplum-based in-database analysis method is used to implement the modelling module of the visualized modelling application with the built-in MADlib algorithm and custom algorithm interface. Because the entire platform system will be oriented to different users and different user-environments, users will share computing and data resources of the server. This system locates B/S (Browser/Server) type systems. Based on the B/S type system, the platform is built using a framework based on spring boot and uses element-admin as a back-end front-end solution. Moreover, it uses Greenplum and MADlib to implement in-database data calculation to protect the data, quickly use the data, and store the model. Based on Element-UI, the drag-and-drop method of the back-end module is realized, and the visualized data modelling is further realized.
+
+The remaining part of this paper is arranged in the following format. Section 2 presents related works in this field. In Section 3, we visit the platform’s architecture without the app layer and support layer. Then, we describe the two web-based applications in Section 4. After that, we give our experiment configuration on Google cloud from Section 5. And finally, we conclude with Section 6.
+
+3. The Platform’s Architecture
+Qunxian follows the Platform as a Service (PaaS) and Figure 1 gives a high-level overview of the Qunxian platform architecture, which is described in the sequel.
+
+3.1. Hardware Layer
+3.1.1. Cloud-Based Big Data Platform
+Cloud computing is the provision of computing services providing rapid innovation, elastic resources, and economies of scale through the cloud. For cloud services, web developers usually pay only how much they use, which helps reduce operating costs, enables the infrastructure to operate more efficiently, and adjusts the use of services based on changes in business needs. Its simplicity is the type of computing that depends on shared computing resources instead of local servers. Qunxian Platform decided to take the cloud computing service as the hardware layer and it would get the below-mentioned benefits:
+
+It greatly reduces IT and labor costs
+It is more scalable and offers better and secure storage
+Collaboration and effective communication platforms are provided
+Best work practices and flexibility are received
+Access to automatic updates for your IT requirements is included
+Nowadays, for cloud computing services, Google Cloud Platform (GCP), Amazon Web Services (AWS), and Microsoft Azure hold a ruling position among the cloud companies. Qunxian chose the Google Cloud Engine, the module of GCP, as the hardware service.
+
+3.1.2. Docker
+Based on cloud service, we decided to use Docker as a deployment methodology to manage the hardware layer efficiently. All individual modules (i.e., big data components, such as Hadoop and Spark, web architecture, and JupyterHub service concerned) rely on different operating environments, such as different Java versions. To coordinate them smoothly, without any compatibility problem, we apply the Docker container to separate them into individuals. Also, as the foundation of microservice nowadays, Docker helps to simplify the operation and maintenance work, which is the main work after the first time to deployment because of the frequent updating. By the benefit of the Docker container, it is an easy case to update the individuals that needed to be updated instead of all the system architecture. Also, the Dockerfile and YAML files help to record the deployment process for the reference of next time deployment.
+
+3.2. Resource Management Layer
+With the concern of the development stage and the number of users, we do not apply Kubernetes, which is the most popular Docker orchestration tool, to deploy Docker containers on a cluster. We apply Docker Swarm, which is the default orchestration tool of Docker, to construct our Resource Management Layer. On top of Docker Swarm, we implement Docker Compose as a collection of communicating containers that can be scaled and scheduled dynamically.
+
+3.3. Data Layer
+In the data layer, we deploy the HDFS, the Hadoop distributed file system, and Greenplum, a massively parallel Postgres for analytics relational database. HDFS and Greenplum work with Spark, set at the platform layer, independently.
+
+3.4. Platform Layer
+In the platform layer, we deploy the JupyterHub, which is a multiuser server for Jupyter notebooks, as the back-end with containerized big data environment based on Docker.
+
+Table 1 gives Docker components of the platform, which build up the basis big data ecosystem environment of Qunxian.
+
+4. Two Web-Based Applications
+Based on the platform layer, we introduce the app layer, which consists of two web-based applications. We describe them as follows.
+
+4.1. Online Programming Application
+For students to get the most of Qunxian’s high-performance computing (HPC) resource, Qunxian applied JupyterHub, the platform layer’s component, the data science, and big data ecosystem environment as a web-based application with the help of Docker.
+
+Based on the platform layer, a default way of working with Apache Spark is to launch a cumbersome command shell from the terminal, which makes it very hard to present information. To go beyond that and make data analysis more shareable and reusable, we choose Jupyter Notebook.
+
+Figure 2 gives a high-level overview of online programming applications on the app layer based on JupyterHub and Docker. It allows the Authenticator to be a GitHub user, which helps the team to cooperate with their work based on the project. Docker Spawner spawns single-user Jupyter Notebook servers in separate Docker containers based on their separate Docker volume, which helps to persist every user’s notebook directories. Also, for the persistence of JupyterHub data, we deploy a single Docker volume on the host.
+
+4.2. Visualized Modelling Application
+Visualized modelling application is a data science modelling tool, which helps students to understand the high-level machine learning pipeline designed by teachers or other researchers. We apply the classic machine learning module, which includes data processing, feature extraction, and model selection. Students can explore their data on this tool without building their data research way from scratch. Also, for research way, we developed a new module for students and researchers to explore their new idea on model building.
+
+Figure 3 gives a pipeline case on the web-based visualized modelling application. It is a simple case for students to understand and repeat the experiment on each part. From model constructing to model deployment, every single part in data science can be selected from the given choice or build new components based on the pipeline.
+
+5. Experiments
+We performed an experimental evaluation of Qunxian with all server-side platform components being deployed on Google Cloud Engine. The boot disk is based on CentOS 7 OS image with the standard persistent disk of 2TB. And the machine type is n1-standard-2 with 64vCPU, 240GB memory. We add tags and firewall rules to allow specific network traffic from the Internet, including MySQL service, Greenplum service, web service, and Hadoop service on the VPC (Virtual Private Cloud) network/Firewall rules in Google cloud platform. A minimal tuning of the system and the Nginx web proxy server was done to support a high number of concurrent connections. In the following part, we will first describe the service deployment and then give two examples of the main applications on the platform.
+
+5.1. JupyterHub Service
+The JupyterHub module, on the app layer, is based on the data layer. To integrate with the HDFS and Spark, we do this part of the experiment by docker-compose. And JupyterHub-docker-compose-example.yml file shows part of the configuration. In this paper, we do not show the details. To make the data sustainable of JupyterHub, we choose the PostgreSQL as a database. In the yml file, we leave out some detailed information, such as the environment variable, volumes, and networks’ configuration.
+
+5.2. Database Service
+5.2.1. MySQL Service
+For the web service, we use MySQL service to help build safety information storage, especially the data of users. We pull the MySQL:5.6 image from the DockerHub to build the service. After giving birth to a new container from the image-registry, we make a SQL script to build the ZDSW database, which includes system, applications, users, and other entities’ information. In Figure 4, we show part of the physical data model from the database, which is one of SQL script execution results.
+
+5.2.2. Greenplum Service
+To put the in-database data processing in force, we ask for the help of Greenplum, which is able to integrate with the MADlib extension without any compatible problem. And MADlib is an open-source library for in-database data processing. Moreover, Greenplum is a relational data warehouse, which follows massively parallel processor architecture. It helps us to make full use of a big data environment. Due to its PostgreSQL kernel, we take advantage of the development platform tool, pgAdmin4, to integrate the database in the front-end on a specific web port. In this experiment, we try to make it easy to repeat. So, we apply the pseudo distribution in a single node with the help of Docker and docker-compose. We prepare a gpdb-docker-compose-example.yml file, which is shown below, for configuration reference. To make it successful, a startGPDB.sh file, which helps Docker to start the database, the base image, and other configuration should be prepared.
+
+The following part shows an example of using pgadmin4 to access Greenplum:
+
+Prerequisites
+Starting Docker-compose
+Configure Greenplum
+Configure pgadmin4
+At the prerequisites part, we install the docker-compose and then pull the images of pgadmin4 and GPDB 5.x OSS. Prepare a script, such as docker-compose-pgadmin4.yml, which configures the Greenplum and pgadmin4 well, to integrate them successfully.
+
+After the database preparation, as the MySQL service, we need to execute a SQL script. The script is to prepare a data set to test the in-database machine learning.
+
+Figure 5 shows the result of script result on the web-based pgadmin4 client dashboard.
+
+5.3. Web Service
+In the web-based project part, we apply spring boot and webpack frameworks to build the platform. The flowing part describes the details of the front and back-end service applications.
+
+5.3.1. Spring Boot Back-End
+On the back-end of web service, we build a Java project based on spring boot. The project includes three parts: data-control, resource, and web-app. The data-control helps the visualized Analysis-tools workflow going. The resource connects the back-end and front-end. Web-app is an essential part of the webpack project.
+
+5.3.2. Element-UI-Admin Front-End
+To reduce the time of web page development, we apply Element-UI to build an HTML, CSS, and JavaScript project for developing responsive projects on the web. On the foundational of the UI-tool kit, we implement the open-source, Element-UI-Admin, to manage the front-web way of data management.
+
+5.3.3. Deployment
+After building the project and configuring the application properties, which is the configuration of database service and the features of low coupling and high cohesion, we deploy it with a special port on the Google Cloud Server Engine.
+
+5.4. Online Programming Experiment on Spark and Hadoop
+Since our educational application is based on Spark, Hadoop, and JupyterHub, we will do our experiment on Jupyter Notebook, spawned by JupyterHub on the website interface produced by Qunxian.
+
+Figure 6 shows the SparkContext job and Hadoop job on the Jupyter Notebook, which is exposed by web port. And we can find the Spark job more directly on the port by HTTP way. Figure 7 shows the jobs works.
+
+5.5. Visualized Modelling Application Experiment Example
+Since the visualized modelling application is based on Greenplum database and the environment-friendly experiment experience with pure python.
+
+In the experiment, we need to transform the algorithms to the format of pl/python, which is shown in Figure 8. To make it successful, the data running environment needs to be initialized to ensure that the environment dependencies required for the experiment are already available on the web platform. If there are missing experimental related environments, the server needs to install the relevant dependencies first. And the web back-end management system should grants experimental users environment administrator rights, because only super administrator users can use it to register with the database using PL/python.
+
+The visualized modelling application supports integrating the configured pl/python algorithms with Qunxian. In the following part, we introduce a deployment way of new functions, shown by the HDP algorithm in the visualized modelling application.
+
+First, we should add the HDP algorithm in the management of algorithms, which is part of data management. Second, we should apply it into the tree of algorithm to become a component of the existing algorithms. Last, we can make full use of it when building the visualized model. The processing part is shown by sequence in Figures 9–11.
+
+5.6. Web Service Stress Test
+In order to adapt the microservice characteristics of the adaptive system and the convenience of testing, we still use Docker-based methods to deploy JMeter-based test cases. Select Alpine as the base of the Docker image and configure related environment variables, such as JMETER VERSION and JMETER HOME, which is convenient for decoupling test units and operation and maintenance units. Because JMeter is developed based on the Java language, the service environment also needs to be configured with the Java SE Runtime Environment (JRE). In specific test cases, two scripts can be prepared: one is a test script, and the other is a run script. Test scripts are used to test the writing of rules for specific use cases, such as the hard coding of the system web port. The run script mainly writes common run routines such as the startup and destruction of microservices.
+
+Figure 12 shows the result of the web service stress test with the help of JMeter. In requests summary, all the test requests passed as required. In the statistics form, all the response times are within the controllable range.
+
+6. Conclusion
+We have presented Qunxian, a new microservice-based big data analysis platform, which is deployed on Google Cloud Engine running across distributed computing resources. And we construct the big data ecosystem environment based on Docker. On the foundation of platform infrastructure, we introduce two web-based applications. For students who want to get started with a big data ecosystem environment without any barriers on educational purposes, we introduced JupyterHub, with which every user can program online on their environment and keep their data persistence on private data volume. For researchers who want to corporate efficiently while sharing their models based on their specific format of data, we introduce the other web-based application, Visualized Modelling tool, in which data science research people can share their ideas without the cold data and code only. We do our experiment on Google Cloud Platform and check its feasibility.
+

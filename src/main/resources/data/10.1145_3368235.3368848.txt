@@ -1,0 +1,49 @@
+A Framework of Automation on Context-Aware Internet of Things (IoT) Systems
+
+Hossein Chegini
+University of Auckland
+Auckland, New Zealand
+
+Aniket Mahanti
+University of Auckland
+Auckland, New Zealand
+
+ABSTRACT
+An ever-increasing number of different types of objects are connecting to the Internet, known as the Internet of Things (IoT). Processing IoT-generated data by Cloud Computing causes high latency. Fog Computing is a new solution for this latency issue, providing a hosting environment between the IoT and Cloud layers. IoT applications face three significant challenges: big data, device heterogeneity, and Fog resiliency. To address these challenges, this proposal introduces a Microservice software framework for implementing automatic functions in the IoT-Fog-Cloud ecosystem. This framework enables the development of IoT-based context-aware intelligent decision-making systems.
+
+1 INTRODUCTION
+The connectivity of various objects, sensors, and end devices to the Internet is known as the Internet of Things (IoT). By 2020, it is expected that 50 billion IoT devices will be connected to the Internet. These devices continuously generate data, causing issues for IoT task management, data processing, and decision-making. Cloud Computing provides global infrastructure but suffers from high latency, making it unsuitable for time-sensitive IoT applications. Fog computing, a term first used by Cisco, brings the Cloud closer to end-devices and users, providing a hosting layer with low delays and real-time decision-making capabilities.
+
+The IoT-Fog-Cloud ecosystem consists of three layers: IoT, Fog, and Cloud. The IoT layer includes various connected objects such as vehicles, humans, houses, and electronic devices. The Fog layer contains hardware components like intelligent gateways, smart hubs, local servers, Raspberry Pis, and routers, which process data and make real-time decisions. The Cloud layer provides global information and sophisticated resources. Each layer has distinct characteristics.
+
+As the number of IoT devices increases, a significant amount of data, known as big data, will be generated. Processing this data requires fast and automatic functions. The heterogeneity of IoT components, devices, and machines is another challenge, making management and control crucial. Ensuring the Fog layer's resiliency to handle big data and heterogeneity is the third challenge. This paper aims to design and implement automatic mechanisms to address these challenges.
+
+2 IOT CHALLENGES
+Big data causes issues in data processing, decision-making, task hosting, and task scheduling. Automatic mechanisms can reduce reliance on manual data processing, improving Service-Level Agreements (SLAs) in IoT applications. Heterogeneity exists in data, hardware, software, and communication, complicating management. Fog resiliency involves minimizing data transfer between the Cloud and IoT devices, with Fog offloading providing a solution for hosting IoT applications in the Fog layer while satisfying Quality of Service (QoS) parameters.
+
+3 RESEARCH GOALS
+This paper proposes a Microservice software framework with six automatic functions, focusing on M2M communications, latency, and accuracy. Attributes like inseparability, interconnection, adaptability, and extensibility are crucial for M2M communications. The Microservice software design consists of loosely-coupled components, each responsible for specific tasks, enhancing traditional Monolithic software.
+
+4 RESEARCH METHODOLOGY: THE AUTOMATION FRAMEWORK
+Automation in IoT involves delegating human tasks to a system of processing elements. The proposed Microservice framework includes components like devices, security, and AI applications. Six automation functions are defined: automatic context management, automatic orchestration and collaboration, automatic task workflow, automatic data transfer, automatic data filtering, and automatic task scheduling.
+
+4.1 Automatic Context Management
+Context-aware systems process sensor data to produce meaningful information, enabling decision-making. Automation integrates various contexts from different locations and sensors, creating high-level data structures. Rule-based components and ML algorithms collaborate in the automation process.
+
+4.2 Automatic Orchestration and Collaboration
+This function collaborates and orchestrates sensors, machines, actuators, and other Microservice modules for data processing and task execution. It determines the collaborators required to process the context.
+
+4.3 Automatic Task Workflow
+This function manages the sequential or parallel execution of IoT application subtasks, ensuring efficient task scheduling.
+
+4.4 Automatic Data Transfer
+This function decides the best host for storing and computing data, enhancing Fog resiliency for real-time data offloading. Data classification algorithms aid in making transfer decisions.
+
+4.5 Automatic Data Filtering
+Automatic data filtering optimizes data volume before processing, using techniques like Skyline for sensor data selection.
+
+4.6 Automatic Task Scheduling
+This function decides task execution priorities based on algorithms like First Come First Serve (FCFS), ensuring efficient resource allocation.
+
+5 CONCLUSION
+Big data, device heterogeneity, and fog resiliency are the main challenges in the IoT ecosystem. This paper proposes a Microservice software system design with six automation modules to address these challenges. Future studies will analyze the detailed performance and autonomy of these automated functions.

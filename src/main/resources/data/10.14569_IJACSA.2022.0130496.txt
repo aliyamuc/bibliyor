@@ -1,0 +1,33 @@
+Title: Design and Implementation of a Broker-less and Microservice-based IoT Platform
+
+Abstract:
+The Internet of Things (IoT) has revolutionized modern technologies by enabling interconnected devices to communicate and share data seamlessly. IoT platforms play a crucial role in facilitating data collection, device management, and remote control functionalities. This paper introduces a novel approach, named BMP (Broker-less and Microservice Platform), which integrates microservices architecture with a broker-less design to enhance scalability, security, and efficiency in IoT applications.
+
+I. Introduction
+The paper begins by emphasizing the significance of IoT technologies and outlines the fundamental requirements of IoT platforms: data collection, device and user management, and remote device control. Key considerations such as security, fast data transmission, and energy efficiency are highlighted in meeting these requirements.
+
+II. Background
+a. gRPC: Developed by Google, gRPC facilitates the implementation of RPC (Remote Procedure Call) APIs over HTTP/2. It leverages protocol buffers and HTTP/2 support to enable efficient and effective communication.
+
+b. Kafka Message Queue: Kafka is a distributed messaging system designed to support real-time message transfer and minimize message loss.
+
+c. OAuth and Single Sign-On (SSO): OAuth 2.0 is an authentication method that allows applications to access resources without sharing credentials. Single Sign-On (SSO) enables users to authenticate once and gain access to multiple applications.
+
+d. Microservices Architecture: Microservices are small, independent services combined to build large and scalable applications.
+
+III. Related Work
+a. Broker-less Architecture: Studies focus on reducing the use of central brokers in IoT platforms to address data security and scalability challenges.
+
+b. Microservice-based IoT Platforms: Applications of microservices architecture in various domains such as healthcare and agriculture for developing IoT applications.
+
+IV. BMP Architecture
+The paper introduces the BMP (Broker-less and Microservice Platform) for IoT applications. BMP aims to enhance inter-device communication and user management by combining microservices and broker-less architecture. The architecture includes detailed layers: Thing, Edge, Cloud, and User layers, each serving specific functions.
+
+V. Implementation
+Detailed descriptions of the proposed services and their functionalities are provided. Components such as Single Sign-On (SSO), data collection services (CDC and CDS), and object management service (OMS) are explained, along with their interactions.
+
+VI. Evaluation
+The performance and efficiency of BMP deployed on Amazon EC2 are evaluated based on scalability, resilience, and other criteria. The effectiveness and reliability of BMP's functionalities are also tested.
+
+VII. Conclusion and Future Directions
+The paper concludes with an assessment of BMP's effectiveness based on its microservices and broker-less architecture. Potential future research directions and enhancements for BMP are discussed, highlighting its contributions and development opportunities.

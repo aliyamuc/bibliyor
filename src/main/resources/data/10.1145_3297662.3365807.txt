@@ -1,0 +1,66 @@
+Facilitating and Managing Machine Learning and Data Analysis Tasks in Big Data Environments using Web and Microservice Technologies
+
+Authors:
+
+Shadi Shahoud
+Sonja Gunnarsdottir
+Hatem Khalloof
+Clemens Duepmeier
+Veit Hagenmeyer
+ABSTRACT
+
+Driven by the great advance of machine learning in a wide range of application areas, the need for developing machine learning frameworks effectively as well as easily usable by novices increased dramatically. Furthermore, building machine learning models in the context of big data environments still represents a great challenge. In the present paper, we tackle these challenges by introducing a new generic framework for efficiently facilitating the training, testing, managing, storing, and retrieving of machine learning models in the context of big data. The framework makes use of a powerful big data software stack and a microservice architecture for a fully manageable and highly scalable solution. A highly configurable user interface is introduced giving the user the ability to easily train, test, and manage machine learning models. Moreover, it automatically indexes models and allows flexible exploration of them in the visual interface. The performance of the new framework is evaluated on state-of-the-art machine learning algorithms: it is shown that storing and retrieving machine learning models as well as a respective acceptable low overhead demonstrate an efficient approach to facilitate machine learning in big data environments.
+
+1 INTRODUCTION
+
+The success of Machine Learning (ML) in many application areas such as text classification, speech recognition, medical diagnostics, or energy generation as well as load forecasting, paved the road for more in-depth research on new methodologies as well as an even-growing demand for ready-to-go software solutions that facilitate the performing of ML tasks. Although ML can be used for solving complex business problems, there are also some downsides. Applying ML is usually a time-consuming process for the user, in which a lot of hyperparameters need to be configured to achieve the best performance. Moreover, due to the rapid increase of data, big data platform usage is becoming one of the hottest topics related to ML. Gaining insightful information, finding patterns, and extracting knowledge from big datasets are quite complex tasks for a non-technical user. Additionally, the configurations of the underlying big data infrastructure introduce more complexity for configuring and running ML tasks.
+
+In the present paper, the aforementioned challenges for non-technical users are addressed by developing a new conceptual framework helping users to solve ML problems in big data environments without caring too much about technical issues of the underlying big data and cluster computing environment as runtime platform. The goal of this framework is to facilitate training, testing, managing, storing, and retrieving ML models in the context of big data by using an easy-to-use web interface which hides the complexity of the underlying runtime environment from the user. As a first exemplary application, smart grid applications are addressed in the evaluation. The proposed framework should be able to perform ML tasks on energy-related data using a variety of algorithms on different types and sizes of datasets.
+
+2 RELATED WORK
+
+ML offers a variety of powerful algorithms and approaches for modeling and decision making from data, but implementing a ML model by yourself is a complex, long-lasting, and error-prone process. To ease the usage of ML, the ML community has developed a variety of powerful frameworks and tools to make its techniques more accessible to end-users. Frameworks like Apache Spark, or TensorFlow dedicated to Deep Learning, are low-level frameworks that help data scientists in programming ML algorithms which could then be executed on a local computer or even for better performance on a computing cluster. Such frameworks typically don’t provide easy-to-use user interfaces for non-experts by themselves but there are additional (Open Source) tools (e.g., Jupiter Notebook), which provide lean web user interfaces to such frameworks for hiding the details of the background cluster environment containing the runtime environment of the framework from the user. Typically, these interfaces are aimed towards a more experienced data scientist programmer and less towards non-expert users who just want to apply ML algorithms.
+
+Contrary to tools aimed at the experienced ML programmer, there are nice UI-based tools targeted at non-experts. Johanson et al. developed oceanTEA, a framework to analyze time series datasets in the climate context. OceanTEA leverages web technology such as microservices and a nice web UI to interactively visualize and analyze time series datasets. However, these tools typically contain dedicated ML-based analysis features which are specialized towards the special application domain and therefore e.g. performing ML tasks such as forecasting as needed in the energy application field are not included in oceanTEA.
+
+Nasoz et al. developed a user-friendly web application to analyze health and education datasets. This tool also includes ML algorithms for the forecasting of time series data. The application also has a nice and easy-to-use user interface. But only linear regression, logistic regression, and backpropagation were utilized to perform forecasting on the input datasets. However, this framework is not able to solve ML tasks in the context of big data and can only be used as a standalone application on a desktop computer.
+
+Model and data versioning is a rich area of research that has produced systems to manage the process of building ML models. Vartak et al. introduced ModelDB, a system for tracking and versioning ML models in the form of pipelines. The ModelDB frontend allows an efficient visual exploration of models via a web-based interface. Apache PredictionIO is an open-source ML framework for developers. Besides supporting the deployment of ML algorithms, Apache PredictionIO allows expert users to train and test ML models, and query results via RESTful APIs.
+
+3 CONCEPT AND ARCHITECTURE
+
+In this section, the basic concepts and architecture of the proposed framework are presented. First, the general framework architecture is introduced. Then, details of the different architectural layers are presented.
+
+3.1 Framework Architecture
+
+The architecture is layered into three main layers, namely UI layer, service layer, and persistence and processing layer. The UI is split into separate sub-parts providing dedicated functionalities for data and model management, model training, and cluster management which are wrapped into one logical web application forming the UI of the application. The service layer is partitioned into a set of microservices, where each microservice is a small and self-contained application that can be deployed independently e.g. on the runtime cluster with a single responsibility. One service focuses on data and model management, where models can be seen as special data objects. The other service focuses on the management of running ML jobs e.g. for training and testing. The services provide a RESTful API which is used by the web applications in the UI layer to interact with the runtime environment.
+
+4 EVALUATION
+
+This section presents some results of first evaluations and comparative study of the aforementioned microservice-based framework. In the next subsection, the execution workflow of the proposed framework is described. Then, the experimental setup and configurations of the prototype on a computing cluster which was used in the evaluation are described. Lastly, the obtained results are discussed.
+
+4.1 Execution Workflow
+
+In the present work, the well-known Apache Spark framework installed on a big data computing cluster using an Apache Hadoop software stack as runtime engine for executing ML jobs is used. ML execution environments typically use a job runtime directory in a file system for storing all information needed for job execution. For implementing the persistence and processing layer on the cluster, HDFS and a PostgreSQL database are utilized to store the required input and the output produced from performing ML tasks.
+
+4.2 Experimental Setup and Configurations
+
+The aforementioned microservice architecture was implemented using Java and was tested while running on a local workstation. The microservices were deployed on a big data cluster, where Apache Spark was running on top of Yarn as a resource manager and HDFS as a primary data storage. The big data stack is deployed on a cluster of 3 logical machine nodes. Each of them has 32 cores and 80.52 GB RAM. The nodes are connected to each other by a LAN with 10 GBit/s bandwidth. Default Spark configurations were used for the evaluation.
+
+4.3 Experimental Results and Analysis
+
+In the following, evaluation results are discussed. As the focus is on the execution time and framework overhead raised while performing ML tasks, the accuracy of forecasting will not be taken into account.
+
+Advantage of Storing and Retrieving ML Models
+
+The main ML task used for this part of the evaluation was performing short-term energy generation forecasting using MLR, RF, DT, and GBTs models on simulated energy multivariate time series dataset. Figure 4 shows the total time required by the framework by using different algorithms for forecasting in comparison to either using pre-trained or untrained model pipeline.
+
+Framework Overhead
+
+To evaluate framework overhead, MLR models for short-term energy generation forecasting were used. The evaluation instrumented the untrained model pipeline, in which the training and the testing steps of ML models are required. The goal of the study was to evaluate the effect of input dataset size on framework performance in the form of the framework overhead.
+
+Despite this increment, the introduced framework overhead is still low compared to the execution time spent in performing an ML task as shown in Table 2. Consequently, our evaluation demonstrates that it maintains high-performance ML processing with only low framework overhead to facilitate and solve ML tasks in big data environments.
+
+5 CONCLUSION AND FUTURE WORKS
+
+The present paper introduces a new highly scalable generic microservice-based framework to ease and streamline the performing of ML tasks in big data environments. This framework provides a user-friendly UI built on top of a service layer that eases the usage of ML frameworks on big data infrastructure and hides cluster details from the user. Additionally, the framework provides functionalities for uploading, exploring, and visualizing datasets using state-of-the-art web technologies.

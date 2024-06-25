@@ -1,0 +1,44 @@
+Research and Design of Cloud Broadcasting System
+Xuping Wang
+School of Computer Science and Cybersecurity, Communication University of China, Beijing, China, 2232455931@qq.com, Corresponding author
+
+Juanpeng Gong
+School of Computer Science and Cybersecurity, Communication University of China, Beijing, China, jpgong@cuc.edu.cn
+
+ABSTRACT
+Cloud Broadcasting aims to transform traditional broadcasting methods to leverage cloud technology. This article introduces cloud broadcasting technology, which is based on 5G, cloud computing, artificial intelligence, and other emerging technologies. It reduces costs, allows quick deployment, and enables efficient response times. Cloud broadcasting integrates ultra-high-definition, VR/AR interaction, AI value-added services, and big data analysis to enhance video production and broadcasting, promoting technological advancements in the broadcasting industry.
+
+1 INTRODUCTION
+The rapid development of Internet technology has ushered in the era of new media, significantly impacting the live broadcasting industry. Traditional broadcasting services are increasingly unable to meet the growing demand for high-quality video content. The advent of 5G has further accelerated the need for innovative broadcasting solutions. The cloud broadcasting system addresses these challenges by transforming traditional broadcasting methods into a more efficient, cost-effective, and flexible online service.
+
+2 DEVELOPMENT OF CLOUD BROADCASTING TECHNOLOGY
+Cloud broadcasting technology focuses on expanding the video industry market and providing innovative services across various sectors.
+
+2.1 Applied in the Sports Industry
+The introduction of 5G technology has significantly impacted sports broadcasting by providing better audio-visual experiences and reducing live broadcasting costs. Technologies like ultra-high-definition and virtual reality are being promoted, enhancing the broadcasting of sports events.
+
+2.2 Applied in Education
+Cloud broadcasting technology is also revolutionizing education, particularly highlighted during the COVID-19 pandemic. It enables remote teaching and helps address the uneven distribution of educational resources by providing real-time classes to under-resourced areas.
+
+3 THE KEY TECHNOLOGY OF THE SYSTEM
+3.1 Microservice Architecture
+The system is designed using a microservice architecture, where the entire cloud broadcasting system is componentized and servitized, focusing on business logic. This architecture offers high cohesion, low coupling, and improved fault tolerance, allowing each microservice to function independently without affecting the entire system. It is highly scalable, reusable, and supports a wide range of development languages and data storage technologies.
+
+3.2 Development of Language and Database
+The system is developed using Java, leveraging popular web development frameworks and Spring technology. The frontend uses the VUE framework, while the backend employs the Springboot framework. The PostgreSQL database service manages data, providing robust support for object-relational data management, which is crucial for cloud broadcasting.
+
+4 RESEARCH AND DESIGN OF THE SYSTEM
+4.1 Workflow of System
+The cloud broadcasting system is deployed on a cloud server and involves several steps:
+
+Add a Cloud Broadcasting Station: Each station has a unique token and lifecycle settings.
+Setting Cloud Broadcasting Station: Users configure the broadcasting station, including name, domain, and output settings.
+Setting Video Source: Users add video sources, which can be from live streams or a media library.
+Setting Layout: Users configure the screen layout for cloud broadcasting, choosing from preset or custom layouts.
+Setting Components: Users can add components such as watermarks and text to the video.
+Starting a Cloud Broadcasting: The system includes PVW and PGM scenes for previewing and broadcasting live streams.
+4.2 Design of System
+The design includes adding a cloud broadcasting station, setting the station's basic configuration, adding and managing video sources, setting up the screen layout, configuring components, and managing live broadcasting services. The system also features a media management function for handling audio and video resources, which are stored in Alibaba Cloud’s OSS and managed using PostgreSQL.
+
+5 CONCLUSION
+Cloud broadcasting technology has revolutionized the broadcasting industry by offering cost-effective, flexible, and efficient solutions. However, challenges remain, such as live stream delays when switching broadcasting stations. Future work will focus on reducing these delays and further enhancing the system’s capabilities. Despite its advantages, cloud broadcasting cannot completely replace traditional methods due to potential network signal issues under adverse conditions.

@@ -1,0 +1,89 @@
+A Complete Software Stack for IoT Time-Series Analysis that Combines Semantics and Machine Learning—Lessons Learned from the Dyversify Project
+Authors
+Dieter De Paepe, Sander Vanden Hautte, Bram Steenwinckel, Pieter Moens, Jasper Vaneessen, Steven Vandekerckhove, Bruno Volckaert, Femke Ongenae, and Sofie Van Hoecke
+
+Abstract
+The Dyversify project investigated how event and anomaly detection can be performed on IoT time-series data using a hybrid combination of data-driven and semantic techniques. The project resulted in a proof-of-concept analysis platform with a microservice architecture, which ensures scalability and fault-tolerance. The platform includes time-series ingestion, long-term storage, data semantification, event detection using both techniques, dynamic visualization, and user feedback. This paper describes the system architecture and provides an overview of the components and their interactions.
+
+Keywords
+Time series, data analytics, machine learning, semantic web, reasoning, microservice architecture
+
+1. Introduction
+Data analytics is increasingly important for enterprises, particularly with the growth of IoT devices. Analysis needs to be fast, resilient, and handle high data throughput. Many research works focus on specific algorithms, either data-driven or semantic, but rarely on hybrid systems. The Dyversify project, a collaboration between academia and industry, investigated a hybrid approach for event and anomaly detection on time-series data.
+
+2. Background Information
+2.1. The Dyversify Project
+Dyversify is an imec.icon project involving multi-disciplinary teams from academia and industry working on demand-driven research. The project brought together seven teams to build a full-stack data analysis pipeline using real-world data from industry partners like Renson, Televic Rail, and Cumul.io.
+
+2.2. Renson Use Case
+Renson produces ventilation units, such as the Healthbox 3.0, which measures air quality metrics like humidity and CO2 levels. Data from these units is used to monitor performance and detect installation errors. The project processed metrics from these units to detect events and anomalies.
+
+2.3. Resource Description Framework and Semantic Reasoning
+The Semantic Web concepts used in this project include RDF and semantic reasoning. RDF uses unique identifiers to enable data merging from different sources, facilitating automated processing. Semantic reasoning derives new data by applying rules to existing data.
+
+3. Related Literature
+3.1. Streaming Architectures
+Architectural designs for processing streaming data include lambda and kappa architectures, which handle real-time and historical data. Stream processing frameworks like Apache Storm, Flink, and Spark distribute workloads across worker nodes. Microservice architectures, which encapsulate responsibilities into independent services, can be combined with lambda or kappa architectures.
+
+3.2. Stream Processing
+Stream processing aims to derive insights or detect anomalies. Common approaches include statistical features and machine learning methods, often implemented using stream processing frameworks. Semantic streams use reasoning techniques to infer new facts from data.
+
+4. Dyversify Architecture
+4.1. High-Level Overview
+The architecture comprises measurement and event data flows, handled by different microservices. Measurements from devices are ingested by Obelisk, stored, and processed by various detection components. Events are generated and converted to a semantic format for further processing and visualization.
+
+4.2. Microservices and Deployment
+The microservice architecture is implemented using Docker containers managed by Kubernetes. Services use persistent volumes for data storage and resource management to prevent system degradation.
+
+4.3. Time-Series Ingestion and Persistence: Obelisk
+Obelisk, a scalable platform for IoT data, ingests, stores, and forwards measurements. It uses Vert.x, InfluxDB, and mongoDB to handle high data throughput and provide long-term persistence.
+
+4.4. Message Broker: Kafka
+Kafka serves as the message broker, ensuring high throughput, scalability, and fault tolerance. It organizes messages into topics and partitions, allowing horizontal scalability through consumer groups.
+
+4.5. Semantic Conversion: RML
+RMLStreamer, based on Apache Flink, converts data to a semantic format. This conversion is necessary for components relying on semantic data and is done using predefined mappings.
+
+4.6. Event/Anomaly Detection
+The system includes four detection microservices: Valve Classifier, MP-Outliers, MP-Events, and Expert-Rules. Each service processes measurements to detect anomalies or events, outputting results to Kafka.
+
+4.6.1. Anomaly Detection: Valve Classifier
+Uses a random forest classifier to detect incorrectly installed valves based on humidity measurements.
+
+4.6.2. Anomaly Detection: MP-Outliers
+Detects unique patterns using the Matrix Profile, analyzing CO2 and humidity measurements to identify anomalies.
+
+4.6.3. Event Detection: MP-Events
+Tracks repeating patterns using the Matrix Profile, identifying new occurrences of labeled events.
+
+4.6.4. Event Detection: Expert-Rules
+Uses semantic rules to process measurements and detect events based on expert-defined patterns.
+
+4.7. Semantic Database: Stardog
+Stardog stores semantic events and metadata, providing a repository for historical data.
+
+4.8. Dynamic Dashboard and Feedback
+The dashboard suggests visualizations based on semantic descriptions, allowing user interaction and feedback. It integrates with other services to visualize data and update events based on user input.
+
+4.9. Monitoring
+Prometheus monitors the system, collecting metrics to ensure components are functioning correctly. Monitoring helps identify issues and supports automatic scaling based on workload.
+
+5. Evaluation Results
+The architecture was validated using real-world data from Renson, achieving local response times below 1 second for anomaly detection and visualization. The complete chain from data ingestion to visualization is achieved in less than 5 seconds.
+
+6. Lessons Learned
+6.1. Scalability Requirements
+Ensuring independent operation of instances and logical data partitioning facilitates scalability. Challenges with multi-topic processing and long startup times for components like MP-outliers were addressed through manual partition assignment and caching.
+
+6.2. Setting Up a Complex Microservice-Based Backend
+Monitoring and resource constraints are essential for managing complex microservice systems. Input validation and alerting strategies are necessary to handle faulty data.
+
+6.3. Early Testing for Library Limitations
+Testing early and matching the testing environment to production helps identify library limitations and avoid integration issues.
+
+6.4. Semantic Microservice Communication
+While semantics streamline data merging, they introduce complexity and verbosity. Semantic messages were larger and more complex to handle compared to plain JSON messages.
+
+7. Conclusions
+The Dyversify project developed a scalable, resilient software stack for IoT time-series analysis, combining machine learning and semantic techniques. The stack was validated using real-world data, demonstrating its applicability for event and anomaly detection. Future work includes applying the stack for COVID-19 monitoring and further improving anomaly detection and visualization techniques.
+

@@ -1,0 +1,73 @@
+A Big Data Platform for International Academic Conferences Based on Microservice Framework
+Biao Yang, He Liu, Xuanrui Xiong, Shuaiqi Zhu, Amr Tolba, and Xingguo Zhang
+
+
+Abstract
+In the era of the information explosion, big data are always around us. Academic big data are defined as a large amount of data generated in the life cycle of all academic activities, which usually contains a large amount of academic information. Academic conferences can effectively promote academic exchanges among scholars. In recent years, academic conferences in various fields have been held around the world. However, with the increase in the number of academic conferences, the quality of conferences and the efficiency of hosting and participating in conferences are uneven. In today’s fast-paced life, high-quality and efficient academic conferences have become the first choice of scholars. In this paper, a conference recommendation method based on a big data analysis of users’ interests and preferences is proposed to help users choose high-quality academic conferences and to help organizers reduce conference costs and improve the conference operation efficiency. The method first divides the research fields of user-related academic conferences into three categories: the fields that users are interested in, the fields that users attend, and the research fields that users follow up. Then, the weights of these three categories are set, and the importance of each category recommendation related to the user is calculated. Finally, the conference recommendation index is calculated and several conferences with a high recommendation value are recommended to users. The experimental results show that the proposed conference recommendation method provides a convenient and fast service to conference participants and conference organizers. The developed big data platform can significantly improve the operation and participation efficiency of academic conferences, reduce the costs, and give full play to the role and value of academic conferences.
+
+Keywords: academic big data; personalized recommendation; academic conference
+
+1. Introduction
+Big data analytics is a term created by researchers to describe the use of advanced analytical techniques that process, store, and collect very large diverse big data sets for future examination. The rapid progress of the Internet, Internet of Things (IoT), and other technologies is the main reason for this continued growth. Data generated reflect the environment in which they were created, thus providing insights into system operations. The growth in data value has made big data a high-value target.
+
+1.1. Motivation
+The number of academic conferences held globally has been increasing, becoming more popular among research scholars. However, with the increase in academic conferences, some are not of high quality and cost-effectiveness. Issues such as unclear conference topics, unsatisfactory conference documents, and low-level conference papers are prevalent. Thus, improving the quality of academic conferences, reducing costs, simplifying the participation process, and maximizing their value has become urgent.
+
+1.2. Research Challenges
+Existing platforms like “AllConferences.Com”, “World Conference Calendar”, “AAAI Conferences”, “EasyChair”, “WikiCFP”, and “Cvent” provide partial services but lack comprehensive, one-stop solutions for academic conferences. Many platforms do not support submission, review, or registration comprehensively, causing cumbersome processes for organizers and participants.
+
+1.3. Contributions
+Provided a complete set of services related to academic conferences, enabling organizers to host and scholars to attend seamlessly, reducing hosting costs and improving efficiency.
+Implemented user-follow features for conferences, with reminders for important dates.
+Conducted comprehensive evaluations of conferences using various indicators to aid scholars in choosing the right conferences.
+Designed the system using a lightweight development framework for quick response, simple interfaces, and excellent user experience. The interface is responsive across various devices.
+The rest of the paper is organized as follows: Section 3 presents the system design, Section 4 describes the implementation, Section 5 discusses system testing, and Section 6 concludes the paper.
+
+3. System
+3.1. System Requirements Analysis
+Users include non-logged-in users, logged-in users, and system administrators, each with different system permissions.
+
+3.1.1. Business Requirements
+Core business requirements include:
+
+Conference Release and Registration: Allows organizers to publish conferences, and participants to register and pay.
+Conference Management: Manages participants, meeting papers, and issues coupons.
+Conference Browse and Follow: Allows users to browse and follow conferences.
+Meeting Date Reminder: Alerts users of important dates.
+Conference Evaluation: Assesses concluded conferences.
+Conference Recommendations: Suggests conferences based on user interests and past attendance.
+Platform Promotion: Offers discount coupons for conference feedback and user invitations.
+3.1.2. Functional Requirements Analysis
+Functional requirements vary based on user type. Non-logged-in users can view meetings, logged-in users can manage personal information and conference activities, and administrators manage system data and settings.
+
+3.2. Functional Module Design
+The platform is divided into six functional modules: user center, conference release and registration, conference browsing, conference management, timing system, and administrator module.
+
+3.3. Meeting Personalized Recommendation Design
+The system recommends conferences based on users' research interests, attendance records, and follow-up records. The recommendation degree is calculated and sorted to provide the best matches for users.
+
+3.4. Static Structure Design
+The system has 183 classes, including entity classes, control classes, and persistence classes, each serving specific functions and interacting seamlessly.
+
+3.5. Dynamic Model Design
+Dynamic interactions between participants and system objects are modeled using timing diagrams. Core functions like conference following and posting participation notices are detailed.
+
+4. System Implementation
+4.1. Personalized Recommendations for Meetings
+The system uses a recommendation algorithm to update the conference recommendation table regularly, providing users with personalized academic conference suggestions.
+
+4.2. Conference Series Information Visualization
+Users can view visual representations of conference series information, including changes in conference scores and spatio-temporal distribution.
+
+5. System Testing
+5.1. Test Objectives and Methods
+Testing ensures the system meets design requirements. Methods include unit testing, functional testing, and non-functional testing, using tools like Junit and Jmeter.
+
+5.2. Testing Process
+The system undergoes extensive testing during and after development, including unit and integration testing.
+
+5.3. Test Cases and Results
+Representative test cases include conference classification and sorting, conference information filling, and conference registration deadline reminders. Each test case is evaluated for expected outcomes and verified for correctness.
+
+6. Conclusions
+Academic conferences play a crucial role in scholarly communication. This paper proposed a big data platform that enhances the quality and efficiency of academic conferences through personalized recommendations and comprehensive service provision. Future work will focus on improving the recommendation algorithm and expanding the system's functionalities.

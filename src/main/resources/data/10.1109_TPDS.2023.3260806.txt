@@ -1,0 +1,104 @@
+Abstract:
+AIDTN is an AI-driven system for optimizing large-scale data transport in data-intensive sciences. It uniquely incorporates NVMe over Fabrics (NVMeoF) and uses a combination of network, system, and storage features to predict end-to-end performance. The system achieves up to 284% improvement in data movement performance while minimizing packet loss compared to other approaches. AIDTN's prediction error rate is as low as 0.16, significantly outperforming AI models that use only network features (error rate 0.29) or a combination of network and system features (error rate 0.19).
+I. Introduction:
+A. Motivation:
+
+Data-intensive scientific research requires reliable Big Data transport across multiple sites.
+NVMeoF has the potential to revolutionize scientific data movement workflows by enabling direct remote data access over high-speed WANs.
+This approach eliminates data duplication time and local storage requirements.
+Studies by Liu et al. reveal that most Globus users suffer from sub-optimal data movement configurations, resulting in low transfer performance.
+Big data movement workflows typically involve large volumes of data transferred over multi-domain long-distance networks, with constantly changing network environments.
+
+B. Limitations of State-of-Art Approaches:
+
+Current DTN optimization approaches do not utilize direct data access using NVMeoF or its related metrics.
+Existing studies are limited to using network-related metrics for optimization of Big Data movement over research platforms.
+There's a lack of dynamic optimization that can adapt to congestion in shared network paths.
+As network capacity increases beyond 100 Gbps, NVMe-based storage systems in DTNs become a common bottleneck.
+Many NVMe devices suffer from poor heat dissipation, degrading overall performance even when network capacity is available.
+
+C. Key Insights and Contributions:
+
+AIDTN is the first system to use network, system, and storage features to improve performance prediction in high-performance data movement of DTNs.
+It extends DTN performance optimization for remote data streaming using NVMeoF.
+AIDTN can be deployed on existing research platforms with managed training data.
+The system addresses the challenge of optimizing end-to-end performance of Big Data movement in real-time.
+It incorporates NVMeoF-specific configuration features in performance prediction DTNs, including NVMe utilization and temperatures.
+AIDTN manages the sparsity of training data in DTNs to ensure sufficient data for real-time optimization.
+
+II. Background:
+A. Big Data Movement:
+
+Process of distributing large amounts of research data, often sourced from large instrumentation.
+Data Transfer Nodes (DTNs) enable high-performance data distribution.
+Requires a system that continuously improves Big Data movement services with accumulated experience in advanced multi-domain research platforms.
+
+B. Data Transfer Nodes (DTNs):
+
+Key resources for large-scale science data transport.
+Orchestrate computation, storage, software, and networking.
+Widely implemented within science facilities.
+Present unique integration and performance challenges in different deployments.
+
+C. Microservice:
+
+Software architecture consisting of loosely coupled small but clearly defined service logic.
+Allows easier Continuous Integration/Continuous Deployment.
+Provides modular design and scalability suitable for distributed application development.
+Enables implementation and deployment of DTN functions as cloud-native services.
+
+D. NVMe Over Fabrics:
+
+Provides next-generation data movement services in DTNs with direct remote storage access.
+Gaining momentum as NVMe is rapidly deployed in storage platforms.
+Initially implemented with RDMA transport for LAN, now suitable for multi-domain WAN with TCP transport.
+Allows users to access NVMe devices directly, eliminating the need for data duplication over distance.
+
+III. Design:
+A. Agile AI Optimization System:
+
+AIDTN builds an agile end-to-end performance model for real-time DTN optimization.
+Uses relationships between system (CPU, Memory), network (Throughput, packet loss), and NVMe resource usage metrics (I/O latency, utilization, throughput, and temperature).
+Formulates the optimization problem to maximize performance function f(x_t+1, y_t+1)|y ∈ Y.
+Implements a three-stage optimization process:
+I. System Analysis: Identify DTN components affecting data movement performance, categorize as static or dynamic optimization targets.
+II. Optimization Design: Design performance model to predict data movement performance, select parameters, and implement configuration updates.
+III. Model Building: Generate dataset, train model, and manage training data in DTNs.
+Uses BI-LSTM network to build the real-time performance model, chosen for its superior performance in processing temporal information.
+Implements XGBoost to predict the performance of different parameters, efficient with limited data points.
+
+IV. Implementation:
+
+AIDTN is implemented as a microservice and deployed on Pacific Research Platform (PRP) and Midwest Research Platform (MRP).
+Components include:
+
+Data movement agent: Deploys transfer workers over TCP or NVMeoF.
+Orchestrator: Allocates transfer workers and maintains data movement details.
+Data extractor: Extracts historical data movement information and performance metrics.
+Predictor: Builds end-to-end performance models and predicts optimal transfer parameters.
+
+
+Uses Prometheus monitoring system to fetch system, network, and NVMe-related metrics.
+Generates training data using various scientific datasets, including satellite data from ESA Sentinel 1,2 & 3 and genomic sequences.
+
+V. Evaluation:
+
+AIDTN improves data movement performance by up to 284% compared to baseline.
+Outperforms network-only AI models and simple heuristic approaches like PCP and Ernest.
+NVMeoF optimization shows similar performance improvements to traditional data movement.
+Demonstrates higher throughput and lower packet loss under different congestion levels.
+Adding NVMe usage and temperature features to the AI model results in the highest throughput with the lowest packet loss.
+Evaluation conducted on both PRP and MRP with different RTTs.
+Overhead analysis shows minimal impact on system resources, with total overhead resource consumption less than 0.06% of resources used.
+
+VI. Related Work:
+The paper compares AIDTN to existing DTN optimization approaches, highlighting its unique features:
+
+Real-time optimization using both network and system-level features.
+Incorporation of NVMeoF for remote data streaming.
+Applicability to both traditional and NVMeoF data movement.
+Deployment on existing research platforms with managed training data.
+Ability to generate deeper level of real-time system information and network-specific information.
+
+VII. Conclusion:
+AIDTN enables dynamic data movement optimization for both traditional data movement and NVMeoF streaming. It significantly improves performance while minimizing packet loss in changing network environments. The system's ability to use network, system, and NVMe-specific features enhances its prediction accuracy and optimization capabilities. Future work includes extending AIDTN to address other issues in networking, system optimization, and AI, as well as further exploration of NVMeoF optimization in national and international WANs.

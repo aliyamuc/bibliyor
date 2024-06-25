@@ -1,0 +1,43 @@
+Design of a Cattle-Health-Monitoring System Using Microservices and IoT Devices
+
+Authors: Isak Shabani, Tonit Biba, Betim Çiço
+
+Abstract: This article proposes a new concept of microservice-based architecture for the future of distributed systems. This architecture bridges IoT devices and applications used to monitor cattle health in real-time for physical and health parameters of cattle. Six microservices were proposed, including one for predicting cattle health using the LightGBM algorithm, providing real-time health notifications to farmers. The system allows farmers 24-hour online access to parameters such as body temperature, heart rate, humidity, and position.
+
+Keywords: agriculture, cattle, cloud, deep learning, docker, IoT, microservices, monolithic, sensor
+
+1. Introduction
+
+The influence of technology in recent years and the continued tendency for digitization are increasingly observed in all areas. Almost every field has digitized parts that enable more efficient and easier management. One of the areas being digitized, which is part of the research and subject of the present study, is agriculture, with a particular emphasis on monitoring cattle health. In this area, large investments in digitization have been made by state agencies worldwide to ensure higher productivity for farmers. According to the World Government summit agenda, roughly 800 million people worldwide suffer from hunger, and 8% (650 million) of the world’s population will still be undernourished by 2030. By 2050, we will need to produce 70% more food.
+
+The agriculture sector contributes significantly to the economic development of every state in the world, and Kosovo is no exception. According to the latest report published by the Ministry of Agriculture, Forestry, and Rural Development, agriculture contributes 8.1% to the GDP in Kosovo. In 2019, Kosovo reported 257,733 cattle, a decrease of 929 heads compared to 2018. Cattle are a vital category in livestock, making up 47.5% of the total livestock heads. In 2020, the total number of cattle increased to 261,389, with dairy cows representing 51% of the total cattle. The total milk production was 281 thousand tons, approximately 2% higher than in 2019.
+
+Many types of diseases occur in cattle, including anthrax, Aujeszky’s disease, bluetongue, bovine coronavirus infection, and others. Cattle health is a major concern for farmers as it directly impacts productivity. Physical monitoring of cattle health can be problematic, especially in cases where the numbers are high. Digital monitoring systems can provide efficient solutions for tracking cattle health by using IoT devices to collect and transmit data for processing and notification.
+
+The main purpose of this paper is to create a microservice-based architecture for monitoring cattle health. This architecture receives information from various IoT devices, processes it, and notifies stakeholders. It also allows third-party applications to access and visualize the data. The architecture involves microservices for receiving data through the REST protocol, processing it, and managing farm and cattle registrations.
+
+3. Model Development and Data Format
+
+The Smart4ALL project aims to digitize the cattle health monitoring process through real-time monitoring of physical parameters and their reporting. The project includes communication nodes, cloud infrastructure for data processing, and a web application for data display. The architecture is based on microservices placed in the cloud, providing means for communication and data exchange between various entities.
+
+The IoT system consists of two nodes: data-gathering nodes and mobile nodes. Sensors located in the cattle collect data and send it to mobile nodes, which then transmit the data to the cloud for processing. The parameters include body temperature, humidity, heartbeat, and cattle position. Data is sent in JSON format and includes details such as time, temperature, humidity, heartbeat, and position coordinates (x, y, z). The system also supports offline data collection and transmission once the internet is available.
+
+Microservices handle tasks like cattle and farm registration, as well as user authentication and data processing. Each cow is assigned a unique ID, and sensors are placed on their collars to collect health data. The JSON format for data transmission includes fields for cattle ID, date, pulse, temperature, position coordinates, and humidity.
+
+For farm and farmer management, microservices allow for registration, updates, and data retrieval. Farmers can access the system using a unique password-protected account. The system predicts cattle health using the LightGBM algorithm, chosen for its high accuracy compared to other algorithms.
+
+4. Analysis and Results
+
+Cattle health parameters, such as body temperature (37.78–39.17°C) and heartbeat (100–140 bpm), are monitored using sensors. Data collected is processed using the LightGBM algorithm to predict health status. The dataset includes 10,000 records, with 60% used for training, 20% for testing, and 20% for validation.
+
+The analysis involves comparing various algorithms to determine the most suitable one for health prediction. The LightGBM algorithm showed superior performance based on metrics like R-squared, absolute loss, squared loss, and root-mean-square error. The JSON format for data forecasting includes fields for temperature, pulse, humidity, position coordinates, date, and time.
+
+The proposed architecture includes an API gateway that handles requests, balancing loads, and ensuring security. Microservices process and store data, predicting cattle health and notifying farmers in real time through web sockets and email.
+
+The system was tested on two farms with 15 and 20 cattle, respectively, measuring parameters every five seconds. The average health parameters were body temperature (38.20°C and 38.50°C), heart rate (120 bpm and 128 bpm), humidity (76% and 82%), and general cattle health (88% and 94%). The overall average across both farms was 38.40°C for body temperature, 125 bpm for heart rate, 80% humidity, and 92% general health.
+
+5. Conclusions
+
+This study developed a microservice-based architecture for monitoring cattle health using IoT devices. The architecture includes microservices for data collection, processing, and notification, ensuring robust, scalable, and reliable system performance. The system was tested on two farms, demonstrating its effectiveness in predicting cattle health and providing real-time notifications to farmers.
+
+The architecture can be adapted for other applications, and future work includes expanding the list of monitored parameters and integrating additional sensors. The system facilitates access to data for various applications, helping farmers and state bodies manage cattle health efficiently.

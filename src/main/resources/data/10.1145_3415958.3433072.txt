@@ -1,0 +1,20 @@
+A Meta Learning Approach for Automating Model Selection in Big Data Environments using Microservice and Container Virtualization Technologies
+Shadi Shahoud, Hatem Khalloof, Moritz Winter, Clemens Duepmeier, Veit Hagenmeyer
+
+ABSTRACT
+For a given specific machine learning task, multiple algorithms and their configurations are often tested in a trial-and-error approach, wasting human resources and requiring data analytics expertise. Meta learning supports non-expert users by recommending promising algorithms based on meta features of a given dataset. This paper introduces a generic microservice-based framework for meta learning in Big Data environments, utilizing a powerful software stack, container virtualization, modern web technologies, and a microservice architecture. The framework's performance and usability are evaluated using time series model selection, demonstrating excellent performance and low overhead in assigning forecasting models.
+
+1 INTRODUCTION
+Machine Learning (ML) is designed to allow computers to evolve behaviors based on empirical data, predicting future behavior, results, and trends. ML advancements necessitate methodologies and software solutions for non-experts. Trial-and-error approaches to ML tasks waste resources and require expert knowledge. Meta learning addresses this by automatically finding the most appropriate model, formulating it as a supervised learning task with training and testing phases. In Big Data applications, data variety and volume grow significantly, necessitating scalable solutions like microservice architectures.
+
+2 RELATED WORK
+Meta learning frameworks support non-expert users in selecting appropriate models. Several approaches focus on classification algorithms and time series model selection. Previous works have proposed frameworks for forecasting, but limitations exist, such as lack of support for Big Data environments and scalability. This paper extends existing microservice architecture with services for data preprocessing, meta knowledge extraction, and meta learning.
+
+3 FRAMEWORK CONCEPT AND ARCHITECTURE
+The proposed framework consists of three layers: User Interface (UI), Service, and Persistence and Processing. The UI layer includes separate web applications for data, model, and cluster management, model training, and automated selection. The Service layer includes microservices for job management, data management, data preprocessing, meta knowledge extraction, and meta learning. The Persistence and Processing layer provides storage and execution capabilities, supporting Apache Spark as the ML framework. The framework's architecture enhances scalability and flexibility, enabling automated model selection for various application areas.
+
+4 EVALUATION
+The framework's predictive accuracy and execution time are evaluated using time series model selection. Meta learners, Random Forest (RF), and Artificial Neural Network (ANN) are employed. The evaluation includes feature engineering to reduce dimensionality and multicollinearity. Results show ANN performs better in assigning the correct forecasting model, with DSTMF meta features offering lower extraction time compared to TS features.
+
+5 CONCLUSIONS
+The proposed framework automates model selection with meta learning in Big Data environments, demonstrating excellent predictive performance and low overhead. Future work includes extending the framework for other model selection scenarios and automating additional steps in the ML pipeline.

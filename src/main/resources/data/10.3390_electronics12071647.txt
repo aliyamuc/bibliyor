@@ -1,0 +1,74 @@
+A Post-Evaluation System for Smart Grids Based on Microservice Framework and Big Data Analysis
+
+Abstract:
+Wind energy, as a clean energy source, has been rapidly developing in recent years. However, there is often a significant difference between the designed electricity generation capacity and the actual electricity generation capacity during the construction of wind farms, making it difficult to assess the economic benefits of wind farms. Therefore, the development post-evaluation technology is required to support the renovation of old wind farms. Additionally, traditional data analysis techniques are unable to handle and analyze massive data in a timely manner. To address these issues and meet actual business needs, this paper designs an intelligent grid electricity generation post-evaluation platform for wind farms based on a microservice framework and big data analysis technology. The platform evaluates the operating status of wind farms by analyzing their operational and design data and visualizes relevant big data information. It provides technical support and improvement solutions for wind farm renovation and new wind farm construction. The platform has been tested and proven to meet the requirements for processing and analyzing massive data, post-evaluating electricity generation, and visualization.
+
+Keywords:
+Micro-services framework, grid big data assessment, supervisory control and data acquisition, nacelle transfer function, smart grid.
+
+1. Introduction
+
+In recent years, due to the growing global demand for energy and increasing awareness of the need for environmental protection, wind energy has become a popular clean energy source. More countries and regions are investing in wind farms to meet their energy needs and promote sustainable development. However, the efficient management and monitoring of these distributed wind power facilities have become major challenges. Wind farms usually consist of hundreds of wind turbines, each needing to be monitored and maintained. Additionally, the instability of wind energy complicates wind farm management, as changes in wind speed and direction significantly impact turbine performance and output.
+
+Big data technology plays an important role by monitoring and collecting large amounts of wind farm data, such as wind speed, wind direction, turbine output, and power load, which helps management personnel better understand wind farm operations. Big data technology also aids in making predictions and optimizing wind farms by predicting changes in weather and wind speed and adjusting the power grid load balance.
+
+1.1. Motivation
+
+Post-evaluation of wind farm power generation evaluates turbine performance and electricity generation capabilities. With the increasing number and size of wind farms, power post-evaluation demand has risen. Current manual analysis software methods are inefficient due to increasing data volumes and the need for high-accuracy analysis. Thus, developing a digital platform for post-evaluation of wind farm power generation based on big data technology is necessary to promote the modernization and intelligence of wind farm platforms and complete enterprise wind farms' overall planning.
+
+1.2. Research Challenge
+
+The continuous development of big data technology brings new opportunities for assessing wind farm power output but also poses certain challenges:
+
+Incomplete or missing data: Incomplete or missing data can reduce the accuracy and reliability of the assessment results.
+Inconsistent data quality: Noise or errors in data from different sources impact analysis accuracy.
+Difficult to establish accurate benchmarks: Differences in turbine models, environmental conditions, and service life make benchmarking challenging.
+Difficult to predict future power generation: Environmental factors affect turbine performance and output, making future power generation evaluation uncertain.
+Large-scale data analysis and processing: Vast data generation requires advanced algorithms and techniques to extract valuable information.
+1.3. Contributions
+
+This article presents a platform for post-evaluation of wind farm power generation using big data processing and a distributed software architecture to address relevant issues. The main contributions are:
+
+Employing big data processing technology to enhance post-evaluation computation efficiency.
+Incorporating a distributed software architecture to improve system throughput and reduce coupling and latency.
+Integrating big data visualization technology to achieve intuitive and readable results, aiding wind resource engineers in operational status judgments.
+Offering a comprehensive big data-based solution for constructing a post-evaluation system for wind farms.
+3. System Design
+
+3.1. Requirements Analysis
+
+The platform analyzes and calculates existing wind farms' operating conditions, monitors national wind farm distribution, and evaluates individual wind farms' operating conditions by analyzing unit, wind measurement tower, and fault data. It issues wind resource assessment reports based on this information. The system is divided into project, monitoring and control, data collection, wind measurement tower, nacelle transfer function, operation analysis, model validation, and report modules.
+
+3.2. System Function and Overall Design
+
+The system modules include:
+
+Project Module: Manages projects created by users, displaying wind farms' geographic distribution, and allows viewing, creating, deleting, editing, and calculating project information.
+SCADA Module: Analyzes raw operating data of turbines, including wind direction normalization, quality statistics, and interpolation.
+Wind Measurement Tower Module: Displays operational data of individual wind measurement towers.
+Nacelle Transfer Function Module: Core calculation module, including NTF calculation, check, and application.
+Operation Analysis Module: Displays the wind farm's operational status, including power generation, PBA, average wind speed, and fault analysis.
+Model Validation Module: Compares design and actual operational conditions, analyzing differences and reasons.
+Report Module: Publishes corresponding evaluation reports based on wind farm operations.
+The system architecture uses a front-end and back-end separation pattern. The front-end uses technologies such as h5, Echart, and Node.js. The back-end uses a micro-service architecture, encapsulating API for module calling, with a circuit breaker mechanism and load balancer, deployed on Docker for ease of deployment and version management.
+
+4. System Implementation
+
+The front-end and back-end separation architecture allows independent development based on predefined interfaces. The front-end mainly uses h5 + Echart for optimal rendering effects, and the back-end uses restful interfaces named by Node.js. The system front-end includes modules such as project management, detection control and data acquisition, wind measurement tower, cabin transfer function, operation analysis, and model validation.
+
+4.1. System Front-End
+
+The project module displays all project information, geographic distribution, wind speed–power generation statistics, and more. The detection control and data acquisition module statistically analyzes raw turbine data, ensuring accuracy. The wind measurement tower module provides operational data and statistics for wind measurement towers. The cabin transfer function module processes and matches wind speed time series for calculation. The operation analysis module displays wind farm operational status and generates evaluation reports.
+
+4.2. System Back-End
+
+The back-end receives API messages, performs tasks such as file downloading and verifying, invokes calculation scripts, and writes results into the database. The back-end structure includes web, parse, domain, and util layers, handling message polling, file verification, calculation, and uploading.
+
+5. Test and Discussion
+
+System testing evaluates hardware, software, and operators to identify deviations from the system design. Interface testing checks API availability and error handling, while message testing ensures correct message processing and error response. Test cases cover various system functionalities and message queues, confirming the system's ability to handle parameters, files, and errors as designed.
+
+6. Conclusions
+
+The proposed intelligent grid power generation post-evaluation platform based on a micro-service framework and big data analysis improves post-evaluation accuracy and efficiency. Key features include eliminating manual calculations, ensuring professional analysis, clear result display, faster iteration, and bold technological applications. Future research aims to improve platform functionality, performance, and security, applying it to more intelligent grid systems for accurate and secure management and optimization.
+

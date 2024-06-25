@@ -1,0 +1,102 @@
+Title: Osmotic Cloud-Edge Intelligence for IoT-Based Cyber-Physical Systems
+Authors: Giuseppe Loseto, Floriano Scioscia, Michele Ruta, Filippo Gramegna, Saverio Ieva, Corrado Fasciano, Ivano Bilenchi, Davide Loconte
+Abstract:
+This paper proposes a Cloud-Edge AI microservice architecture for IoT-oriented Cyber-Physical Systems based on Osmotic Computing principles. Key features include:
+
+Containerized architecture enabling AI training and inference on Edge, Cloud, or both
+Microservice encapsulation of components for mapping to COTS products
+Prototype implemented with commodity hardware and open-source software
+Case study in intelligent manufacturing with experimental validation
+
+
+Introduction
+
+
+Discusses integration of IoT and AI in Cyber-Physical Systems
+Introduces Edge Intelligence and Collaborative Cloud-Edge Intelligence concepts
+Proposes Osmotic Computing approach for dynamic orchestration of microservices
+Outlines key contributions of the paper
+
+
+Osmotic Cloud-Edge Architecture
+
+The paper describes the proposed architecture:
+
+Microservices encapsulated in containers and deployed opportunistically
+Spans Cloud and Edge infrastructural layers
+Edge level performs data acquisition, preprocessing, and lightweight analytics
+Cloud level handles more complex processing and analytics
+Dynamic orchestration of microservices between Cloud and Edge
+
+3.1 Microservices
+Details the key microservices in the architecture:
+
+Local Storage
+Data Processing
+Data Stream Management System
+Data Producer/Consumer
+Edge/Cloud Intelligence
+Data Analytics
+Orchestrator
+
+3.2 Technologies
+Lists the COTS technologies selected to implement each microservice:
+
+balenaOS for containerization
+openBalena for orchestration
+Apache Kafka for data streaming
+Redis for local storage
+TensorFlow/Keras for machine learning
+Streamlit for data visualization
+
+
+Case Study: Intelligent Manufacturing
+
+Describes implementation of a prototype system for impurity prediction in iron ore extraction:
+
+Simulated sensors/actuators using public dataset
+Architecture aggregates data and predicts silica content using ML
+
+4.1 Prototype
+Details the hardware and software components used:
+
+Edge nodes: Raspberry Pi boards
+Cloud: Microsoft Azure VM
+Message broker: Apache Kafka
+Machine learning: TensorFlow/Keras
+Containerization: balenaOS
+
+4.2 Experiments
+Outlines experiments conducted to evaluate the prototype:
+
+Data gathering performance
+Model training and validation
+Prediction performance
+Osmotic microservice allocation
+
+Results show:
+
+Linear dependence of import time on dataset size
+Acceptable trade-off between Edge model accuracy and training time
+Lower communication latency but higher inference time for Edge vs Cloud
+Viable elastic allocation of microservices between Edge and Cloud
+
+
+Conclusions and Future Work
+
+Summarizes key contributions:
+
+Novel Cloud-Edge Intelligence framework
+Microservice architecture with COTS mapping
+Flexible deployment of AI tasks
+Validated prototype implementation
+
+Outlines areas for future work:
+
+Semantic technologies for orchestration
+Advanced IoT-oriented AI algorithms
+Enhanced analytics/visualization
+Integration with real sensors/actuators
+Additional CPS case studies
+
+The paper demonstrates a flexible and scalable approach for implementing AI capabilities in IoT-based Cyber-Physical Systems using Cloud-Edge collaboration and microservices.

@@ -1,0 +1,89 @@
+Title: Context-Aware Personalization: A Systems Engineering Framework
+Authors: Olurotimi Oguntola and Steven Simske
+Abstract:
+This study proposes a systems engineering framework for context-aware personalization in e-commerce. The framework combines three components:
+
+Recognition and knowledge of users (persona generation)
+Awareness of users' current contexts
+Comprehension of users' situations and prediction of future status (intent prediction)
+
+The persona generator uses unsupervised machine learning to assign users to cohorts. The context awareness component is implemented as a microservice. The intent prediction component achieved 97.3% accuracy using BERT embeddings and an LSTM neural network. The framework generates cohort-directed prescriptive actions as recommended alternatives to users' shopping steps.
+
+Introduction
+
+
+Highlights importance of personalized omnichannel customer experiences in retail
+Notes shortage of practical implementations of personalization systems
+Proposes a systems engineering framework for context-aware personalization
+Framework designed to be simple, scalable and replicable using open-source technology
+Implemented through specialized subsystems: persona generation, context awareness, intent prediction, and cohort-directed prescriptions
+
+
+Materials and Methods
+
+2.1 Data Capture
+
+Uses publicly available e-commerce behavior data
+Requires capturing first-party data on user interactions (clicks, searches, views, etc.)
+Leverages privacy-compliant methods like device fingerprinting
+Data capture layer depicted in system architecture diagram
+
+2.2 Persona Generation
+
+Groups users with similar behavioral metrics into cohorts
+Uses unsupervised clustering techniques
+Evaluated K-Means and Gaussian Mixture Models
+Selected K-Means clustering with 5 optimal clusters
+
+2.3 Context-Aware Computing
+
+Acquires contextual information about users' current situations
+Implemented as microservices providing various context data
+Context variables computed include propensity to purchase, session details, pricing information, etc.
+
+2.4 User Intent Detection
+
+Predicts user's intent during shopping session
+Uses LSTM neural network to model sequences of user actions
+Experiments with different model architectures and parameters
+Best result: 97.3% accuracy using BERT embeddings
+
+2.5 Cohort-Directed Prescription
+
+Generates prescriptive signals for alternative user actions
+Based on typical paths of cohort members leading to desired outcomes
+Recommends next best action at each step of shopping journey
+
+2.6 Experiments
+
+Used Python, TensorFlow, Keras on Apple M1 chip
+Dataset: 22.5 million timestamped events from first month
+Compared different model configurations and parameters
+Evaluated using metrics like mean absolute error and accuracy
+
+
+Results
+
+
+Baseline LSTM model achieved 0.05 MAE on test data
+Adding dropout helped reduce overfitting
+Best performance: 97.3% accuracy, 0.04 MAE using BERT embeddings
+
+
+Discussion
+
+
+Framework enables practical end-to-end implementation of personalization
+Modular design allows swapping components as technology improves
+Limitations: Could not use actual retail data due to privacy restrictions
+
+
+Conclusions
+
+
+Established systems engineering framework for personalized e-commerce
+Achieved 97.3% accuracy in predicting user intent
+Facilitates improved shopping experiences and business outcomes
+Provides scalable, replicable solution for industry practitioners
+
+The paper provides a comprehensive systems engineering approach to implementing context-aware personalization for e-commerce, with promising experimental results demonstrating its effectiveness.

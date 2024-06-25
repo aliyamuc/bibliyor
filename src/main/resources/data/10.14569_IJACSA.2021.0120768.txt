@@ -1,0 +1,54 @@
+IoHT-MBA: An Internet of Healthcare Things (IoHT) Platform based on Microservice and Brokerless Architecture
+Abstract:
+The paper introduces an IoHT Platform for healthcare environments designed using microservice and brokerless architecture. It focuses on three key challenges: data collection, user/device management, and remote device control. The platform aims to address issues like limited device processing capacity, energy saving, speed and accuracy of data collection, security, and system scalability. It also includes real-time alerts for medical teams. The paper describes an evaluation of the platform's performance, reliability, and geographical independence. The complete code solution is available on GitHub.
+I. Introduction:
+
+Discusses the growing adoption of IoT in healthcare
+Identifies key evaluation criteria: response time, energy consumption, reliability
+Analyzes limitations of existing IoT architectures and protocols
+Proposes a new platform (IoHT-MBA) using brokerless and microservice architecture
+
+II. Background:
+Provides technical background on:
+
+gRPC and HTTP/2
+Kafka Message Queue
+OAuth and Single Sign-On Protocol
+Zabbix monitoring system
+
+IV. System Architecture:
+Describes the three-layer architecture:
+
+Things layer (physical devices)
+User layer (user groups)
+Platform layer (system load balancer)
+
+Details components like data collection services, control services, Single Sign-On, object management, message queues, and data processing.
+V. Implementation:
+
+Describes implementation of key services
+Explains data collection, control, and object management flows
+Details on RBAC model and user management approach
+
+VI. Evaluation:
+A. Environment Setting
+
+Deployed on Amazon EC2 and Raspberry Pi
+
+B. Round Trip Time Test Cases
+
+Measured data transfer times and error rates across geographical locations
+Found fast transfer speeds, 0% error rates, unaffected by distance
+
+C. Broken Connection Test Cases
+
+Compared message receipt with and without the platform during connection issues
+Platform ensured no data loss compared to standard MQTT
+
+D. Future Work
+
+Plans to address additional security, privacy, and availability challenges
+Aims to develop data processing service for collected data analysis
+
+VII. Conclusion:
+Summarizes the key features and benefits of the IoHT-MBA Platform, including its microservice and brokerless architecture, use of gRPC, message queue system, and RBAC model with Single Sign-On. Emphasizes the platform's ability to meet core IoHT requirements while enabling further development of advanced applications.

@@ -1,0 +1,75 @@
+Title: Medical Prognosis of Infectious Diseases in Nursing Homes by Applying Machine Learning on Clinical Data Collected in Cloud Microservices
+Abstract:
+Background: Treating infectious diseases in elderly individuals is difficult, often requiring emergency services.
+Aim: Anticipate infectious disease diagnosis by a few days to improve patient well-being and reduce burden on emergency services.
+Methods: Daily vital signs collected from nursing home residents and transferred to cloud database. Machine learning classifiers used to recognize patterns. Doctors reported diagnoses. Microservice architecture provided system access and functionality.
+Results: Classifiers reported good results. System well-accepted by medical personnel, cost-effective, and good for disadvantaged areas. Identified importance of certain clinical variables for infectious diseases.
+Conclusions: Explores applying mobile communications, cloud services, and machine learning to provide efficient tools for medical staff in nursing homes. Architecture can extend to big data applications for medical research.
+
+Background and Objectives:
+
+
+World's older population growing significantly
+Infectious diseases common and serious in elderly, often requiring emergency services
+eHealth supports patient-centric approach using digital technology
+Hypothesis: Anticipating infectious disease diagnosis by a few days could improve patient well-being and health system resources
+Aim to apply mobile communications, cloud services, and machine learning to provide efficient tools for nursing home medical staff
+
+
+Materials and Methods:
+Participants, Procedure, and Ethical Considerations:
+
+
+Applied to nursing home residents susceptible to infectious diseases
+Nurses collect daily vital signs, doctors report detected infections
+Protocol requires resident/relative approval
+Detailed workflow for nurses to collect and upload data
+
+Instruments:
+
+Portable set of biosensors for vital signs
+Android tablet with mobile application
+Four biosensors collecting five vital signs
+
+System Design:
+
+Cloud-based microservice architecture
+Flexible computation resources and functionality
+Special attention to data security
+
+Analysis by Machine Learning Classifiers:
+
+Spatial domain approach used for pattern recognition
+WEKA software implemented in Apache Spark environment
+Goal to experiment with influence of clinical variables on prediction success
+
+
+Results:
+
+
+Experiment conducted in two Madrid nursing homes with 60 total participants
+Average time to learn process: 7 minutes
+Average time to collect vital signs: 4 minutes 15 seconds
+System efficiency tested with Docker containers, Apache, and Nginx
+Data analysis performed using Naive Bayes, Filtered Classifier, and Random Forest algorithms
+
+
+Discussion:
+
+
+Results satisfactory but not fully accurate due to short sampling period
+Random Forest analysis showed heart beat rate as best predictor
+Acute respiratory infection most predictable, skin/soft tissue infection least predictable
+Average heart beat rate most important variable overall
+
+
+Conclusions:
+
+
+Proposed comfortable, flexible, accessible and cost-effective eHealth monitoring system
+Easy to use without need for IT skills
+Microservice architecture cost-effective and scalable
+Main contribution is findings on importance of clinical variables for infectious disease identification
+Further research needed with larger datasets and time series approach
+
+The paper provides a detailed description of an eHealth system for monitoring and predicting infectious diseases in nursing home residents using machine learning on clinical data collected via cloud microservices. It demonstrates the feasibility and potential benefits of such a system, while noting areas for further improvement and research.

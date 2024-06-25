@@ -1,0 +1,65 @@
+Title: zPasteurAIzer: An AI-Enabled Solution for Product Quality Monitoring in Tunnel Pasteurization Machines
+Abstract:
+
+Presents zPasteurAIzer, an end-to-end system for real-time quality monitoring of legacy tunnel pasteurization machines
+Uses IoT and AI-enabled virtual sensing techniques
+Provides details on design, implementation, microservice architecture
+Includes functionalities like machine configuration, data acquisition, ML-based estimation, live monitoring
+Validated in real-world use case at large brewing plant in Greece
+
+
+Introduction:
+
+
+Explains tunnel pasteurization process and importance in food/beverage industry
+Describes Pasteurization Units (PUs) and calculation
+Outlines problem with legacy pasteurizers requiring manual measurements
+Introduces zPasteurAIzer as low-cost alternative to equipment upgrades
+Mentions implementation as part of EU-funded ZDMP project
+
+
+System Design and Implementation:
+
+3.1 Requirements Specifications:
+
+Lists key requirements like non-invasive, flexible, adaptable, easy configuration, etc.
+Covers UI, data handling, product profiles, quality standards, live monitoring needs
+
+3.2 Microservice-Oriented Architecture & ZDMP Components:
+
+Describes microservice architecture and integration with ZDMP platform
+Lists main ZDMP components used (Service Bus, AI Analytics Runtime, etc.)
+
+3.3 Hardware Setup and Data Collection:
+
+Details IIoT controller setup, sensors, data flow
+Explains methodology for collecting thermograph recorder data
+
+3.4 ML-Driven Virtual Sensing:
+
+Outlines goal of creating virtual thermograph recorder
+Describes data preparation steps and ML model development
+Lists ML models tested (Ridge Regression, Random Forest, etc.)
+
+
+System Functionalities and Validation:
+
+4.1 Configuration of Machine and Process Settings:
+
+Explains UI for configuring machine parameters and pasteurization profiles
+
+4.2 Live Dashboard Monitoring:
+
+Describes dashboard elements for monitoring temperatures and PU estimations
+
+4.3 Evaluation of Historical PU Estimations:
+
+Details history page functionality for reviewing past estimations
+Provides validation results - 92.78% estimation accuracy, 16 issues detected
+
+
+Conclusions and Future Work:
+
+
+Summarizes key benefits and results of zPasteurAIzer system
+Suggests future improvements like explainable AI interface, additional data integration

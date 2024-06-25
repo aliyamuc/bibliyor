@@ -1,0 +1,94 @@
+ABSTRACT
+With the continuous deepening of the construction of new power systems and the deepening application of user-side data collection, the main station of the electric energy data collection system has encountered bottlenecks in data collection, calculation, storage, etc. which cannot meet the needs of rapid business development. This paper proposes a master station system technical scheme with high-frequency real-time acquisition characteristics, which comprehensively resolves the efficiency issues of high-frequency concurrent interaction, Real-time computing, and massive data storage. It is based on Microservices architecture, distributed storage, real-time stream computing, memory batch computing, and other technologies. It has been established through experimental environment verification and on-site application in a particular Chinese province that the suggested scheme can significantly increase the collection capacity of the power consumption information collection master station and enhance the functionality of the conventional centralized collection master station.
+
+1. INTRODUCTION
+The demand for data application in the master station of the acquisition system of electric energy data has skyrocketed as a result of the ongoing development of new power systems, the deregulation of the power sales side, and the quick development of new industries like electric vehicles, distributed power generation, and multi-meter integration. Additionally, the scale effect of massive data poses significant challenges to the system’s data interaction, data storage, and data processing. The main station must immediately increase the effectiveness of its system operation and maintenance as well as its real-time data concurrent collecting, processing, storage, and sharing capabilities. The technological architecture of the master station of the electric energy data collecting system must be upgraded immediately as a result.
+
+The main station architecture of the electric energy data collection system has undergone numerous changes recently, but it primarily adopts conventional distributed architectures, relational databases such as Oracle, and distributed file systems like HDFS to support business operations like automated data collection, online measurement and monitoring, and intelligent fault diagnosis. In the era of conventional power systems, this design can handle basic data gathering and processing requirements, but there are some processing and storage restrictions for real-time large-scale data collection.
+
+With the growth and maturity of big data technology, new technologies have emerged to improve computing and storage capabilities, including storage computing separation technology and the installation of various computing engines on the storage layer, including Hive, Spark, Flink, etc.; in addition, new real-time data processing frameworks, such as Storm and Flink, have emerged to process streaming data in real-time. This provides a basis for the upgrading of the master station architecture of the electric energy data collection system.
+
+We will investigate the technology based on massive data distributed storage, distributed cache, stream computing, and distributed computing, and conduct in-depth research in combination with real-world scenarios to build the architecture of the cloud master station of the electric energy data collecting system, with a focus on the optimization of the architecture and performance improvement.
+
+2. CURRENT SITUATION ANALYSIS
+In the era of the traditional power system, the main station of the electric energy data collecting system is designed according to the hierarchical service of "acquisition-storage-data processing-use" in terms of functional architecture, which could be divided into four layers of data acquisition, data storage, data processing, and data application. Each layer has independent services.
+
+The main station adopts the OSGI framework. Event-driven technology, multithreading technology, the consistent HASH load balancing scheduling algorithm, etc., are used in the data collecting layer to provide high concurrency access, processing, and storage of a significant amount of collected data; relational databases (such as Oracle) and HDFS distributed file systems are used in the data storage layer to store the collected data; ETL, Oracle stored procedures, OLAP, etc., are used at the data processing layer to carry out data cleansing, statistical analysis, and data release for source data.
+
+With the development of a new power system, there are more rich business application scenarios and an explosive growth in data acquisition, which raises the demands on the master station of the electric energy data collection system. The current master station mainly has the following problems:
+
+The real-time data concurrent acquisition and processing capability is insufficient. The data collection function using the OSGI framework has communication nodes and collection nodes that cannot be dynamically expanded, resulting in insufficient system concurrency and inability to meet the demand for massive real-time data aggregation; multi-threading technology leads to high hardware resource consumption, complex control, and error-prone.
+The ability of real-time data calculation and analysis is insufficient. Without taking into account the differences between real-time and offline scenarios, the analysis and calculation of collected data adopt the method of storing data first and then calculating and analyzing, resulting in delayed response to real-time scenarios. At the same time, the system’s overall performance also suffered as a result of the frequent read and write operations on the database.
+The storage capacity of vast data is insufficient. Under the new power system conditions, the centralized relational database storage architecture cannot support the dynamic access and effective data processing needs of vast data.
+The above problems can be solved by combining microservice architecture and big data technology. Adopt the mainstream big data technology in the industry to build a complete set of high-performance data computing service systems, and use big data real-time stream computing technology to build a set of online real-time computing frameworks with the characteristics of distributed, low latency, high performance, scalability, high fault tolerance, and high reliability to support real-time business scenarios; using distributed storage and big data memory batch computing engine, build an offline computing framework that can process massive data in parallel with multiple task parallelism to support offline business scenarios; rebuild the master station design using the microservices architecture to increase the real-time concurrent data gathering, processing, and storage capacities, among other things.
+
+3. ARCHITECTURE DESIGN
+The overall logical architecture of the cloud master station for the electric energy data collecting system based on big data is as follows:
+
+The following techniques are primarily used to solve the issue of insufficient simultaneous real-time data collection and processing capacity:
+
+By adopting a microservices architecture, the front-end machine functionality is refactored to decouple it according to the data flow, creating independent microservices such as communication service, protocol parsing service, storage service, task service, bridging service, and common service. These microservices are independently deployed to achieve automatic scaling of resource nodes for communication service, protocol parsing service, and storage service.
+Protocol parsing and data warehousing services are implemented utilizing stream computing technologies. The communication service uploads message data to the Kafka message queue. The protocol parsing service retrieves the message stream data from Kafka and utilizes Flink/Blink components for parsing different protocol specifications. The storage service performs data validity checks on the parsed data and stores it. Simultaneously, the data is pushed to Kafka for real-time data computation and analysis in scenarios such as intelligent fault diagnosis. This enables the concurrency, processing, and warehousing of massive real-time data.
+To address the issue of insufficient real-time data computation and analysis capabilities, the main approach is to proactively move the real-time data computation and analysis functionality before the data is stored. The storage service pushes compliant data to the Kafka messaging component. Each real-time computation service retrieves the necessary real-time data from Kafka and utilizes Flink/Blink components to enhance the computation and analysis process. This approach reduces the latency of real-time computation scenarios, thereby improving the real-time nature of computation and analysis in real-time business scenarios.
+
+To address the issue of insufficient data storage capacity, the main solution is to employ a distributed data storage architecture and utilize techniques of sharding and partitioning to enhance the storage and access capabilities of the database. The distributed relational databases, such as DRDS and QuassDB, are used to store report data, user profiles, parameter data, and more. Distributed columnar storage systems like OTS and HBase are utilized to store collected data. Real-time data warehouses like ADB and DWS are employed to store real-time statistical metric data. For storing comprehensive data, the data warehouse solutions MaxCompute and Hive are utilized.
+
+4. SPECIFIC SCENARIO DESIGN AND VERIFICATION
+4.1 Scenario Design and Verification
+For the above architecture, typical scenarios of real-time business and offline business are selected for verification in the laboratory environment.
+
+Real-time business scenarios are those in which the next course of action is quickly triggered following the quick calculation and analysis of the real-time data source. It requires high analysis processing speed, huge data processing scale, but low storage capacity.
+
+Offline business scenario refers to analyzing and processing massive data to form result data for other applications. It does not require high processing time, but it processes a large amount of data.
+
+4.1.1 Real time business scenario
+The real-time power outage analysis scenario was chosen as a representative case for real-time business validation this time. Real-time power outage analysis relies on the real-time reporting of power outage or tripping events from intelligent switches and meters along with the established topology of the power distribution area to quickly identify faulty equipment in the power distribution area and push it to the appropriate systems for power outage repair and comfort.
+
+Implementation plan
+The implementation plan is as follows:
+The processing process is as follows:
+Test results
+There are 15 big data platform servers in the test environment, including 3 management nodes and 12 data nodes. The hardware configuration of a single PC server is CPU: 12 cores, Memory: 128GB, and Hard disk: 20TB. The software adopts JDK 1.8, Hadoop 2.6.0, Flink 1.11.2, Redis 6.2.4, Spark 2.4.0, Kafka 2.6.2, HBase 2.1.0, Hive 2.1.1. The test data originates from an acquisition simulation system with a terminal quantity of over 300,000 and a meter quantity of over 20 million in a particular province of China.
+
+The specific test verification results are as follows:
+
+Test data volume (piece)	Old architecture	The new architecture proposed in this paper
+Accuracy (%)	Processing time (s)
+5,000	93.40	180
+500,000	92.10	600
+5,000,000	89.10	1200
+4.1.2 Offline business scenario
+As an example of typical scenarios for offline business validation, power supply business expansion auxiliary installation analysis was chosen this time.
+
+The auxiliary installation analysis of power supply business expansion is based on the load curve, current curve, electricity quantity of the substation area in the past year, combined with the archive information of the substation area, user archives, box meter relationship, meter box, etc., to mine and analyze, obtain the accessible capacity of the substation area, and monitor the operating status of the substation area (heavy overload, three-phase imbalance, user over capacity electricity consumption).
+
+Implementation plan
+The implementation plan is as follows:
+The processing process is as follows:
+Test results
+There are 15 big data platform servers in the test environment, including 3 management nodes and 12 data nodes. The hardware configuration of a single PC server is CPU: 12 cores, Memory: 128GB, and Hard disk: 20TB. The software adopts JDK 1.8, Hadoop 2.6.0, Flink 1.11.2, Redis 6.2.4, Spark 2.4.0, Kafka 2.6.2, HBase 2.1.0, Hive 2.1.1.
+
+The specific test verification results are as follows:
+
+Import data	Old architecture	The new architecture proposed in this paper
+73 million historical load data	It takes 35 minutes to count 15 indicators.	It takes 3 minutes to count 15 indicators.
+1,800 power distribution area files
+100,000 box list relationships
+200,000 meters and phase information
+730 million historical load data	It takes 180 minutes to count 15 indicators.	It takes 9.4 minutes to count 15 indicators.
+18,000 power distribution area files
+1,000,000 box list relationships
+2,000,000 meters and phase information
+730 million historical load data	Unable to count	It takes 28.5 minutes to count 15 indicators.
+180,000 power distribution area files
+10,000,000 box list relationships
+20,000,000 meters and phase information
+4.2 Application effect
+After the laboratory environment verification, the cloud master station for the electric energy data collecting system based on big data was successfully applied in a province in China.
+
+In terms of real-time power outage analysis and judgment, 123,968 records were analyzed within one year, with an accuracy rate of 98.2% and an average delay of 3 seconds for power outages.
+
+In terms of auxiliary installation indicator statistics for power supply business expansion, the analysis of auxiliary installation indicators was done on 188,000 stations and districts in the province, 21.53 million power user files, and over 7.8 billion historical load data. All 15 indicator computations took an average of 30 minutes to complete, better serving consumers’ needs.
+
+5. SUMMARY
+A new generation of power consumption information acquisition cloud master station is built on the foundation of new technologies such as cloud computing and big data, which significantly improve the concurrency ability of the master station’s massive real-time data acquisition, computing and analysis ability of real-time data/offline data, real-time data storage capacity, system operation and maintenance efficiency, and meets the demand for power consumption information acquisition. The next step will focus on the research on the security architecture of the master station from the aspects of communication security, data security, storage security, and application security to improve the security of the cloud master station of the electric energy data collecting system.

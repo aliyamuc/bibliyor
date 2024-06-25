@@ -1,0 +1,24 @@
+Title: Building Ensemble Models with Web Services on Microservice Architecture
+Author: Máté Szabó
+Abstract
+The paper explores the integration of ensemble models into microservice architectures using web services. It emphasizes the flexibility of combining machine learning models written in different programming languages through web interfaces, enabling applications to leverage diverse models seamlessly. The study compares two architectural variants: a direct approach where clients interact directly with model services, and a gateway approach utilizing an API aggregator for managing multiple models.
+
+Introduction
+The introduction highlights challenges in integrating machine learning models into applications due to language and platform differences. It discusses traditional monolithic and layered architectures and contrasts them with microservice architecture, which offers independent development and deployment of services.
+
+Architecture of the System
+The paper proposes two main variants:
+
+Direct Variant: Clients interact directly with individual model services, making decisions locally based on responses.
+Gateway Variant: Utilizes an API gateway to aggregate requests to multiple model services, enabling server-side processing and ensemble model creation.
+Messages between the Web Services
+Communication within the microservice application adheres to REST principles, ensuring stateless, cacheable, and layered interactions. It discusses how data and model predictions are exchanged between services using HTTP requests and JSON payloads.
+
+Combining Models of Different Platforms
+The study emphasizes the capability of microservice architectures to combine models from diverse platforms using ensemble techniques such as bagging, boosting, and voting. It compares the client-side ensemble building in the direct variant with server-side aggregation in the gateway variant.
+
+Integration as a Subsystem
+The paper addresses the integration of these architectures into existing software systems, highlighting considerations such as data storage, computing resources, and privacy implications. It suggests criteria for choosing between the direct and gateway variants based on application needs and resource constraints.
+
+Conclusion
+In conclusion, the paper advocates for microservice architectures as a robust framework for integrating machine learning into applications, offering flexibility, scalability, and ease of maintenance. It summarizes the benefits and trade-offs between the direct and gateway variants based on their implementations and application scenarios.

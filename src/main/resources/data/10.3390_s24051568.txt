@@ -1,0 +1,69 @@
+Title: Digital Twin Platform for Water Treatment Plants Using Microservices Architecture
+Authors: Carlos Rodríguez-Alonso, Iván Pena-Regueiro, Óscar García
+Abstract:
+This paper presents a framework for developing a Digital Twin platform for a wastewater treatment plant, based on a microservices architecture optimized for edge computing implementation. The platform aims to optimize operation and maintenance processes using machine learning, process modeling and simulation, and BIM models to support decision-making.
+
+Introduction
+
+
+Discusses water scarcity and quality issues exacerbated by climate change and population growth
+Introduces Digital Twins as a solution for optimizing water infrastructure
+Outlines the paper's focus on developing a Digital Twin platform for water treatment plants
+
+
+Contribution
+
+3.1 Platform Architecture
+
+Describes microservices-based architecture with API Gateway as central orchestrator
+Outlines benefits of microservices approach (flexibility, scalability, fault isolation)
+Details communication protocols and security measures
+
+3.2 Machine Learning Service
+
+Focuses on predictive maintenance for water pump drivers
+Describes data preprocessing, dimensionality reduction, and model architecture
+Reports model performance metrics (recall 0.977, precision 0.984, F1 score 0.981)
+
+3.3 Simulation Model: Active Sludge Model 1
+
+Explains implementation of ASM1 for biological reactor simulation
+Details model components and key reactions
+Presents simulation results for 10-day period
+
+3.4 Digital Twin Platform
+
+Describes web application interface using .NET Core
+Outlines user authentication and access control
+Details integration with BIM models and visualization tools
+Explains on-demand simulation capabilities
+
+3.5 Strategy for Digitization and Digital Twin Implementation
+
+Outlines multi-stage approach for implementing Digital Twins
+Covers data collection, BIM integration, machine learning, IoT integration, cybersecurity, and user interface development
+
+
+Discussion
+
+
+Highlights key features and benefits of the proposed platform
+Discusses potential for expanding use cases and functionality
+Outlines future research directions, including real-world implementation and cloud integration
+
+
+Conclusions
+
+
+Summarizes key contributions:
+
+Microservices-based Digital Twin platform
+LSTM neural networks for predictive maintenance
+ASM1 simulation for process insights
+Edge computing optimization
+Blueprint for digital transformation in water treatment
+
+
+Emphasizes potential impact on water management challenges and sustainability goals
+
+The paper presents a comprehensive framework for developing and implementing Digital Twin technology in water treatment plants, with a focus on microservices architecture, machine learning for predictive maintenance, and process simulation to optimize operations and support decision-making.

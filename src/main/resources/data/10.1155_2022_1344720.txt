@@ -1,0 +1,63 @@
+Infrastructure Smart Service System Based on Microservice Architecture from the Perspective of Informatization
+Authors: Yanyan Lv, Wenken Tan
+
+Institutions:
+
+School of Digital Construction, Shanghai Urban Construction Vocational College, Shanghai 201499, China
+College of Architecture and Urban Planning, Tongji University, Shanghai 200092, China
+Correspondence: Wenken Tan (twk@tongji.edu.cn)
+
+Publication Information:
+Received 28 April 2022; Revised 1 June 2022; Accepted 20 June 2022; Published 4 July 2022
+
+Abstract:
+
+With the rapid development of engineering information technologies such as BIM, GIS, IoT, big data, and cloud computing, intelligent management of infrastructure is becoming an inevitable trend. Microservice architecture, due to its service component characteristics, can build a high availability and low coupling application system, improving service quality. This paper proposes the concept of an infrastructure intelligent service system (IS3) to achieve intelligent infrastructure management. The intelligent service system's performance was tested, showing high stability and efficiency under various conditions.
+
+Introduction:
+
+The development of national smart cities involves using information technology to manage the entire project life cycle. Digital management methods are widely used in infrastructure, transitioning from "digitization" to "intelligence." This paper presents the concept of IS3, encompassing data collection, processing, visualization, and analysis for the whole life cycle of underground space engineering.
+
+Related Work:
+
+Spencer et al. designed a wireless smart sensor platform for civil infrastructure to meet structural health monitoring needs.
+Al-Humairi and Kamal developed a real-time Covid-19 monitoring system using IoT.
+Imoize et al. researched sustainable social intelligence infrastructure supporting 6G.
+Khalid et al. proposed an anonymous key agreement protocol for smart grid infrastructure.
+Kaluarachchi explored the advantages of smart and green infrastructure.
+Selim and Elgohary studied public-private partnerships in smart infrastructure projects.
+Smith developed a real-time adaptive traffic signal control system.
+System Design:
+
+The infrastructure service system is designed based on a microservice architecture using SpringCloud. It includes data collection, processing, visualization, and analysis for the entire life cycle of underground engineering projects.
+
+Data Collection:
+Data is collected through various sensors and converted for transmission, processing, storage, and control.
+
+Data Processing:
+Collected data is denoised, classified, correlated, and standardized.
+
+Data Expression:
+Data is visually displayed using 3D models and 2D GIS graphics.
+
+Data Analysis:
+Qualitative and quantitative analysis of project data, including statistical, AI, cost, and big data analysis.
+
+Microservice Framework:
+The system uses SpringCloud components such as Eureka for service registration, Gateway for microservice gateway functionality, and Feign for inter-service communication.
+
+Functional Modules:
+
+Data Third-Party Interface Service: Screens and transforms collected data for storage.
+Engineering Data Management Service: Manages infrastructure data operations.
+File Management Service: Manages uploaded files.
+BIM Model Display Service: Displays BIM models and links infrastructure data.
+2D Data Display Service: Displays 2D graphics combined with ArcGIS.
+User Service: Manages user registration, login, permissions, and personal information.
+Performance Testing:
+
+The system's server was stress-tested using Apache JMeter under both instantaneous and continuous high-concurrency conditions. Results showed the designed server significantly reduced average response time and error rate, demonstrating superior performance under high-concurrency scenarios.
+
+Conclusion:
+
+This paper analyzed the requirements and design of an infrastructure intelligent service system using microservice architecture. Future research should focus on developing cluster-based systems to prevent single points of failure and creating mobile versions for broader accessibility.

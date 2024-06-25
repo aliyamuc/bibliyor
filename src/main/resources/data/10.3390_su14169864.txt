@@ -1,0 +1,82 @@
+Title: SaaMES: SaaS-Based MSA/MTA Model for Real-Time Control of IoT Edge Devices in Digital Manufacturing
+Abstract:
+This paper proposes SaaMES, a Software as a Service (SaaS) based Manufacturing Execution System (MES) model that incorporates Microservice Architecture (MSA) and Multi-tenancy Architecture (MTA) for real-time control of IoT Edge devices in digital manufacturing. The model aims to address limitations of traditional on-premise MES systems and leverage the benefits of cloud-based SaaS, including cost reduction and flexibility.
+Key components of SaaMES:
+
+SaaS-based MES with MSA and MTA
+IoT Edge for real-time data processing and control
+Small-scale analytics at the edge for anomaly detection
+
+The paper describes the architecture and implementation of SaaMES, including experiments demonstrating faster real-time processing at the IoT Edge compared to cloud-based analysis.
+
+Introduction
+
+
+Discusses the rise of cloud computing and SaaS in manufacturing environments
+Explains benefits of SaaS, MSA, and MTA
+Introduces the concept of IoT Edge for real-time processing
+Outlines the proposed SaaMES model
+
+
+SaaMES: SaaS-Based MSA/MTA Model
+2.1 System Architecture
+
+
+Describes overall SaaMES architecture
+Explains components: SaaS-based MES, IoT Edge, Manufacturing Assets
+
+2.2 MSA in SaaS-Based MES
+
+Details application of MSA to MES modules
+Discusses benefits: flexibility, scalability, efficient resource management
+
+2.3 MTA in SaaS-Based MES
+
+Explains 5 categories of MTA implementation
+Recommends logically independent DB separation and schema separation for MES
+Outlines multi-tenant application and data source configuration
+
+2.4 Real-Time Control in IoT Edges
+
+Describes role of IoT Edge in SaaMES for real-time processing
+Explains data flow between shop floor, IoT Edge, and cloud
+
+
+Experiment and Results
+3.1 Experiment Environments
+
+
+Details hardware configurations for IoT Edge and Cloud environments
+
+3.2 Deploying SaaMES
+
+Demonstrates containerization and automated deployment of SaaMES modules
+
+3.3 Data Processing Process
+
+Outlines normal and exception data flows in SaaMES
+
+3.4 Data Preprocessing
+
+Describes bearing vibration dataset used for anomaly detection
+Explains discrete wavelet transform (DWT) for frequency conversion
+
+3.5 Anomaly Gap Maximization
+
+Details anomaly detection using Autoencoder (AE) and Generic Adversarial Networks (GANs)
+Shows experimental results of anomaly detection
+
+3.6 Average Processing Time on IoT Edge and Cloud
+
+Compares processing times for anomaly detection on IoT Edge vs Cloud
+Demonstrates 33.1% faster processing on IoT Edge due to reduced data transfer time
+
+
+Conclusions
+
+
+Summarizes key contributions of SaaMES model
+Highlights benefits of MSA, MTA, and IoT Edge integration
+Discusses limitations and future research directions
+
+The paper presents SaaMES as a novel architecture combining SaaS, MSA, MTA, and IoT Edge technologies to create a flexible, scalable, and real-time capable manufacturing execution system for digital manufacturing environments.
