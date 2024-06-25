@@ -1,0 +1,66 @@
+Research and Application of Multi-Source Data Collection Method of Power System Based on Microservice Idea
+
+Zhu Wang,
+Zhengjun Jing,
+Shaoquan Li,
+Gang Qi
+Zhaoyang Wang
+
+Abstract
+
+With the digitalization of the power system, the development of power big data requires enhanced data collection methods. This paper proposes a multi-source data acquisition method for the power system based on microservice thinking, aiming for reliable data collection, flexible visualization, and adaptation to multi-source heterogeneous data. The application of a low-code collection platform is discussed, showing improved performance, security, and a reduction in development costs by about 30%.
+
+Keywords: microservices, low-code, power system, multi-source heterogeneity, data collection
+
+I. INTRODUCTION
+
+The power system's digital transformation has increased data generation, characterized by Volume, Velocity, Variety, Value, and Veracity (5V). The data is multi-source and heterogeneous, posing challenges in extracting useful information and supporting power enterprises' digital and intelligent transformation.
+
+Reliable data collection is essential for subsequent applications and analysis. Microservices architecture facilitates multi-source heterogeneous data interaction, supporting data sharing and integration across different power enterprise departments.
+
+II. SCENARIO ANALYSIS
+
+A. Power Equipment Data
+
+The power system includes various equipment across "source-grid-load-storage" links, generating operational and monitoring data. Real-time data collection is critical for managing and planning equipment maintenance and risk assessment, enhancing refined management.
+
+B. Enterprise Marketing Data
+
+Electricity sales generate data on prices, volumes, and customers. Big data analysis in power marketing helps balance production and sales, providing data support for precise marketing and digital transformation.
+
+C. Enterprise Management Data
+
+Enterprise resources (people, finances, materials) require effective management. Big data technology supports human resource data sharing and subdivision, aiding enterprise management through collaborative office systems and flexible visual form processes.
+
+D. Data Collection Requirements
+
+Data collection programs must:
+
+Allow independent development and deployment, adapting to multi-source heterogeneous data.
+Support distributed cluster architecture for dynamic scaling and stability.
+Offer flexible visual configuration, enabling enterprise personnel to design data entry processes easily.
+III. OVERALL ARCHITECTURE
+
+The proposed architecture uses microservice clusters for different data collection services, ensuring independent deployment and dynamic scaling. Data collection includes real-time, historical, and unstructured data, supported by various protocols.
+
+IV. KEY POINTS
+
+A. Microservices Splitting
+
+Microservices architecture meets the power system's data collection needs, offering high availability, scalability, and flexibility. Services are split into time series data, filling, document, form, and process services.
+
+B. Low-Code Platform
+
+Low-code applications reduce communication and R&D costs, supporting grassroots enterprise needs. Implementation involves:
+
+Database: Ensuring seamless integration with different database vendors and versions.
+Business Logic: Storing visual design logic as metadata (XML, JSON).
+Page: Using JSON metadata to describe front-end components, supporting different application scenarios.
+V. APPLICATION CASE
+
+The multi-source data collection method has been implemented in SAC's digital platform, showing high performance and reliability. The system supports extensive relational data collection and real-time data operations, facilitating the digital transformation of power enterprises.
+
+VI. CONCLUSION
+
+This paper proposes a microservice-based multi-source data collection method for power systems, supporting the digital transformation of power enterprises. Future research will focus on integrating AI and big data technologies for intelligent power equipment management and enterprise strategy support.
+

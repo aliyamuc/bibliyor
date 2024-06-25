@@ -1,0 +1,147 @@
+A Microservice-Based Building Block Approach for Scientific Workflow Engines: Processing Large Data Volumes with DagOnStar
+
+Dante D. Sánchez-Gallegos
+Diana Di Luccio
+J. L. Gonzalez-Compean
+Raffaele Montella
+
+Abstract
+
+The impact of machine learning algorithms on everyday life is overwhelming until the novel concept of datacracy as a new social paradigm. In the field of computational environmental science and, in particular, of applications of large data science proof of concept on natural resources management, this kind of approaches could make the difference between species surviving to potential extinction and compromised ecological niches. In this scenario, the use of high throughput workflow engines, enabling the management of complex data flows in production is rock solid, as demonstrated by the rise of recent tools as Parsl and DagOnStar. Nevertheless, the availability of dedicated computational resources, although mitigated by the use of cloud computing technologies, could be a remarkable limitation. In this paper, we present a novel and improved version of DagOnStar, enabling the execution of lightweight but recurring computational tasks on the microservice architecture. We present our preliminary results motivating our choices supported by some evaluations and a real-world use case.
+
+Index Terms
+
+Microservices, Workflows, Virtual Containers, Parallel Processing, Cloud Computing
+
+I. INTRODUCTION
+
+The acquisition, processing, management, and discovery of data are key tasks when observing the earth and its natural phenomena. These tasks also produce information for organizations to support the decision-making process and to conduct scientific studies. The applications that perform these tasks are commonly modeled as stages, which are chained to create processing structures called workflows. These structures are created by using directed acyclic graphs (DAGs), where nodes represent processing stages and the edges represent the I/O interfaces used to chain the stages considered in a workflow.
+
+Multiple tools and frameworks are currently available for scientists to design workflows. These tools are in charge of executing and deploying each stage of a workflow, in an automatic manner, on a high-performance IT infrastructure (e.g., clusters of servers, the cloud or HPC). These tools are also in charge of extracting data required by the stages to transform data into information as well as delivering that information either to another stage according to a well-defined sequence (DAG) in a synchronized manner.
+
+The traditional scientific workflows include multiple heterogeneous tasks created by using diverse types of programming models, which even could be executed on several platforms and/or infrastructures. Moreover, the tasks may be deployed on either distributed or centralized IT infrastructures such as high-performance clusters (HPC), the cloud and single servers. Nevertheless, traditional workflows require a homogeneous environment to ensure a given functionality. For instance, all the applications should be written in a given programming language (e.g., Python and Java), and for a given platform (e.g., a given operating system). These restrictions are commonly imposed to enforce the correct functionality of the parallel model (commonly based on multi-threads at stage level) added to the workflow frameworks for improving the performance of workflow solutions created by scientists. This heterogeneity also produces performance issues affecting the efficiency of the workflow solutions.
+
+In this context, there is a need for solutions that not only enable scientists to organize their applications in the form of workflows and execute them in an automatic manner, but also for solutions that can deal with the heterogeneity of the development and performance of applications included in workflows that arises in a real-world scenario.
+
+In this paper, we present the design, development, and evaluation of a building block approach for workflow engines by using virtual containers (VCs) and microservices. In this approach, the building blocks encapsulate the stages of the workflows into VCs to provide the stages with portability. These building blocks are interoperable software pieces, which can be organized in the form of parallel patterns to improve the performance of the stages encapsulated into the building blocks and to solve the performance heterogeneity of the stages of a workflow. These building blocks are managed in the form of microservices to ensure the correct functionality of the parallel model as well as to solve the development heterogeneity issues that arise when managing stages developed by using different programming languages.
+
+To show the feasibility of this approach, we added the building block management in a microservice architecture to a workflow engine called DagOnStar. To show the efficiency of this approach, we developed a prototype with the new version of DagOnStar, which was evaluated in two case studies. The first case is based on workflows that extract real repositories of environmental data collected from IoT Sensors. These data are transformed through stages such as data pre-processing to detect outliers, data processing to find out hidden patterns in the data, and data storing for preserving the processed data. The second case was conducted by pre-processing and processing satellite imagery captured by a sensor called LandSat8 to correct radiometric and atmospheric issues in the satellite images of this repository.
+
+In these case studies, the workflows were created by using the building blocks of the DagOnStar prototype. The costs of the workflow deployment and the performance of the resultant workflows were analyzed. Moreover, a comparison of this prototype with engines available in state of the art was also conducted. The evaluation revealed the feasibility of using a building block approach to deploy workflows on a microservice architecture in an automatic manner, which solves the development of heterogeneity issues. It also revealed the flexibility of this approach to improve the performance of the workflows created with this approach by using master/slave patterns based on building blocks, which solving the performance heterogeneity issues.
+
+The outline of this paper is as follows. In Section II related work to our solution is discussed. Section III is about design strategies of the building blocks. Section IV describes the implementation of a prototype based on the proposed approach. Section V the evaluation run to test DagOnStar. Section VI presents the first case study focused on the processing of IoT sensors. Section VII presents the second case study focused on the processing of satellite imagery. Finally, Section VIII gives conclusion remarks and draws the path for future research development.
+
+II. RELATED WORK
+
+The workflow systems enable organizations to deploy pipelines of applications on different types of IT infrastructures. Galaxy, Parsl, Pegasus, Makeflow, and Swift are only some examples of this type of system. In practice, it is common that IT staff performs troubleshooting procedures when the organizations deploying workflows on a given infrastructure (e.g., clusters of computers, virtual machines in the cloud, and the grid). This type of procedure includes tasks such as installing applications and dependencies in virtual/physical machines, setting the environment of each application and arrangements in the configurations of each infrastructure to deploy virtual machines. Troubleshooting results in downtime that could disturb the continuity of studies and the usage of virtual machines could increase the time spent in deploying workflows.
+
+The Virtual Containers (VCs) have become an alternative to virtual machines as this virtualization technique reduces the need for troubleshooting procedures and the deployment time. Therefore, workflows engines, such as Skyport, Taverna, and Makeflow, are currently using virtual containers for end-users to deploy workflow solutions on different types of platforms. Scripting languages (e.g., YAML or Swift) have also been proposed to create workflows by using codification.
+
+Nevertheless, the heterogeneity of the development and performance of the applications is an open issue for traditional workflow engines. Moreover, the reutilization of smaller parts of a workflow (a task or a subset of tasks) is not trivial because of the dependency between tasks. The microservice architectures have become a popular technology that allows developers to decouple modules from a large service to create tiny independent and isolated services. The microservices already allow users to create different flows by re-using microservices previously created and reduce the effects of the deployment application issues.
+
+Instead of using multi-thread parallelism as used in traditional workflow engines, the approach proposed in this paper is based on parallel patterns created by using containerized building blocks, which are focused on addressing the performance heterogeneity issue. In addition, the incorporation of microservices has been proposed for facing up heterogeneity application deployment and enabling the reuse of components.
+
+III. DESIGN PRINCIPLES OF THE BUILDING BLOCK-BASED APPROACH
+
+A. DagOnStar Overview
+
+We designed DagOnStar to reduce the runtime footprint within the actual application. DagOnStar leverages the application life-cycle, supported by a Python library providing the main system components, while a not mandatory service component is used for workflow monitoring and management. This architecture considers four main components:
+
+The Python library ecosystem that supports the workflow building.
+The workflow engine maps applications with tasks, creates stages, assigns tasks to stages and builds workflows, including the created stages by using a directed acyclic graph (DAG).
+Task/data flow management considers a suite of APIs to prepare the environment (basically defining configurations) according to the DAG of a workflow.
+The Executors are in charge of the workflow deployment on a given infrastructure (e.g., Cloud services, container-based cloud or On-Premise Resources).
+A DagOnStar application is developed as a Python script where parallel tasks are defined by using the Task class. The DagOnStar Runtime performs the interaction with the executors both on local or remote resources instanced by either virtual machines or VCs deployed on public/private/hybrid clouds. The DagOnStar design considers the workflow:// schema as the root of the current workflow virtual file system. Under these conditions, workflow:///workflow_unique_name///task_unique_name/ is the root of the scratch directory created by the DagOnStar Runtime. DagOnStar uses this notation to evaluate the task dependencies using a back-reference approach.
+
+An important issue in this type of solution is data management. In DagOnStar, dataflows are constructed by using the workflow:// schema, which indicated the data dependencies between tasks. If two or more workflows interact with each other (regardless if they belong to the same application or different one), then the workflow:// schema remains consistent for identifying any resource as workflow://workflow_uuid/task_unique_name/. We extended the DagOnStar architecture by including microservices and VCs as building blocks.
+
+B. Microservices as Building Blocks
+
+In our approach, we encapsulated the applications considered in a workflow into VCs. We added I/O interfaces and control structures to the VCs where the applications have been encapsulated into. This VC represents the first Building Block considered in this approach, which we called BB-VC.
+
+In DagOnStar, the applications are encapsulated into VCs providing the workflow applications with portability property and allowing the deployment of the tasks on multiple platforms. A VC encapsulates the source code or binary of the application, as well as its dependencies libraries, packages, OS, and environment variables and any ancillary component needed to produce the task results. These VCs are constructed in the form of Building Blocks, which we called BB-VC.
+
+The BB-VCs are grouped in the form of microservices to create a meta Building Block (Meta-BB), which also includes I/O interfaces and control structures. The Meta-BBs allow workflows designers to re-use previous tasks created by the workflow engine. A Meta-BB represents a stage of a workflow, whereas the interconnection of multiple Meta-BBs produces a workflow, which can be allocated in different computational resources in a distributed manner. A Meta-BB represents a front-end for a stage in a workflow. This means this structure is masking the management of BB-VCs deployed on an infrastructure. In order to do this masking procedure, a Meta-BB includes a proxy to distribute a load of tasks to the BB-VCs and a load balancing mechanism to keep a fair workload distribution. A Meta-BB also includes a DagOnStar executor to receive tasks assignments and to deliver a notification to the engine. This means that the engine is delegating the control of tasks distribution to the Meta-BB, which executes the tasks as a black box; as a result, a Meta-BB is an independent piece of software that can be deployed on different types of infrastructure, which improves the portability of the workflows created by DagOnStar.
+
+The workflow:// schema previously described is used to chain Meta-BBs to build dataflows, which are executed over a microservice ecosystem. In DagOnStar, a Meta-BB has a scratch directory to write their outputs in the form of files (or directories depending on the application outputs) and considering the scratch directory as the root of the local storage supporting the I/O during the task execution. Other Meta-BB and tasks can receive these files as input, which has to be staged in order to be processed. Files are transported between Meta-BB by using link/copy where they are in the same machine, or by using a data transference application/protocol (secure copy, grid-FTP, or a content delivery network such as SkyCDS) when they are distributed through different computers.
+
+C. Building Parallel Patterns in Meta-BBs
+
+In order to improve the efficiency of the workflows, developers can create patterns within a Meta-BB for facing up the performance heterogeneity. The implementation of a Meta-BB exposes an HTTP Rest API, which contains all the functions that allow microservices to communicate with each other. It also includes functions to exchange data and to create dataflows. This means Meta-BBs can be chained to produce a workflow modeled as a directed acyclic graph in the very fashion performed in the previous version.
+
+Thanks to the improvements described in this work about the management of BB-VC and Meta-BBs, the DagOnStar tasks can be deployed in a microservice ecosystem, where these tasks are managed and monitored by the core application life support (DagOnStar Runtime). Deploying tasks as microservices enables the workflow engine to gain executor independence, efficiency, and liability taking advantage of the benefits of this technology, such as, but not limited to, fault-tolerant design, decentralized data management, loosely coupling, indecently deploying, self-contained, and limited scope.
+
+D. Life Cycle of Microservices Building Blocks
+
+The life cycle of a microservice building block in DagOnStar is integrated by seven stages:
+
+In the first phase, for each Meta-BB, a scratch directory is created in the file system of the machine where it is going to be deployed on.
+In the second phase, a VC image is created per each BB-VC considered in a Meta-BB. Each image includes the source code of the task and its dependencies on its corresponding BB-VC. In the case of the base image does not exist, it is downloaded from Docker Hub or any other Docker registry configured by the user.
+In this phase, each BB-VC image constructed in the previous phase is linked to the scratch directory with a volume inside the container of this BB-VC. The ports of all BB-VCs are published to be reachable by other microservices and applications.
+In this phase, the Meta-BB is published in the DagOnStar service by using a unique token, which is used as an ID in the controlling of accesses to the data managed by a microservice. This allows a Meta-BB to receive petitions from other Meta-BB in the ecosystem.
+In operation time, the BB-VCs included in a microservice are executed as a DagOnStar task. This means it receives input data, processes these data, and writes results as a file through the output interface.
+The scratch directory is removed when the execution of the tasks has been completed.
+The Meta-BB publication is removed from the ecosystem, removing the BB-VCs associated with that Meta-BB.
+As can be seen, DagOnStar Stager manages the data between workflows and tasks, which reduces the copying of data produced by one task and used by another.
+
+IV. PROTOTYPE IMPLEMENTATION DETAILS
+
+The prototype based on the microservice-based building block approach presented in this paper was implemented mainly in Python programming language using libraries for the management of cloud and Docker tasks. Microservices API was implemented using a Python library called Flask, and are deployed in production by using uWSGI and Nginx as the webserver. Microservices were encapsulated into Docker VCs and deployed on the Docker swarm platform.
+
+V. EXPERIMENTAL EVALUATION METHODOLOGY
+
+An experimental methodology based on two case studies was conducted to evaluate the performance of the prototype described in the previous section.
+
+Two real-world workflow solutions were implemented by using this prototype to conduct two case studies. The first study is based on information for the preparation of IoT data. The second study was based on the processing of satellite imagery captured by the satellite Landsat 8. We implemented a workflow composed of two main microservices: the pre-processing stage and the processing stage.
+
+The prototype was evaluated in the experimental evaluation conducted by using a test environment, including three physical machines.
+
+VI. CASE STUDY I: IOT DATA MANAGEMENT
+
+We developed a workflow for collecting and processing environmental data acquired from IoT devices. We deployed a set of Meta-BBs to attend IoT devices in the fog computing, whereas another set was deployed on the cloud to process and manage the acquired data. The data collected from sensors include device temperature, ambient temperature, humidity, motion, light, and Received Signal Strength Indicator.
+
+The dataset was processed through the workflow which includes the next tasks deployed as Meta-BB:
+
+Acquisition: This microservice is in charge of receiving the data captured by IoT devices, such as instruments/sensors and smart devices. Each device is registered in this microservice, which enables it to send data to the workflow.
+Cleaning: This microservice includes the pre-processing of the data collected, removing outliers, and filling missing values by using the Z-score technique.
+Processing: This microservice processes the data to identify unusual behavior with these data (i.e., a fire where the sensor has been allocated in, or the dramatic ascend/descend in temperature caused by anomalies in the environment monitored by the sensor. This microservice produces short time alerts with the most recent data collected by the sensor. These alerts are sent to the application/user indicated in the initial configuration.
+Preservation: The microservices were deployed on the cloud to perform the management and preservation of the data collected by the sensors, the cleaned data and the results of the data processing as well as the logs of the alerts.
+Re-analysis: This microservice performs a re-analysis of the data to get an overall summary of the data, performing tasks such as data regression, correlations, and data clustering.
+The first three microservices (acquisition, cleaning, and processing) are deployed in fog computing, whereas the preservation and re-analysis are performed in the cloud.
+
+A. Experiments
+
+The workflow constructed in this case study was evaluated in three phases. In the first one, we evaluated the costs of the deployment of Meta-BBs in a workflow. The experiments of this phase were performed by measuring the average response time for the construction and deployment of Meta-BB images. In the second phase, the deployment of the workflow constructed with Meta-BBs was evaluated. The experiments of this phase include the deploying of the studied workflow on three different machines, and varying the number of Meta-BBs running in parallel for each task in the workflow. Finally, the performance of the workflow was evaluated by deploying the workflow with Batch tasks and Meta-BB on the infrastructure. It was evaluated the service time spent by this workflow to attend different numbers of concurrent requests sent to the workflow.
+
+B. Results
+
+In this section, are presented and analyzed the results of the performed experiments in the three phases previously described.
+
+Analyzing the costs of construction and deployment of building blocks: Figure 7 shows the response time for the deployment of the VC images (BB-VCs) used to execute each task of the workflow. For each stage of this workflow, Figure 7 shows the response time in two columns: The first one representing the response time when the BB-VCs are created and the second one when the BB-VCs are reused from images previously created. Each column includes three service times: the first one is the building of the basis image (includes an operating system, programming language compiler, or any other tool necessary to run the program). The second one represents the time required by DagOnStar to prepare the image by adding control structures and I/O libraries to the BB-VC. The last one represents the time to encapsulate an application into a BB-VC by adding the application (either binary or source code) and dependencies on the container. The sum of these times represents the costs of building a BB-VC. This means the first column represents the costs of building a microservice from scratch, whereas the second one represents the re-utilization of a microservice. As expected, the initiation of a microservice is more expensive than re-using an already configured one (the costs depend on the volume of the applications in both cases).
+
+Analyzing the costs of deployment of workflows using Meta-BBs: The results of the second evaluation phase are described in this section. In this phase, we evaluated the costs of deploying a workflow on three different machines. This workflow was configured to launch different numbers of BB-VCs in parallel for each Meta-BB (stage) in the workflow. The impact of the number of BB-VCs on the deployment of the workflow was assessed in these experiments. Figure 8 shows the response time produced by the deployment of the evaluated workflow by using n BB-VCs in a parallel pattern called manager/worker for three different machines. As can be seen, the Meta-BBs of DagOnStar transparently manage the parallel patterns by changing the parameter of the number of workers (n). Moreover, the workflows could be deployed on different types of servers without IT staff performing a troubleshooting process. As expected, the more BB-VCs deployed on the infrastructure, the more response time observed by end-users to deploy the whole components of the studied workflow. Please note that the highest cost is associated with the building of the BB-VC basis image as the rest of the BB-VCs are clones, and the costs of these structures are not high. For instance, the deployment of a 64 BB-VC system was deployed on infrastructure in about three minutes.
+
+Analyzing the performance of workflows built with Meta-BB: The results of the third phase are described in this section. In this phase, we evaluated the next configurations of the workflow:
+
+Batch tasks: This configuration represents the implementation of the workflow using the regular Batch tasks of DagOnStar.
+1-BBVC: This configuration represents the implementation of the workflow by using microservices building blocks implemented in DagOnStar for each stage.
+n-BBVC: This configuration represents the implementation of BBVC but deploying parallel patterns for each stage, which improves the service time of processing the workload received by each stage.
+To perform these experiments, we configured a bot to create and send artificial requests to the above-described configurations, which accepted and processed these requests as valid requests sent by real end-users. A request represents data sent by an IoT sensor to the workflow to be processed. Therefore, n concurrent requests represent n sensors transmitting data to the workflow (the size of data is homogeneous for all the experiments).
+
+VII. CASE STUDY II: SATELLITE IMAGERY PROCESSING
+
+This case study is based on the processing of satellite imagery captured by the satellite Landsat 8. We implemented a workflow composed of two main microservices (Meta-BB): the pre-processing stage and the processing stage. A summary of each microservice designed is as follows:
+
+Preprocessing: The pre-processing microservice calculates the radiation and top atmosphere reflectance (TOA) of each of the eleven bands of Landsat 8 images.
+Processing: The processing microservices include the calculation of the traditional indexes (e.g., NDVI, EVI, SAVI, MSAVI, NDMI, NBR, NBR2 and NDSI).
+A. Results
+
+To test the performance of the pattern, we used a repository of 20 images (of a size of 17.8 GB) captured by LandSat8. The response time is reduced for each workflow when increasing the number of BBVC running in parallel. For instance, the pattern running 8 BBVC produces a response time of 3.83 minutes, whereas the pattern running with only one BBVC produces a response time of 25.03 minutes. This means an improvement in the response time of 84.69% comparing the pattern with eight parallel BBVC with the pattern with only one BBVC.
+
+B. Performance Comparison of the Approach with State of Art Solutions
+
+We performed a direct comparison of the proposed approach based on Meta-BBs and BB-VC with other two workflows engines in the literature: Parsl and Makeflow. The workflow used for testing was the one for the pre-processing and processing of satellite imagery. The workflow executed with Makeflow was configured to run over virtual containers. For our approach, we tested two configurations of the workflow with one and eight BB-VC in the patterns inside of the Meta-BBs. We also configured Parsl to use two different configurations: the first one using one single thread and the second one using eight threads. We called this configurations as Parsl(MT = 1) and Parsl(MT = 8) respectively.
+
+VIII. CONCLUSIONS AND FUTURE DIRECTIONS
+
+In this paper, we presented a novel contribution in DagOnStar development, enabling the lightweight workflow engine to support the microservice technology in a VC context. The evaluation revealed the feasibility of using a building block approach to automatically deploy workflows in a microservice environment. It also revealed the flexibility of this approach to improve the performance of the workflows created by chaining Meta-BB in the form of parallelism patterns. From the task typology point of view, we are going to integrate the DagOnStar microservice-based task interaction with GPU intensive computing tasks in virtualized and containerized architectures even leveraging on mobile and single-board computing devices. We plan to evolve DagOnStar in order to provide application live support to instrumented data acquisition platforms as vehicles, vessels, and drones scenarios where the data processing workflow throughput is crucial because of the mission-critical-like production conditions.

@@ -1,0 +1,31 @@
+An Adaptive Mechanism for Dynamically Collaborative Computing Power and Task Scheduling in Edge Environment
+
+Abstract: Edge computing can provide high bandwidth and low-latency service for big data tasks by leveraging the edge side’s computing, storage, and network resources. We propose an adaptive mechanism for dynamically collaborative computing power and task scheduling (ADCS) in the edge environment to address challenges like user device request fluctuations and lack of edge node collaboration. ADCS uses greedy and best-fit methods for scheduling, significantly reducing the deadline missing rate and average completion time compared to existing solutions.
+
+Introduction: The Internet of Everything (IoE) has seen tremendous growth, generating vast amounts of data in applications like smart manufacturing and healthcare. Traditional cloud computing struggles with the increasing data volume and delay-sensitive tasks. Multiaccess edge computing (MEC) offers a solution by offloading tasks to edge servers, thus enhancing bandwidth, processing efficiency, and reducing core network burden. However, the heterogeneous and dynamic nature of edge environments necessitates efficient task and computing power scheduling, which our ADCS model aims to address.
+
+Main Contributions:
+
+Scenario Model: We introduce a model for fine-grained computing power scheduling, considering edge node collaboration and the simultaneous scheduling of tasks and computing power.
+ADCS Mechanism: ADCS uses a greedy decision method to meet task deadlines and a best-fit method to adjust computing resources dynamically. This approach reduces the deadline missing rate and average completion time (ACT).
+Simulation Experiments: Using real-world data from Google Cluster, we demonstrate that ADCS significantly outperforms existing algorithms like DSR and CoDSR in reducing deadline misses and ACT.
+Model and Formulation:
+
+Network Model: The network is modeled as an undirected graph where nodes represent access points (APs) and edges represent connections with specific bandwidth and latency characteristics. The topology includes cloud, edge, and device layers.
+Task Execution Process: The process from sending a request to receiving results (RTC) includes phases like metadata transmission, scheduling by the cloud, data transfer to edge servers, task execution, and result return. Each phase’s time is calculated to optimize scheduling.
+Resource Consumption Model: This model describes the CPU and memory resource usage and costs during scheduling. It accounts for multiple service configurations and ensures resources are utilized efficiently while adhering to capacity constraints.
+ADCS Design:
+
+Overall Framework: ADCS schedules tasks and computing power dynamically. It includes a priority queue based on start deadlines, a task scheduling algorithm (ADCS-TS) to find optimal edge servers and instances, and a computing power scheduling algorithm (ADCS-CS) for caching new service instances when needed.
+Priority Queue: Requests are ordered by start deadlines to minimize deadline misses and ACT. The priority queue uses historical data to estimate request running times and schedule tasks accordingly.
+Task Scheduling (ADCS-TS): This algorithm finds instances and edge servers that meet task deadlines and minimize ACT. It initializes pending queues and optimizes request processing through queue exchanges.
+Computing Power Scheduling (ADCS-CS): When current instances can’t meet a request’s demand, ADCS-CS caches new instances using best-fit algorithms, ensuring services are as close to users as possible.
+Experiment and Analysis:
+
+Simulation Setup: Simulations used 100,000 entries from the Google Cluster 2019 dataset, modeling an environment with ten edge servers and ten service types. Task distributions included uniform and Zipf distributions to evaluate performance under different request patterns.
+Results:
+Uniform Distribution: ADCS showed the lowest deadline missing rates and ACTs, significantly outperforming Random, CoRandom, DSR, and CoDSR algorithms by leveraging edge node collaboration and dynamic service caching.
+Zipf Distribution: ADCS performed best in scenarios with uneven service request types, highlighting its ability to adapt to dynamic changes and reduce deadline misses and ACTs more effectively than other algorithms.
+Resource Utilization: ADCS improved CPU utilization on edge servers, showing a more dynamic response to changing service requests compared to DSR.
+Cold Start Optimization: Introducing an initial caching strategy with genetic algorithms reduced cold start overhead, further improving ADCS performance in the initial operational phase.
+Conclusion and Future Work: ADCS enhances task scheduling and computing power allocation in MEC environments, significantly improving service quality and resource utilization. Future research will explore incorporating microservice dependencies and extending the framework to open-source platforms like KubeEdge and K3S, focusing on efficient scheduling algorithms to further optimize edge computing applications.

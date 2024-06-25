@@ -1,0 +1,86 @@
+NUHEALTHSOFT: A Nutritional and Health Data Processing Software Tool from a patient’s perspective
+Authors:
+Dimitrios P. Panagoulias, Maria Virvou, George A. Tsihrintzis
+Department of Informatics, University of Piraeus, Piraeus 185 34, Greece
+Emails: panagoulias d@yahoo.gr, mvirvou@unipi.gr, geoatsi@unipi.gr
+
+Abstract
+To ensure alignment between developers, engineers, and other stakeholders in various steps of a production cycle, utilizing one of the many development methodologies is imperative for the successful transition from an idea to a useful and reliable end product. The Rational Unified Process (RUP) is a precise and iterative software engineering process that ensures alignment through comprehensive and simple separate steps within preset restrictions. Modern software must be easily managed and scalable, often divided into smaller components that serve different purposes and are easier to manage, referred to as a microservices architecture. Medical applications for treatment, disease prevention, and health optimization can greatly benefit from machine learning and artificial intelligence. This study examines the development process of nuhealthsoft, an AI-infused medical application using blood analysis, dietary variables, and other health data for identifying health states and risk factors such as metabolic syndrome and high blood pressure. Key characteristics of the application will be outlined through the RUP methodology, focusing on microservices architecture and patients’ needs throughout the development cycle.
+
+Index Terms
+Biomarkers, nutritional biomarkers, microservices, rational unified process, user experience, explainable AI
+
+I. INTRODUCTION
+Biomarkers are biological measurements of health states commonly utilized as features for training predictive and prognostic machine learning models to facilitate health predictions and automate medical interventions. This study describes the design process via RUP of nuhealthsoft, a medical application using AI for automating interventions based on a range of blood works and dietary variables. The main development goal is to create an inclusive and user-friendly system that adds value with minimal user effort.
+
+A. Rational Unified Process (RUP)
+RUP is an iterative software development methodology splitting the project lifecycle into four phases: inception, elaboration, construction, and transition, each with six main processes: business modeling, requirements, analysis and design, implementation, testing, and deployment. The linear approach and restrictive nature of RUP make it ideal for health applications or medical device projects.
+
+1. Inception and Elaboration
+Inception involves conceptualizing a solution to a problem, resulting in a vision statement, a first use case, market research, financial prognosis, risk assessment, project planning, business model structure, and application prototypes. During elaboration, the proposed architecture is refined and analyzed through detailed use cases and component analysis.
+
+2. Construction and Transition
+The construction phase materializes proposed use cases, development, and component diagrams. In the transition phase, the developed product is transferred to clients and users for a smooth transfer of knowledge.
+
+3. Process Dimension - Workflows
+The process dimension defines who does what and for what reason, covering business modeling, requirements, implementation, testing, and deployment.
+
+B. Microservice Architecture
+Microservices architecture involves developing software as a collection of easy-to-maintain and test services that are independently deployable, benefiting from well-defined use cases and diagrams. This paper reviews related literature, key challenges, system design using RUP terminology, key findings, and a partial presentation and examination of the developed application.
+
+II. RELATED WORK
+Biomarkers measure biological parameters from blood, urine, or other bodily fluids to define health states or quantify treatment impacts. Nutritional biomarkers validate dietary strategies and interventions. The proposed system, consisting of machine learning pipelines using big data analysis, extreme value analysis, and neural networks, identifies metabolic syndrome and weight class, suggesting preventive strategies or manual interventions from medical specialists based on health trends like high blood pressure.
+
+III. KEY CHALLENGES IN IMPLEMENTING AN INCLUSIVE AND USER-FRIENDLY EXPERIENCE
+A. People with Disability and Equitable Care
+Sixty million American citizens have some type of disability and face healthcare disparities, with many doctors lacking confidence in providing equal care.
+
+B. Equal Access Online
+Approximately 50 million people worldwide have dementia, with significant numbers affected by other conditions requiring accessible healthcare applications.
+
+C. Effective Use of Health Information Technologies
+The American Medical Informatics Association (AMIA) emphasizes improving patient safety and care quality through better usability of health IT systems.
+
+D. Usability Concerns and Aging Population
+The elderly population is increasing, with improved technology interfaces enhancing interaction and system usability.
+
+E. Access to Information
+Access to information and inclusion in decision-making reduce fear and anxiety, aligning patients with healthcare providers.
+
+F. Health-related Data and Privacy Concerns
+Data security and privacy are crucial for health applications, requiring stringent governance and protection measures.
+
+IV. DESIGNING NUHEALTHSOFT USING THE RUP METHODOLOGY
+A. Inception
+Digital tools improve disease management and health awareness, applying preventive measures through the machine learning pipeline.
+
+1. Business Modeling and the Patient’s Journey
+The patient’s journey integrates healthcare components, with AI enhancing outcomes and personalizing the experience.
+
+2. Business Modeling and Personalization of Treatment
+Biomarkers and related data analysis enable disease classification and health state identification, contributing to personalized treatment.
+
+3. Addressing Key Challenges and Concepts
+Key challenges include ensuring patient safety, data protection, usability, and engagement, with appropriate authorization requirements and scalable technologies.
+
+4. First Use Case
+Patients access blood-related information, input data, and receive personalized health recommendations, with options for medical guidance and external synchronization.
+
+B. Elaboration
+1. Use Cases
+Unauthorized users have basic access to health information, while authorized users access core functionality and contribute data for system improvement.
+
+2. Components
+System components include a secure interface, machine learning analyzer, notifier interface, data governance interface, and health synchronization interface.
+
+3. Deployment Diagram
+The deployment diagram outlines a microservices architecture, separating services and components by functionality.
+
+V. ELABORATION OUTCOMES AND CONSTRUCTION PILLARS
+Main pillars include explainable AI, equal access, scalability, and a user evaluation system for continuous development and user inclusion.
+
+VI. CONSTRUCTION PHASE
+Nuhealthsoft offers different UI choices to accommodate various user needs, enhancing interaction and data communication through personalized interfaces.
+
+VII. CONCLUSIONS AND FUTURE WORKS
+Key challenges and issues related to usability and reliability have been highlighted for nuhealthsoft, proposing RUP and microservices as effective strategies. Future works will analyze microservices architecture and examine other stakeholders and users of the system.

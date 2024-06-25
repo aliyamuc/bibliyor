@@ -1,0 +1,40 @@
+Abstract
+The industry has undergone a digital transformation facilitated by the Industrial Internet of Things (IIoT) technology, ushering in the era of Industry 4.0. However, the widespread use of IIoT devices has made IIoT systems and associated services vulnerable to network-based attacks. The automation process is essential for IoT-based industries to meet future demands. The concept of a zero-touch network has evolved to manage network resources automatically. Machine learning (ML) plays a critical role in its architecture due to its ability to facilitate a close-loop automation process. With ML, analytical tasks and real-time predictions can be achieved to build smart applications for the early detection of cyberattacks in IIoT systems. The ML components can be subdivided into microservices to improve service while allowing interaction with edge and cloud services. In this article, we propose an ensemble learning-based intrusion detection system (IDS) for a zero-touch network automation process by leveraging ML and microservice technology to improve the trustworthiness of IIoT systems. We use the feature selection technique to select significant features and pass them to different models, then blend their predictions based on a stacked ensemble learning approach. Experiments are conducted to evaluate the performance of the proposed framework compared to existing studies.
+
+Introduction
+The global transformation of traditional industries to Industry 4.0 has enabled smart industries to improve the quality of their services and increase commercial values. This shapes a promising future in which 5G/6G fuels the IIoT by providing seamless, large-scale, and real-time connections. Numerous communication technologies have emerged to support incremental and scalable industries, focusing on customizing networks and on-demand manufacturing processes. As networks evolve into software-driven heterogeneous architectures, effective integration and operation have become significant problems. The zero-touch network management system has emerged to cope with these problems. With IIoT, collected data can be analyzed using ML techniques to help management systems process information and optimize IIoT devices via a closed-loop approach. Cloud computing is the default platform to provide computing resources and analytical operations based on ML techniques.
+
+However, smart systems based on cloud computing suffer from high bandwidth consumption and network latency, affecting data analysis services. Traditional services, which are monolithic, have a drawback: any flaw in core components impacts the entire system. Additionally, IIoT-enabled devices are vulnerable to cybersecurity threats. The increased frequency of cyberattacks has become a major concern. Edge computing technology has recently gained popularity to tackle these issues by performing operations close to data sources for fast data collection and analysis. By integrating microservices, data analytics tasks based on ML can be decomposed into independently-operating services.
+
+To protect smart industries from network threats, practical security tools based on ML techniques are needed. An Intrusion Detection System (IDS) inspects IIoT traffic for indicators of potential intrusions or cyberattacks. Collaborative learning, such as ensemble learning, can strengthen IDS performance.
+
+Proposed Framework
+In this section, we present the architecture of the proposed framework and describe its components. The framework has three main layers: Data, Edge Intelligence, and Cloud Computing.
+
+System Overview
+The general overview of the proposed framework and the workflow between its different components are illustrated. The framework comprises three main layers: Data, Edge Intelligence, and Cloud Computing.
+
+1. Data Layer
+
+Description: The Data layer consists of IIoT devices such as sensors that monitor specific industrial environments (e.g., energy, agriculture, transportation). These devices generate data continuously.
+Security Risks: This layer and the data in transit are susceptible to various security attacks, including network-based attacks that can disrupt production, safety, and service continuity.
+Intrusion Detection: To recognize and mitigate security risks, an intrusion detection engine is integrated into the system. Since IoT devices have limited computing power, this raw data is forwarded to the next layer for further processing and analysis.
+2. Edge Intelligence Layer
+
+Description: The Edge Intelligence layer is a core part of our system; here, the collected IIoT data is processed and analyzed using heterogeneous models. This layer facilitates the efficient implementation of a distributed environment in IIoT networks. It consists of local edge servers, each running a specific microservice responsible for executing tasks such as data preprocessing, model training, model selection, and model deployment.
+Microservices:
+Data Preprocessing Microservice (DPMS): Applies preprocessing techniques to the raw input datasets, such as data mapping, standardization, and feature selection.
+Model Training Microservice (MTMS): Uses the processed datasets to train different models based on a stacked ensemble learning approach.
+Model Selection Microservice (MSMS): Selects the best model version based on the test results of the trained ML models and updates the database accordingly.
+Model Deployment Microservice (MDMS): Deploys the best model as the final classifier for real-time detection.
+3. Cloud Computing Layer
+
+Description: The Cloud Computing layer provides storage and management services, responsible for storing details of transactions and hosting a blockchain network. The deployed detection engine classifies incoming IIoT traffic as either normal or abnormal (attack) transactions. IPFS and blockchain technologies are used to store only normal traffic transactions.
+Stacked Ensemble Learning-Based Intrusion Detection System (SENS-IDS)
+We leverage ensemble learning based on the stacking approach to develop an intrusion detection model. The general concept involves training base learners on the same training dataset and using their outputs as inputs for the meta-learner to achieve better results.
+
+Experiments and Results
+This section describes the experimental setting, target datasets, models, and interprets the final results. We utilized three public datasets to benchmark performance. The experimental findings demonstrate the superiority of the proposed model in terms of metrics and performance compared to existing techniques.
+
+Conclusion
+Protecting zero-touch networks in smart industrial environments from cyberattacks is crucial. This article proposes a multi-layered architecture based on the IIoT-edge-cloud interplay to develop an IDS. We used feature selection techniques and a stacked ensemble approach to blend predictions from diverse models efficiently. The results demonstrate the reliability of the proposed IDS with minimal gaps between metrics and reasonable execution time compared to existing studies.

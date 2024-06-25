@@ -1,0 +1,54 @@
+Smart Campus Data Management Platform Based on Microservice Architecture
+
+XinRui Duan, LeLe Li, and Feng Peng
+
+Abstract
+At present, the management dimension of colleges and universities is getting wider, students' expectations are getting higher, and their demands are becoming more diverse. The traditional management mode cannot address the new challenges brought by the digital age. This paper shares the design and implementation ideas of the platform, providing a new solution for the data management and application of smart campuses. The platform adopts distributed storage to ensure data reliability and security, utilizes big data analysis technology for data mining and utilization, and establishes a process service development mechanism that is fast, low-cost, and sustainable.
+
+Keywords: smart campus, campus management, microservice architecture.
+
+I. INTRODUCTION
+The long-term development of a smart campus requires the support of numerous active application software. The traditional digital campus lacks a unified platform and standard application development, hindering the construction of a high-quality smart campus. Consequently, digital campuses face difficulties such as data silos, business silos, and system iteration challenges.
+
+The smart campus data management platform based on microservice architecture constructs online business process services and a wide range of teacher and student service processes by organizing the service processes for teachers and students of various school departments. The platform's process development learning threshold is low, enabling rapid and effective training for campus information construction personnel, effectively addressing personalized management process requirements in school management.
+
+II. OVERALL DESIGN OF SMART CAMPUS DATA MANAGEMENT PLATFORM
+A. Functional Requirement Analysis
+
+For end users (teachers, students, managers, leaders):
+
+All information services can be accessed in one space: inquiry, application, review, interaction, etc. The platform shields background management applications and departments, reducing the cost of publicity, training, and learning, adhering to the current mainstream application design concept.
+For department business management personnel:
+
+All teacher and student services can be developed in a unified manner and attached to the process center. The department business system only needs to manage data well and realize management functions within the department.
+For developers of the department business system:
+
+More than 50% of campus informatization functions can be solved by process models, improving the development of customized applications, reducing costs, increasing the success rate of development, and improving stability. Business systems developers can focus on improving business understanding, enhancing consulting capabilities, and increasing professionalism.
+B. Service Scheduling Architecture Based on Microservice Architecture
+
+Microservice architecture designs the architecture implementation of service scheduling. Microservice architecture is defined as follows: an application constructed as a group of services, independently deployed in different processes, with services communicating through lightweight mechanisms such as RPC and HTTP. Services can be independently expanded and scaled, each defining a clear boundary.
+
+In the microservice architecture:
+
+Each microservice corresponds to an independent business function, defining necessary operations for this function.
+Microservices can be deployed on smaller hosts that meet their needs.
+No need to follow a single MVC development framework and development language; developers can choose development languages based on business needs.
+III. CORE FEATURES AND ADVANTAGES OF SMART CAMPUS DATA MANAGEMENT PLATFORM
+A. Perfect Connection with Digital Campus "Plug and Play"
+
+The scheme considers the needs and technical characteristics of the digital campus's complete information architecture. The platform integrates with mainstream digital campus service platforms to achieve "plug and play" for the digital campus.
+
+B. Visual Development of Deeply Optimized Campus Services
+
+The scheme is based on the WFaaS concept, optimizing the process of service development, operation, maintenance, and management of integrated cloud services. Visual configuration mode enables a large amount of information service development optimization.
+
+C. Seamless Integration of Mobile Application Environment Support
+
+The platform's unique multi-view architecture addresses the openness and diversity of Internet service terminals, solving complex scenario application requirements such as multi-terminal, multi-perspective, and multi-language.
+
+D. Complete Openness, Language Independent
+
+The university information service environment must be highly heterogeneous, open, and compatible. This scheme supports development in any language, with no need for development plug-ins, providing an SDK for mainstream Java/.net frameworks and supporting a variety of languages for complete process development.
+
+IV. CONCLUSION
+The smart campus data management platform based on microservice architecture covers a variety of smart campus application scenarios, promoting the deepening of management informatization, amplifying data value, and optimizing management based on comprehensive data management. It effectively addresses diverse and changing demands in campus informatization construction that traditional modes cannot cover.

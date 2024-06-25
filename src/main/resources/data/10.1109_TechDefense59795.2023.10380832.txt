@@ -1,0 +1,72 @@
+FLWB: a Workbench Platform for Performance Evaluation of Federated Learning Algorithms
+Emiliano Casalicchio
+Computer Science Department, Sapienza University, Rome, Italy
+casalicchio@di.uniroma1.it
+
+Simone Esposito
+Computer Science Department, Sapienza University, Rome, Italy
+esposito.1742303@studenti.uniroma1.it
+
+Ahmed A. Al-Saedi
+Department of Computer Science, Blekinge Institute of Technology, Karlskrona, Sweden
+ahmed.a.al-saedi@bth.se
+
+Abstract
+Federated learning is a technique that allows collaborative training of a shared machine learning model across distributed devices, where the data are stored locally on devices. Most innovations in federated learning are tested through custom simulators. An analysis of the literature shows a lack of workbench platforms for performance evaluation of FL projects. This paper presents FLWB, a general-purpose, configurable, and scalable workbench platform for easy deployment and performance evaluation of Federated Learning projects. Experiments demonstrated the ease of implementing and deploying a FL system with FLWB.
+
+Index Terms
+Federated Learning, performance evaluation, microservice, security
+
+I. INTRODUCTION
+Artificial intelligence is innovating with cutting-edge success in several application fields, including security and defense. Recent advances in the Internet of Things (IoT) require moving intelligence to edge devices. Federated learning allows collaborative training of a shared machine learning model across distributed devices, where the data are stored locally on devices. Most innovations in federated learning are predominantly tested through simulation, typically programmed in Python. This observation raises the following questions: Do workbench platforms for performance evaluation of FL projects exist? Is it possible to implement federated learning patterns in a real-world, ready-to-deploy environment without necessitating custom software tailored to each pattern? Consequently, we designed a scalable, microservices-based, general-purpose, and easily expandable architecture for performance evaluation of federated learning projects.
+
+To answer these questions, this work proposes FLWB, a workbench platform that is easily configurable and allows the deployment of FL projects in a real-world environment. The only platform with a similar intent is Flower, designed as an easy-to-use framework for non-expert developers. In contrast, FLWB allows a fine-grained configuration of its components, extending the platform codebase, and deployment on various computing environments. Clients can run on any edge device or emulated platform.
+
+The paper describes the design and implementation of FLWB, demonstrating the ease of incorporating patterns into the developed federated learning platform by implementing the FedCo and FedAvg FL algorithms. The paper is organized as follows: Section II introduces the concept of FL architectural patterns, Section III presents the general architecture of the FLWB platform, Section IV details the implemented functionalities, and Section V discusses experimental results.
+
+II. FEDERATED LEARNING ARCHITECTURAL PATTERNS
+The lifecycle of an FL system consists of model initialization, model training, model aggregation, model evaluation, model deployment, and system monitoring. Each phase can be designed and implemented in various ways, adopting different patterns. The patterns used in literature are classified into client management, model management, model training, and model aggregation. Our platform focuses on a subset of these patterns, listed in Table I. Model deployment aspects are not included in this work.
+
+III. FLWB ARCHITECTURE
+Figure 1 provides an overview of the main components of the FLWB platform. The FLWB platform uses industry-standard technologies for scalability, flexibility, and reliability in machine learning applications. We adopted a microservice architecture using Java and the SpringBoot framework. Client management and model aggregation patterns are designed as Function as a Service, implemented using the Fission framework. Kubernetes is used to manage microservices and functions, and ArgoCD is the GitOps tool for infrastructure management. Ansible automates installation and configuration. Apache Kafka enables event-driven communication among microservices, providing scalability, fault-tolerance, and asynchronous communication. Redis in-memory data store improves performance and scalability. PostgreSQL database retains configurations and operation data, while MinIO stores datasets and models. Clients are implemented in Python and deployed as Docker containers.
+
+IV. FLWB MICROSERVICES
+A. The Joiner microservice
+This microservice handles client requests to join a project, enabling clients to participate in multiple projects and share local updates by exchanging the project configuration. Join tokens allow clients to request participation and enable filtering of unsuitable clients.
+
+B. The ProjectManager microservice
+It manages the state transitions of projects throughout the federated learning process, ensuring a smooth, coordinated, and efficient learning process. The ProjectManager informs other microservices about creating or modifying a project’s configuration by publishing events containing necessary information.
+
+C. The Registry microservice
+This microservice tracks clients, the projects they are involved in, and the clusters they belong to. It monitors client joining events, listens to clustering events, and assists in validating model download and upload requests.
+
+D. The Downloader and Uploader microservices
+These microservices manage the download and upload of models and datasets, handling authorization for these operations.
+
+E. The Aggregation microservice
+The Aggregation microservice monitors local model updates and triggers the EpochRunner function to aggregate the local models when conditions are met. It ensures smooth coordination between different phases of the federated learning process.
+
+F. The Sentinel microservice
+Sentinel is a Kubernetes job that runs at the beginning of each training epoch, selecting clients for the learning phase. It executes a pipeline of operations, including selection, filtering, clustering, validation, assignment, and election.
+
+G. Distance Function
+The Distance function retrieves local models and calculates the distance between them using the cosine similarity metric, aiding in clustering clients.
+
+H. Epoch Function
+The Epoch function aggregates local models for a given epoch, currently averaging the local models’ weights.
+
+V. EXPERIMENTAL EVALUATION
+A. The Use Case
+We implemented the FedCO algorithm and the baseline FL algorithm, FedAvg, to investigate if FedCO reduces communication overhead in a real environment. Experiments used the MNIST and RunOrWalk datasets.
+
+B. Performance Metrics and Experiments Setup
+Performance was evaluated based on network usage and the F1-score of the global model. Experiments involved 60 clients for 25 epochs. The compressed model sizes were 350 Bytes (SGDC with RunOrWalk), 64 KBytes (SGDC with MNIST), and 1.6 MBytes (Neural Network with MNIST).
+
+C. Client registry pattern – FedAvg
+When trained with the RunOrWalk dataset, each client exchanged an average of 350KB over 25 epochs, totaling 21MB. With the MNIST dataset, network consumption was 150MB, with 2.5MB per client. For the MNIST dataset with Neural Networks, network usage per client was 85MB, totaling 5.1GB.
+
+D. Client Clustering pattern – FedCO
+FedCO reduced network consumption in a real deployment. For the RunOrWalk dataset, data transfer totaled 3.4MB, an 83% reduction. With the MNIST dataset, network consumption was 20MB, an 86% reduction. For the Neural Network model, FedCo exchanged 830MB, 17% of the traffic produced by FedAvg.
+
+VI. CONCLUSIONS
+The design and implementation of FLWB and the deployment of FedCo and FedAvg demonstrated the ease of incorporating patterns into the federated learning platform. The real environment implementation confirmed performance results obtained by simulation, with significant reductions in network consumption. Future work will focus on optimizing the implementation to further reduce overhead.
