@@ -12,7 +12,6 @@ public class BibliyorMapper {
         String title = "";
         String authors = "";
         String abstractContent = "";
-        String pdfContent = "";
 
         for (String section : sections) {
             if (section.startsWith("TITLE:")) {
@@ -21,8 +20,6 @@ public class BibliyorMapper {
                 authors = section.replace("AUTHORS:", "").trim();
             } else if (section.startsWith("ABSTRACT:")) {
                 abstractContent = section.replace("ABSTRACT:", "").trim();
-            } else if (section.startsWith("PDF_CONTENT:")) {
-                pdfContent = section.replace("PDF_CONTENT:", "").trim();
             }
         }
 
@@ -30,7 +27,6 @@ public class BibliyorMapper {
                 .title(title)
                 .authors(authors)
                 .abstractContent(abstractContent)
-                .pdfContent(pdfContent)
                 .build();
     }
 
@@ -50,7 +46,6 @@ public class BibliyorMapper {
                 .documentType(documentType)
                 .authors(authors)
                 .abstractContent(abstractContent)
-                .pdfContent(input.getContent())
                 .build();
     }
 }
