@@ -11,6 +11,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class BiblioDto {
     String title;
+    String sourceTitle;
+    String year;
+    String documentType;
     String authors;
     String abstractContent;
     String pdfContent;

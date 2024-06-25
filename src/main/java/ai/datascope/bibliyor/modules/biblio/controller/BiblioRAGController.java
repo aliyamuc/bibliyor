@@ -4,7 +4,6 @@ import ai.datascope.bibliyor.modules.biblio.controller.dto.BiblioDto;
 import ai.datascope.bibliyor.modules.biblio.controller.mapper.BibliyorMapper;
 import ai.datascope.bibliyor.modules.biblio.service.BiblioRAGService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.ai.document.Document;
 import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.filter.FilterExpressionBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +44,7 @@ public class BiblioRAGController {
 
         return biblioRAGService.retrieve(searchRequest)
                 .stream()
-                .map((Document d) -> BibliyorMapper.mapStringToBiblioDto(d.getContent()))
+                .map(BibliyorMapper::mapDocumentToBiblioDto)
                 .toList();
     }
 

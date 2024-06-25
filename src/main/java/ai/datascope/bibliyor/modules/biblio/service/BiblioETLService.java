@@ -63,9 +63,12 @@ public class BiblioETLService {
         if(biblio != null){
             Map<String, Object> metadata = new HashMap<>();
             metadata.put("ResearchQuestions", biblio.getRqs());
+            metadata.put("Title", biblio.getTitle());
             metadata.put("SourceTitle", biblio.getSourceTitle());
             metadata.put("Year", biblio.getYear());
             metadata.put("DocumentType", biblio.getDocumentType());
+            metadata.put("Authors", biblio.getAuthors());
+            metadata.put("AbstractContent", biblio.getAbstractContent());
             vectorStore.write(this.loadText(currentDoi,metadata));
         }else{
             log.error("Biblio not found");

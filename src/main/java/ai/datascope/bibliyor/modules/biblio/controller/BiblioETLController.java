@@ -59,7 +59,11 @@ public class BiblioETLController {
                 "10.1109/CloudCom59040.2023.00049",
                 "10.1109/EDPC53547.2021.9684194",
                 "10.1109/ICASSPW59220.2023.10193222",
-                "10.1109/ICBASE51474.2020.00056"
+                "10.1109/ICBASE51474.2020.00056",
+                "10.1109/ICCA59364.2023.10401515",
+                "10.1109/ICECCME57830.2023.10252220",
+                "10.1109/ICFC.2019.00024",
+                "10.1109/ICPICS52425.2021.9524169",
         };
         if (doiList == null || doiList.length == 0) {
             doiList = doiListFromCode;

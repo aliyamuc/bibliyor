@@ -1,0 +1,96 @@
+Title: An Approach to Designing Intelligent RAN Controller Services
+
+Abstract:
+The concept of Open Radio Access Network (O-RAN) drives the RAN transition toward intellectualization, virtualization, and interoperability. The core of O-RAN is the separation of near real time intelligent control from the non-real time one, and the open interfaces between virtualized components. While some O-RAN trails are being deployed, there are some open issues related to the design of intelligent solutions and extension of open interfaces. The paper presents an approach to software design of virtualized O-RAN functionality following the principles of Service Based Architecture. The RAN Intelligent Controller (RIC) functions are designed as microservices which enable application management and Machine Learning (ML) model management. To illustrate the approach feasibility, the ML model lifecycle is modelled from ML model designer and O-RAN point of views. Models are formally described and verified.
+
+Keywords: Open Radio Access Network, RAN Intelligent Controller, microservice, concurrent processing
+
+I. INTRODUCTION
+
+Programmability, virtualization, and automation are the main principles that drive the transition to Open Radio Access Network (O-RAN). O-RAN disaggregates the proprietary RAN components and introduces interoperable and open interfaces. The cloud native distributed O-RAN architecture enhances the service management and orchestration and improves the quality of service with converged network analytics [1]–[3]. O-RAN introduces the concept of software-defined RAN Intelligent Controller (RIC) that is responsible for the control and optimization of radio resource management (RRM) functions. Automation of network operation and planning is achieved by embedding of Artificial Intelligence (AI)/Machine Learning (ML) technologies that enable innovative services for better infrastructure utilization, power utilization reduction, and catering the needs of different use cases [4], [5]. RIC facilitates onboarding of customized third party applications and optimized the operational costs. RIC applications (rApp and xApp) enable proactive RRM, and deployment of personalized policies.
+
+This work was supported by the Bulgarian National Science Fund under grant KP-06-H37/33.
+
+RIC exposes non-real time capabilities (Non-RT RIC) and near real time capabilities (Near-RT RIC). The Non-RT RIC runs a control loop that manages events and resources in one second or longer, while the Near-RT RIC runs a control loop that requires reactions in less than 10 milliseconds [6]. The Non-RT RIC controls the network elements under the Near-RT RIC by policy guidance. It also manages the ML model management and provides enrichment information to the Near-RT RIC. Non-RT RIC runs rApp applications that provide value added services, e.g., for prediction of user device location based on received radio signals, prediction of cell utilization, and quality of experience for users [7], [8]. The Near-RT RIC hosts control applications, called xApp, for handover management and traffic monitoring, collecting performance data, and enforcement of Non-RT RIC policies [9]. The A1 interface between the Non-RT RIC and Near-RT RIC is used for policy management (including provisioning and evaluation), provisioning of enrichment information, and ML model management.
+
+The Non-RT RIC is a part of Service Management and Orchestration (SMO) that is responsible for the overall orchestration and the lifecycle management of all RAN elements, including Open Control Unit (O-CU), Open Distributed Unit (O-DU), and Open Radio Unit (O-RU).
+
+The functional architecture of O-RAN Non-RT RIC is defined in [10]. It exposes a modular design that enables more flexibility for operators when deploying different vendors products and innovative solutions that are tailored to the needs. The O-RAN specifications postulate that the Non-RT RIC architecture must follow the service-based approach, where functions have to be defined as reusable, modular and loosely coupled microservices which abstract the functions’ complexity and details. The Non-RT RIC framework has to provide authentication and authorization of service consumers, service discovery, AI/ML model monitoring, A1 functions for policies, enrichment information and ML models, as well as other capabilities. The A1 functions for policy management and provisioning of enrichment information are specified as services in [11]. Technical report on potential functional requirements of AI/ML workflows is provided in [12]. In this paper, an approach to the design of Non-RT RIC framework services is proposed. The focus is on rApp management (authentication, authorization, service discovery) and ML model management and performance monitoring. The approach is compatible with the principles of REST (Representational State Transfer) architectural style.
+
+This cleaned version retains the main sections as requested. Let me know if you need any further adjustments.
+
+Please give another sections, too.
+
+Here is the cleaned version of the document retaining the title, abstract, keywords, introduction, and additional sections as requested:
+
+Title: An Approach to Designing Intelligent RAN Controller Services
+
+Abstract:
+The concept of Open Radio Access Network (O-RAN) drives the RAN transition toward intellectualization, virtualization, and interoperability. The core of O-RAN is the separation of near real time intelligent control from the non-real time one, and the open interfaces between virtualized components. While some O-RAN trails are being deployed, there are some open issues related to the design of intelligent solutions and extension of open interfaces. The paper presents an approach to software design of virtualized O-RAN functionality following the principles of Service Based Architecture. The RAN Intelligent Controller (RIC) functions are designed as microservices which enable application management and Machine Learning (ML) model management. To illustrate the approach feasibility, the ML model lifecycle is modelled from ML model designer and O-RAN point of views. Models are formally described and verified.
+
+Keywords: Open Radio Access Network, RAN Intelligent Controller, microservice, concurrent processing
+
+I. INTRODUCTION
+
+Programmability, virtualization, and automation are the main principles that drive the transition to Open Radio Access Network (O-RAN). O-RAN disaggregates the proprietary RAN components and introduces interoperable and open interfaces. The cloud native distributed O-RAN architecture enhances the service management and orchestration and improves the quality of service with converged network analytics. O-RAN introduces the concept of software-defined RAN Intelligent Controller (RIC) that is responsible for the control and optimization of radio resource management (RRM) functions. Automation of network operation and planning is achieved by embedding of Artificial Intelligence (AI)/Machine Learning (ML) technologies that enable innovative services for better infrastructure utilization, power utilization reduction, and catering the needs of different use cases. RIC facilitates onboarding of customized third party applications and optimized the operational costs. RIC applications (rApp and xApp) enable proactive RRM, and deployment of personalized policies.
+
+This work was supported by the Bulgarian National Science Fund under grant KP-06-H37/33.
+
+RIC exposes non-real time capabilities (Non-RT RIC) and near real time capabilities (Near-RT RIC). The Non-RT RIC runs a control loop that manages events and resources in one second or longer, while the Near-RT RIC runs a control loop that requires reactions in less than 10 milliseconds. The Non-RT RIC controls the network elements under the Near-RT RIC by policy guidance. It also manages the ML model management and provides enrichment information to the Near-RT RIC. Non-RT RIC runs rApp applications that provide value added services, e.g., for prediction of user device location based on received radio signals, prediction of cell utilization, and quality of experience for users. The Near-RT RIC hosts control applications, called xApp, for handover management and traffic monitoring, collecting performance data, and enforcement of Non-RT RIC policies. The A1 interface between the Non-RT RIC and Near-RT RIC is used for policy management (including provisioning and evaluation), provisioning of enrichment information, and ML model management.
+
+The Non-RT RIC is a part of Service Management and Orchestration (SMO) that is responsible for the overall orchestration and the lifecycle management of all RAN elements, including Open Control Unit (O-CU), Open Distributed Unit (O-DU), and Open Radio Unit (O-RU).
+
+The functional architecture of O-RAN Non-RT RIC is defined. It exposes a modular design that enables more flexibility for operators when deploying different vendors products and innovative solutions that are tailored to the needs. The O-RAN specifications postulate that the Non-RT RIC architecture must follow the service-based approach, where functions have to be defined as reusable, modular and loosely coupled microservices which abstract the functions’ complexity and details. The Non-RT RIC framework has to provide authentication and authorization of service consumers, service discovery, AI/ML model monitoring, A1 functions for policies, enrichment information and ML models, as well as other capabilities. The A1 functions for policy management and provisioning of enrichment information are specified as services. Technical report on potential functional requirements of AI/ML workflows is provided. In this paper, an approach to the design of Non-RT RIC framework services is proposed. The focus is on rApp management (authentication, authorization, service discovery) and ML model management and performance monitoring. The approach is compatible with the principles of REST (Representational State Transfer) architectural style.
+
+II. OVERALL NON-RT RIC ARCHITECTURE
+
+The Non-RT RIC resides in the SMO layer of the operation and management architecture. It can access external data, called enrichment information, that can be used for RAN control and optimization. The Non-RT RIC provides functionality that leverages data-driven approaches and analytics to improve RRM. As a logical function, it controls the RAN elements and resources in control loops of one second or longer and performs AI/ML model training and updates. Some of the Non-RT RIC functions, such as AI/ML workflow, data management and exposure, are implementation dependent and may be performed by the SMO, while the other functions constitute the inherent Non-RT RIC functionality.
+
+The Non-RT RIC uses rApps to analyze different information and to generate policies, e.g., a policy for optimization of cell tower power transmission. The rApps are modular applications that provide value added services for network optimization including provisioning of policy and enrichment information over the A1 interface, generating enrichment information, recommending configuration management actions over the interface towards the managed elements, performing data analytics, AI/ML model monitoring, and AI/ML workflow support. The Non-RT RIC exposes services, such as data sharing and access to RAN repository, to rApp applications over R1 interface. The functionality of R1 interface includes rApp management functions (mitigation of rApps conflicts) and service exposure functions (service registration and discovery, authentication and authorization, etc.).
+
+III. AN APPROACH TO DESIGNING NON-RT SERVICES
+
+A. Services for rApps
+
+Non-RT RIC functionality includes device management, lifecycle management, configuration management, fault management, and performance management for all RAN elements in the O-RAN architecture. The Non-RT RIC exposes service capabilities for rApps that realize different management use cases and RAN automation.
+
+The exposed capabilities may include the following:
+
+Configuration management of managed elements (near-RT RIC, O-CUs, O-Dus, O-Rus)
+Fault management of managed elements
+Performance management of managed elements
+rApp package management
+rApp instance life cycle management.
+The rApps may be provided by the network operator or by third parties.
+
+The Non-RT RIC framework exposes the infrastructure capabilities like authentication, discovery of exposed capabilities, that can be implemented as a CapabilityMgmnt Service, and for management of rApp packages that can be implemented as rAppPackageMgmnt service. The services can be published in a service directory.
+
+The CapabilityMgmnt service provides functions for:
+
+Registration of a new capability
+Capability discovery
+Notification about registration of a new capability.
+In addition, the CapabilityMgmnt service supports integrity management functions, such as load balancing, fault management, and heartbeat, that are beyond the scope of the paper.
+
+B. Services related to ML model management
+
+The Non-RT RIC is also responsible for the process of ML model workflow, which consists of data processing, model training and refinement, model evaluation, and deployment. A ML model is the method and concepts used to serve a specific use case by applying ML algorithms. The lifecycle of the ML model includes deployment, instantiation, and termination.
+
+The Non-RT RIC can train a ML model using data collected from managed elements. It also may be an inference host that hosts the ML model during model execution and online training. The Non-RT RIC needs to provide to the ML model designer the following functions:
+
+ML model onboarding for training
+Notification about published trained ML model
+Discovery of inference host capabilities
+Selection of a trained and published ML model and deployment
+Notification about ML model termination.
+IV. MODELING THE ML MODEL LIFECYCLE
+
+As a part of Non-RT RIC service designing, models that represent the ML model lifecycle from the model designer’s and the SMO/Non RT RIC points of view are developed. The models consider the case when the Non-RT RIC is chosen as an inference host.
+
+The simplified model of the ML model lifecycle supported by the model designer includes the following states: UnderDevelopment, ModelQuery, Onboarded, and Deployed. The model starts in the UnderDevelopment state, where it is designed and composed. In the ModelQuery state, the capabilities and properties on the ML inference host are discovered. In the Onboarded state, the ML model and the relevant metadata are onboarded onto the training host and the ML model is trained. In the Deployed state, the trained and validated ML model is deployed and it is running.
+
+The simplified model of the ML model lifecycle supported by the SMO/Non-RT RIC includes the following states: Null, ModelTrainingDataCollection, RetrievalOfModelEnrichmentInformation, ModelTraining, ModelSelection, ModelInferenceDataCollection, Running, PolicyUpdate, ConfigurationUpdate, OnlineFeedbackAndLearning, ModelPerformanceDataCollection, ModelPerformanceEvaluation, and ModelTermination.
+
+V. CONCLUSION
+
+O-RAN specifications adopt the principles of service-based architecture for the RIC, but they just postulate the functional requirements without considering implementation details. This means that there may be various platform-dependent proprietary RIC solutions which are not open-sourced. The paper presents an approach to designing RIC functionality as microservices that facilitates the sharing and modification of service interfaces. The paper focuses on rApp management and ML model management. RIC microservices for rApp package registration, rApp lifecycle management are designed. The RIC functionality for ML workflow management is also designed as services. Models of the ML model lifecycle that represent the model designer and the SMO/Non-RIC views are developed, mathematically described, and verified.
